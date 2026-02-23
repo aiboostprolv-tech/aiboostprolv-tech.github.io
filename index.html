@@ -1,474 +1,225 @@
-.faq-question:hover { color: var(--accent); }
-.faq-icon { color: var(--accent); font-size: 1.3rem; transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem; }
-.faq-item.open .faq-icon { transform: rotate(45deg); }
-.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; color: var(--muted); font-size: var(--fs-sm); line-height: 1.7; }
-.faq-item.open .faq-answer { max-height: 200px; padding-bottom: 1.1rem; }
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AiBoost Pro | Digitālie risinājumi</title>
 
-/* ABOUT */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.about-visual { background: var(--gray); border-radius: 18px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.06); text-align: center; }
-.avatar-circle { width: 88px; height: 88px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 50%; margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--black); }
-.about-name { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
-.about-role { color: var(--accent); font-size: var(--fs-xs); margin-bottom: 1.2rem; }
-.skills-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
-.skill-tag { background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.2); color: var(--accent); font-size: 0.7rem; padding: 0.22rem 0.65rem; border-radius: 100px; }
-.about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; font-size: var(--fs-sm); }
-.lang-badges { display: flex; gap: 0.5rem; margin-top: 1.1rem; flex-wrap: wrap; }
-.lang-badge { background: var(--gray2); border: 1px solid rgba(255,255,255,0.1); padding: 0.3rem 0.8rem; border-radius: 7px; font-size: var(--fs-xs); }
-
-/* CONTACT */
-.contact-section { background: linear-gradient(135deg, rgba(0,229,160,0.07), rgba(0,102,255,0.07)); border: 1px solid rgba(0,229,160,0.15); border-radius: 20px; padding: 4rem 3rem; margin: 0 3rem 5rem; text-align: center; }
-.contact-section p { color: var(--muted); font-size: var(--fs-sm); margin-bottom: 2rem; }
-.contact-links { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; }
-.contact-item { display: flex; align-items: center; gap: 0.45rem; background: var(--gray); border: 1px solid rgba(255,255,255,0.08); padding: 0.65rem 1.2rem; border-radius: 10px; font-size: var(--fs-xs); color: var(--white); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
-.contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
-
-/* FOOTER */
-footer { text-align: center; padding: 1.8rem 3rem; color: var(--muted); font-size: var(--fs-xs); border-top: 1px solid rgba(255,255,255,0.06); }
-footer span { color: var(--accent); }
-
-/* FADE UP */
-.fade-up { opacity: 0; transform: translateY(25px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-
-/* ===== CHATBOT ===== */
-#chat-btn {
-  position: fixed; bottom: 28px; right: 28px;
-  background: var(--accent); color: #000;
-  padding: 0.75rem 1.3rem; border-radius: 50px;
-  cursor: pointer; z-index: 9999; font-weight: 700;
-  font-size: var(--fs-sm); box-shadow: 0 4px 20px rgba(0,229,160,0.45);
-  display: flex; align-items: center; gap: 0.5rem;
-  border: none; font-family: 'DM Sans', sans-serif;
-  transition: transform 0.2s;
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
 }
-#chat-btn:hover { transform: translateY(-2px); }
-#chat-window {
-  position: fixed; bottom: 90px; right: 28px;
-  width: 340px; max-width: calc(100vw - 20px);
-  height: 500px; background: #141414;
-  border-radius: 20px; display: none; flex-direction: column;
-  overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-  z-index: 9998; border: 1px solid rgba(0,229,160,0.2);
-}
-#chat-header {
-  background: linear-gradient(90deg, #00c87a, #00e5a0);
-  color: #000; padding: 0.9rem 1rem;
-  display: flex; justify-content: space-between; align-items: center;
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
-}
-#chat-header .chat-title { display: flex; align-items: center; gap: 0.5rem; }
-#chat-header .chat-status { font-size: 0.7rem; font-weight: 400; opacity: 0.8; }
-#chat-close { cursor: pointer; font-size: 1.1rem; opacity: 0.7; background: none; border: none; color: #000; }
-#chat-lang { display: flex; gap: 0.4rem; padding: 0.55rem 0.8rem; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.07); }
-.lang-btn { flex: 1; padding: 0.28rem; border-radius: 7px; border: 1px solid rgba(255,255,255,0.12); background: transparent; color: var(--white); font-size: 0.72rem; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-.lang-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
-#chat-msgs { flex: 1; padding: 0.9rem; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; scroll-behavior: smooth; }
-#chat-msgs::-webkit-scrollbar { width: 4px; }
-#chat-msgs::-webkit-scrollbar-track { background: transparent; }
-#chat-msgs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-.msg { padding: 9px 13px; border-radius: 14px; max-width: 85%; font-size: 0.82rem; line-height: 1.55; }
-.msg.bot { background: rgba(0,229,160,0.1); color: #d4fff4; align-self: flex-start; border-radius: 4px 14px 14px 14px; }
-.msg.user { background: rgba(0,102,255,0.2); color: #fff; align-self: flex-end; border-radius: 14px 4px 14px 14px; }
-.msg.typing { background: rgba(0,229,160,0.08); color: var(--muted); font-style: italic; }
-#chat-socials { padding: 0.5rem 0.8rem; border-top: 1px solid rgba(255,255,255,0.07); }
-.socials-label { font-size: 0.68rem; color: var(--muted); margin-bottom: 0.4rem; }
-.socials-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.social-link { padding: 0.28rem 0.6rem; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: var(--white); font-size: 0.7rem; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
-.social-link:hover { background: rgba(0,229,160,0.15); border-color: var(--accent); }
-#chat-quick { display: flex; flex-wrap: wrap; gap: 5px; padding: 0.45rem 0.8rem; border-top: 1px solid rgba(255,255,255,0.07); }
-.quick-btn { padding: 0.32rem 0.65rem; border-radius: 10px; background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.22); color: var(--accent); font-size: 0.72rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
-.quick-btn:hover { background: rgba(0,229,160,0.22); }
-#chat-input-area { display: flex; border-top: 1px solid rgba(255,255,255,0.08); }
-#chat-input { flex: 1; padding: 0.75rem 1rem; border: none; background: transparent; color: #fff; outline: none; font-size: 0.85rem; font-family: 'DM Sans', sans-serif; }
-#chat-input::placeholder { color: rgba(255,255,255,0.3); }
-#chat-send { background: var(--accent); border: none; color: #000; padding: 0 1rem; cursor: pointer; font-weight: 700; font-size: 1rem; transition: background 0.2s; }
-#chat-send:hover { background: #00c87a; }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  nav { padding: 0.85rem 1.2rem; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .hero { padding: 5.5rem 1.2rem 3rem; }
-  .section-wrap { padding: 3.5rem 1.2rem; }
-  .why-section { grid-template-columns: 1fr; margin: 0 1.2rem; padding: 2rem; gap: 2rem; }
-  .testimonials-section { margin: 2.5rem 1.2rem 0; padding: 2rem 1.2rem; }
-  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .contact-section { margin: 0 1.2rem 4rem; padding: 2.5rem 1.2rem; }
-  footer { padding: 1.5rem 1.2rem; }
-  #chat-window { right: 10px; left: 10px; width: auto; bottom: 85px; }
-  #chat-btn { right: 16px; bottom: 20px; }
+header{
+    padding:60px 20px;
+    text-align:center;
+    background:linear-gradient(135deg,#1e293b,#0f172a);
+}
+
+h1{
+    font-size:42px;
+    margin:0;
+}
+
+section{
+    padding:60px 20px;
+    text-align:center;
+}
+
+.card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+    margin:15px auto;
+    max-width:400px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 25px;
+    background:#6366f1;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    margin-top:15px;
+}
+
+footer{
+    padding:30px;
+    text-align:center;
+    background:#111827;
+}
+
+/* CHAT */
+#chat-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#6366f1;
+    color:white;
+    padding:15px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+#chat-window{
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:300px;
+    background:white;
+    color:black;
+    border-radius:10px;
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+#chat-header{
+    background:#6366f1;
+    color:white;
+    padding:10px;
+    text-align:center;
+}
+
+#chat-msgs{
+    height:250px;
+    overflow-y:auto;
+    padding:10px;
+    font-size:14px;
+}
+
+.msg{
+    margin:5px 0;
+    padding:8px;
+    border-radius:8px;
+    max-width:80%;
+}
+
+.user{
+    background:#6366f1;
+    color:white;
+    margin-left:auto;
+}
+
+.bot{
+    background:#e5e7eb;
+}
+
+#chat-input-area{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+#chat-input{
+    flex:1;
+    border:none;
+    padding:10px;
+}
+
+#chat-input-area button{
+    background:#6366f1;
+    border:none;
+    color:white;
+    padding:10px;
+    cursor:pointer;
 }
 </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="#" class="logo">AiBoost<span>Pro</span></a>
-  <ul class="nav-links">
-    <li><a href="#pakalpojumi">Pakalpojumi</a></li>
-    <li><a href="#par-mums">Par mani</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#kontakti">Kontakti</a></li>
-    <li><a href="#kontakti" class="nav-cta">Sazināties</a></li>
-  </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<header>
+<h1>AiBoost Pro</h1>
+<p>Digitālie risinājumi uzņēmuma izaugsmei</p>
+<a href="#contact" class="btn">Bezmaksas konsultācija</a>
+</header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#pakalpojumi" onclick="toggleMenu()">Pakalpojumi</a>
-  <a href="#par-mums" onclick="toggleMenu()">Par mani</a>
-  <a href="#faq" onclick="toggleMenu()">FAQ</a>
-  <a href="#kontakti" onclick="toggleMenu()">Kontakti</a>
-  <a href="#kontakti" onclick="toggleMenu()">✨ Bezmaksas konsultācija</a>
+<section>
+<h2>Pakalpojumi</h2>
+
+<div class="card">
+<h3>AI Čatboti</h3>
+<p>Automātiska klientu apkalpošana 24/7 jūsu mājaslapai.</p>
+<p><strong>No 150€</strong></p>
 </div>
 
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-tag">AI Mārketinga Aģentūra — Rīga, Latvija</div>
-    <h1>Digitālais<br>mārketings<br><em>nākotnes</em> līmenī</h1>
-    <p class="hero-sub">Palīdzam maziem un vidējiem uzņēmumiem augt ar mākslīgā intelekta, čatbotiem un mērķētu digitālo stratēģiju.</p>
-    <div class="hero-actions">
-      <a href="#kontakti" class="btn-primary">Bezmaksas konsultācija</a>
-      <a href="#pakalpojumi" class="btn-secondary">Pakalpojumi</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">3</div><div class="stat-label">Valodas LV·RU·EN</div></div>
-      <div><div class="stat-num">24/7</div><div class="stat-label">AI čatboti klientiem</div></div>
-      <div><div class="stat-num">100%</div><div class="stat-label">Fokuss uz rezultātu</div></div>
-    </div>
-  </div>
+<div class="card">
+<h3>Sociālo tīklu vadība</h3>
+<p>Profesionāls saturs un reklāmas jūsu biznesam.</p>
+<p><strong>No 200€/mēn.</strong></p>
 </div>
 
-<div class="section-wrap" id="pakalpojumi">
-  <div class="section-tag">Pakalpojumi</div>
-  <h2>Ko mēs piedāvājam</h2>
-  <p class="section-desc">Visaptveroši AI un digitālā mārketinga risinājumi jūsu biznesam.</p>
-  <div class="services-grid fade-up">
-    <div class="service-card"><span class="service-icon">🤖</span><h3>Čatbotu izveide</h3><p>Automatizētas atbildes klientiem 24/7. Uzstādām čatbotus mājaslapā un sociālajos tīklos.</p><div class="service-price">No 150€ — vienreizēji</div></div>
-    <div class="service-card"><span class="service-icon">📱</span><h3>Sociālie tīkli</h3><p>Satura stratēģija, dizains un publicēšana Instagram, Facebook, TikTok, LinkedIn.</p><div class="service-price">No 200€/mēnesī</div></div>
-    <div class="service-card"><span class="service-icon">✍️</span><h3>AI Satura veidošana</h3><p>Raksti, reklāmas teksti, apraksti LV, RU un EN valodā. Ātrāk un labāk ar AI.</p><div class="service-price">No 80€/mēnesī</div></div>
-    <div class="service-card"><span class="service-icon">🎯</span><h3>Digitālais Mārketings</h3><p>SEO, reklāmas, e-pasta kampaņas un analītika. Pilna stratēģija jūsu biznesam.</p><div class="service-price">No 300€/mēnesī</div></div>
-    <div class="service-card"><span class="service-icon">🌐</span><h3>Mājaslapa un Čats</h3><p>Moderna mājaslapa ar iebūvētu čatbotu. Wix, WordPress un citas platformas.</p><div class="service-price">No 250€ — vienreizēji</div></div>
-    <div class="service-card"><span class="service-icon">💡</span><h3>AI Konsultācijas</h3><p>Individuālas konsultācijas un apmācības par AI izmantošanu jūsu biznesā.</p><div class="service-price">No 60€/stundā</div></div>
-  </div>
-</div>
+</section>
 
-<div class="why-section fade-up">
-  <div>
-    <div class="section-tag">Kāpēc mēs</div>
-    <h2>Jūsu izaugsme — mūsu prioritāte</h2>
-  </div>
-  <ul class="why-list">
-    <li>Strādājam 3 valodās — latviešu, krievu, angļu</li>
-    <li>Izmantojam jaunākās AI tehnoloģijas</li>
-    <li>Individuāla pieeja katram klientam</li>
-    <li>Redzams progress jau pirmajā mēnesī</li>
-    <li>Caurspīdīga atskaite par paveikto darbu</li>
-    <li>Atbildam tajā pašā dienā</li>
-  </ul>
-</div>
-
-<div class="testimonials-section fade-up">
-  <div class="section-tag">Atsauksmes</div>
-  <h2>Ko saka klienti</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card"><p>"Rezultāti redzami jau pirmajā mēnesī. Profesionāla un ātra sadarbība!"</p><span>— Uzņēmuma īpašnieks, Rīga</span></div>
-    <div class="testimonial-card"><p>"Čatbots būtiski samazināja klientu apkalpošanas laiku. Ļoti iesaku!"</p><span>— Pakalpojumu sniedzējs</span></div>
-    <div class="testimonial-card"><p>"Sociālo tīklu menedžments ir lieliski. Sekotāji aug katru nedēļu."</p><span>— Mazā biznesa īpašniece</span></div>
-  </div>
-</div>
-
-<div class="section-wrap" id="faq">
-  <div class="section-tag">Biežāk uzdotie jautājumi</div>
-  <h2>FAQ</h2>
-  <p class="section-desc">Atbildes uz visbiežāk uzdotajiem jautājumiem.</p>
-  <div class="faq-item"><div class="faq-question">Cik maksā čatbota izveide?<span class="faq-icon">+</span></div><div class="faq-answer">Čatbota izveide sākas no 150€ vienreizēji. Cena atkarīga no sarežģītības. Pirmā konsultācija — bezmaksas!</div></div>
-  <div class="faq-item"><div class="faq-question">Cik ilgi aizņem mājaslapa izveide?<span class="faq-icon">+</span></div><div class="faq-answer">Tipiska mājaslapa ar čatbotu tiek izstrādāta 3–7 darba dienās atkarībā no sarežģītības.</div></div>
-  <div class="faq-item"><div class="faq-question">Kādās valodās jūs strādājat?<span class="faq-icon">+</span></div><div class="faq-answer">Strādājam latviešu, krievu un angļu valodā. Visi materiāli var būt jebkurā no šīm valodām.</div></div>
-  <div class="faq-item"><div class="faq-question">Vai var pasūtīt tikai vienu pakalpojumu?<span class="faq-icon">+</span></div><div class="faq-answer">Jā! Varat pasūtīt jebkuru pakalpojumu atsevišķi. Piedāvājam elastīgus risinājumus.</div></div>
-  <div class="faq-item"><div class="faq-question">Vai pirmā konsultācija tiešām ir bezmaksas?<span class="faq-icon">+</span></div><div class="faq-answer">Jā, pilnīgi bezmaksas! Sazinieties pa e-pastu vai WhatsApp un vienosimies par laiku.</div></div>
-  <div class="faq-item"><div class="faq-question">Vai strādājat ar maziem uzņēmumiem?<span class="faq-icon">+</span></div><div class="faq-answer">Jā! Specializējamies tieši uz maziem un vidējiem uzņēmumiem ar reāliem rezultātiem un saprātīgām cenām.</div></div>
-</div>
-
-<div class="section-wrap" id="par-mums">
-  <div class="about-grid">
-    <div class="about-visual fade-up">
-      <div class="avatar-circle">K</div>
-      <div class="about-name">Kristīne</div>
-      <div class="about-role">AI un Digitālā Mārketinga Speciāliste</div>
-      <div class="skills-tags">
-        <span class="skill-tag">Digitālais Mārketings</span>
-        <span class="skill-tag">AI Rīki</span>
-        <span class="skill-tag">Čatboti</span>
-        <span class="skill-tag">Sociālie Tīkli</span>
-        <span class="skill-tag">Satura Veidošana</span>
-        <span class="skill-tag">SEO</span>
-      </div>
-    </div>
-    <div class="about-text fade-up">
-      <div class="section-tag">Par mani</div>
-      <h2>Cilvēks aiz AiBoost Pro</h2>
-      <p>Esmu Kristīne — digitālā mārketinga un mākslīgā intelekta speciāliste. Palīdzu maziem uzņēmumiem augt digitālajā vidē ar jaunākajām AI tehnoloģijām.</p>
-      <p>Piedāvāju modernus risinājumus par saprātīgām cenām — tādus, kas agrāk bija pieejami tikai lieliem uzņēmumiem.</p>
-      <p>Strādāju godīgi, ātri un ar pilnu atdevi katram projektam.</p>
-      <div class="lang-badges">
-        <span class="lang-badge">🇱🇻 Latviski</span>
-        <span class="lang-badge">🇷🇺 Русский</span>
-        <span class="lang-badge">🇬🇧 English</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="contact-section fade-up" id="kontakti">
-  <div class="section-tag">Kontakti</div>
-  <h2>Sākam kopā?</h2>
-  <p>Pirmā konsultācija ir bezmaksas! Atbildu tajā pašā dienā.</p>
-  <div class="contact-links">
-    <a href="mailto:aiboostpro.lv@gmail.com" class="contact-item">📧 E-pasts</a>
-    <a href="https://wa.me/37122389028" class="contact-item" target="_blank">💬 WhatsApp</a>
-    <a href="https://www.instagram.com/aiboostpro.lv" class="contact-item" target="_blank">📸 Instagram</a>
-    <a href="https://www.facebook.com/share/1AeCYCRLKz/" class="contact-item" target="_blank">📘 Facebook</a>
-    <a href="https://www.tiktok.com/@aiboostpro3" class="contact-item" target="_blank">🎵 TikTok</a>
-    <a href="https://t.me/aiboostpro" class="contact-item" target="_blank">✈️ Telegram</a>
-    <a href="https://www.linkedin.com/company/aiboostpro" class="contact-item" target="_blank">💼 LinkedIn</a>
-  </div>
-</div>
+<section id="contact">
+<h2>Kontakti</h2>
+<p>WhatsApp: +371 22389028</p>
+<p>E-pasts: info@aiboostpro.lv</p>
+</section>
 
 <footer>
-  <p>© 2026 <span>AiBoost Pro</span> — Digitālais mārketings un AI risinājumi. Rīga, Latvija.</p>
+© 2026 AiBoost Pro | Visas tiesības aizsargātas
 </footer>
 
-<!-- CHATBOT -->
-<button id="chat-btn">💬 Jautā AI</button>
+<!-- CHAT BUTTON -->
+<div id="chat-btn">💬</div>
+
+<!-- CHAT WINDOW -->
 <div id="chat-window">
-  <div id="chat-header">
-    <div class="chat-title">
-      <span>🤖 AiBoost Pro AI</span>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;">
-      <span class="chat-status">● Tiešsaistē</span>
-      <button id="chat-close">✕</button>
-    </div>
-  </div>
-  <div id="chat-lang">
-    <button class="lang-btn active" onclick="setLang('lv',this)">🇱🇻 LV</button>
-    <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
-    <button class="lang-btn" onclick="setLang('en',this)">🇬🇧 EN</button>
-  </div>
-  <div id="chat-msgs"></div>
-  <div id="chat-socials">
-    <div class="socials-label">📲 Mūsu sociālie tīkli:</div>
-    <div class="socials-row">
-      <a href="https://wa.me/37122389028" class="social-link" target="_blank">💬 WhatsApp</a>
-      <a href="https://www.instagram.com/aiboostpro.lv" class="social-link" target="_blank">📸 Instagram</a>
-      <a href="https://www.facebook.com/share/1AeCYCRLKz/" class="social-link" target="_blank">📘 Facebook</a>
-      <a href="https://www.tiktok.com/@aiboostpro3" class="social-link" target="_blank">🎵 TikTok</a>
-      <a href="https://t.me/aiboostpro" class="social-link" target="_blank">✈️ Telegram</a>
-      <a href="https://www.linkedin.com/company/aiboostpro" class="social-link" target="_blank">💼 LinkedIn</a>
-    </div>
-  </div>
-  <div id="chat-quick"></div>
-  <div id="chat-input-area">
-    <input type="text" id="chat-input" placeholder="Raksti ziņu...">
-    <button id="chat-send">➤</button>
-  </div>
+<div id="chat-header">AiBoost Pro</div>
+<div id="chat-msgs"></div>
+<div id="chat-input-area">
+<input type="text" id="chat-input" placeholder="Raksti ziņu...">
+<button onclick="sendMessage()">Sūtīt</button>
+</div>
 </div>
 
 <script>
-// ===== MOBILE MENU =====
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
 
-// ===== FAQ =====
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
+function toggleChat(){
+    const win=document.getElementById('chat-window');
+    win.style.display=win.style.display==='flex'?'none':'flex';
 
-// ===== FADE UP =====
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-// ===== CHATBOT =====
-let currentLang = 'lv';
-let isTyping = false;
-const msgsDiv = document.getElementById('chat-msgs');
-const inputEl = document.getElementById('chat-input');
-
-const t = {
-  lv: {
-    placeholder: 'Raksti ziņu...',
-    greeting: 'Sveika! 😊 Esmu AiBoost Pro AI asistente Kristīne. Ļoti priecājos tevi satikt! Kā varu palīdzēt tavam biznesam šodien?',
-    typing: 'Kristīne raksta...',
-    quick: ['🤖 Čatboti', '📱 Sociālie tīkli', '✍️ AI Saturs', '💰 Cenas', '📞 Konsultācija', '🌐 Mājaslapa', '🔍 SEO', '❓ Par mums'],
-    socialLabel: '📲 Mūsu sociālie tīkli:',
-    r: {
-      'sveik': 'Sveika! 👋😊 Tik labi, ka sazinājies! Es esmu šeit lai palīdzētu tavam biznesam augt. Ko tu vēlies uzzināt?',
-      'labrīt': 'Labrīt! ☀️ Ceru, ka tev šodien ir lieliska diena! Kā es varu palīdzēt?',
-      'labdien': 'Labdien! 😊 Prieks dzirdēt! Kā es varu palīdzēt tavam biznesam?',
-      'labvakar': 'Labvakar! 🌙 Pat vakarā esam šeit lai palīdzētu! Kā es varu palīdzēt?',
-      'paldies': 'Liels paldies! 🙏❤️ Man ir tik prieks, ka varēju palīdzēt! Ja ir vēl jautājumi — esmu šeit!',
-      'čatbot': '🤖 Mūsu čatboti ir īsts brīnums biznesam!\n\nTie darbojas 24/7, automātiski atbild klientiem un neatvienojas pat naktī 😄\n\nIntegrējam:\n• Mājaslapā\n• Facebook Messenger\n• Instagram DM\n• WhatsApp\n\n💰 Cena no 150€ vienreizēji\n\nGribi uzzināt vairāk?',
-      'sociāl': '📱 Sociālie tīkli ir tavs bizness digitālajā pasaulē!\n\nMēs pārvaldām:\n• Instagram\n• Facebook\n• TikTok\n• LinkedIn\n\nIekļauts: satura plānošana + AI saturs + publicēšana + analītika\n\n💰 No 200€/mēnesī\n\nVai vēlies bezmaksas konsultāciju?',
-      'ai satur': '✍️ AI saturs ir nākotne — un nākotne ir jau šodien! 🚀\n\nVeidojam:\n• Rakstus un emuārus\n• Reklāmas tekstus\n• Produktu aprakstus\n• Sociālo tīklu ierakstus\n\nVisās 3 valodās: LV, RU, EN 🇱🇻🇷🇺🇬🇧\n\n💰 No 80€/mēnesī',
-      'cen': '💰 Mūsu cenas ir pieejamas ikvienam:\n\n🤖 Čatbots — no 150€ (vienreizēji)\n📱 Sociālie tīkli — no 200€/mēn\n✍️ AI saturs — no 80€/mēn\n🎯 Digitālais mārketings — no 300€/mēn\n🌐 Mājaslapa + čats — no 250€\n💡 Konsultācija — no 60€/st\n\n✨ Pirmā konsultācija BEZMAKSAS!',
-      'konsult': '📞 Lieliski, ka interesē konsultācija!\n\nPirmā konsultācija ir pilnīgi BEZMAKSAS! 🎉\n\nSazinies ar mums:\n📧 aiboostpro.lv@gmail.com\n💬 WhatsApp: +371 22389028\n✈️ Telegram: @aiboostpro\n\nAtbildam tajā pašā dienā! 😊',
-      'mājaslap': '🌐 Moderna mājaslapa — tava biznesa seja internetā!\n\nVeidojam mājaslapas ar:\n• Iebūvētu čatbotu\n• Mobilo versiju\n• SEO optimizāciju\n• Ātrumu un drošību\n\nPlatformas: Wix, WordPress, HTML\n\n💰 No 250€ vienreizēji\n\nGribi redzēt piemērus?',
-      'seo': '🔍 SEO — lai Google tevi atrastu!\n\nBez SEO tava mājaslapa ir kā veikals bez izkārtnes. Mēs palīdzam:\n• Parādīties Google augšā\n• Piesaistīt organisko trafiku\n• Palielināt klientu plūsmu\n\n💰 Ietilpst digitālā mārketinga paketē no 300€/mēn',
-      'par': '👩 Par AiBoost Pro:\n\nMēs esam Kristīnes vadīta AI un digitālā mārketinga aģentūra Rīgā! 🇱🇻\n\nMūsu misija: palīdzēt maziem uzņēmumiem konkurēt ar lieliem, izmantojot jaunākās AI tehnoloģijas.\n\nStrādājam LV, RU, EN valodās ar sirdi un entuziasmu! ❤️',
-      'reklām': '🎯 Reklāmas — pareizajiem cilvēkiem, pareizajā laikā!\n\nVeidojam reklāmas:\n• Facebook un Instagram\n• Google Ads\n• TikTok reklāmas\n\nMērķētā auditorija = mazāki izdevumi, labāki rezultāti! 💪\n\n💰 Ietilpst digitālā mārketinga paketē no 300€/mēn',
-      'default': 'Hmm, interesants jautājums! 🤔💭\n\nLai sniegtu precīzāku atbildi, lūdzu sazinieties tieši ar mums:\n\n📧 aiboostpro.lv@gmail.com\n💬 WhatsApp: +371 22389028\n✈️ Telegram: @aiboostpro\n\nAtbildēsim tajā pašā dienā! 😊❤️'
+    if(win.style.display==='flex' && 
+       document.getElementById('chat-msgs').innerHTML===""){
+        addMessage("Sveiki! Esmu Kristīne no AiBoost Pro. Kā varu palīdzēt?",'bot');
     }
-  },
-  ru: {
-    placeholder: 'Написать сообщение...',
-    greeting: 'Привет! 😊 Я AI-ассистент AiBoost Pro. Очень рада познакомиться! Чем могу помочь вашему бизнесу сегодня?',
-    typing: 'Кристина пишет...',
-    quick: ['🤖 Чат-боты', '📱 Соц. сети', '✍️ AI контент', '💰 Цены', '📞 Консультация', '🌐 Сайт', '🔍 SEO', '❓ О нас'],
-    socialLabel: '📲 Наши соцсети:',
-    r: {
-      'привет': 'Привет! 👋😊 Как здорово, что вы написали! Я здесь, чтобы помочь вашему бизнесу расти. Что хотите узнать?',
-      'добрый': 'Добрый день! ☀️ Надеюсь, у вас отличный день! Чем я могу помочь?',
-      'спасибо': 'Большое спасибо! 🙏❤️ Очень рада была помочь! Если будут ещё вопросы — я здесь!',
-      'чат': '🤖 Наши чат-боты — настоящее чудо для бизнеса!\n\nРаботают 24/7, автоматически отвечают клиентам!\n\nИнтегрируем в:\n• Сайт\n• Facebook Messenger\n• Instagram DM\n• WhatsApp\n\n💰 От 150€ единоразово\n\nХотите узнать больше?',
-      'соц': '📱 Соцсети — ваш бизнес в цифровом мире!\n\nМы управляем:\n• Instagram\n• Facebook\n• TikTok\n• LinkedIn\n\nВключает: планирование + AI контент + публикация + аналитика\n\n💰 От 200€/месяц',
-      'контент': '✍️ AI контент — будущее уже сегодня! 🚀\n\nСоздаём:\n• Статьи и блоги\n• Рекламные тексты\n• Описания товаров\n• Посты для соцсетей\n\nНа 3 языках: LV, RU, EN 🇱🇻🇷🇺🇬🇧\n\n💰 От 80€/месяц',
-      'цен': '💰 Наши цены доступны каждому:\n\n🤖 Чат-бот — от 150€ (единоразово)\n📱 Соцсети — от 200€/мес\n✍️ AI контент — от 80€/мес\n🎯 Маркетинг — от 300€/мес\n🌐 Сайт + чат — от 250€\n💡 Консультация — от 60€/ч\n\n✨ Первая консультация БЕСПЛАТНО!',
-      'консульт': '📞 Отлично, что вас интересует консультация!\n\nПервая консультация абсолютно БЕСПЛАТНО! 🎉\n\nСвяжитесь с нами:\n📧 aiboostpro.lv@gmail.com\n💬 WhatsApp: +371 22389028\n✈️ Telegram: @aiboostpro\n\nОтвечаем в тот же день! 😊',
-      'сайт': '🌐 Современный сайт — лицо вашего бизнеса!\n\nСоздаём сайты с:\n• Встроенным чат-ботом\n• Мобильной версией\n• SEO оптимизацией\n\n💰 От 250€ единоразово',
-      'seo': '🔍 SEO — чтобы Google вас нашёл!\n\nПомогаем:\n• Появляться в топе Google\n• Привлекать органический трафик\n• Увеличивать поток клиентов\n\n💰 Входит в пакет маркетинга от 300€/мес',
-      'о нас': '👩 Об AiBoost Pro:\n\nМы — агентство AI и digital маркетинга в Риге! 🇱🇻\n\nНаша миссия: помочь малому бизнесу конкурировать с крупными компаниями.\n\nРаботаем на LV, RU, EN с душой и энтузиазмом! ❤️',
-      'default': 'Интересный вопрос! 🤔💭\n\nДля точного ответа, пожалуйста, свяжитесь с нами напрямую:\n\n📧 aiboostpro.lv@gmail.com\n💬 WhatsApp: +371 22389028\n✈️ Telegram: @aiboostpro\n\nОтветим в тот же день! 😊❤️'
-    }
-  },
-  en: {
-    placeholder: 'Type a message...',
-    greeting: 'Hello! 😊 I am the AiBoost Pro AI assistant. So glad to meet you! How can I help your business today?',
-    typing: 'Kristine is typing...',
-    quick: ['🤖 Chatbots', '📱 Social Media', '✍️ AI Content', '💰 Pricing', '📞 Consultation', '🌐 Website', '🔍 SEO', '❓ About us'],
-    socialLabel: '📲 Our social media:',
-    r: {
-      'hello': 'Hello! 👋😊 So great to hear from you! I am here to help your business grow. What would you like to know?',
-      'hi': 'Hi there! 👋😊 Wonderful to meet you! How can I help your business today?',
-      'thank': 'Thank you so much! 🙏❤️ I am so glad I could help! If you have more questions — I am always here!',
-      'chatbot': '🤖 Our chatbots are a game-changer for business!\n\nThey work 24/7, automatically reply to customers!\n\nWe integrate into:\n• Website\n• Facebook Messenger\n• Instagram DM\n• WhatsApp\n\n💰 From €150 one-time\n\nWant to know more?',
-      'social': '📱 Social media is your business in the digital world!\n\nWe manage:\n• Instagram\n• Facebook\n• TikTok\n• LinkedIn\n\nIncludes: planning + AI content + publishing + analytics\n\n💰 From €200/month',
-      'content': '✍️ AI content is the future — and the future is now! 🚀\n\nWe create:\n• Articles and blogs\n• Ad copy\n• Product descriptions\n• Social media posts\n\nIn 3 languages: LV, RU, EN 🇱🇻🇷🇺🇬🇧\n\n💰 From €80/month',
-      'pric': '💰 Our pricing is affordable for everyone:\n\n🤖 Chatbot — from €150 (one-time)\n📱 Social media — from €200/mo\n✍️ AI content — from €80/mo\n🎯 Marketing — from €300/mo\n🌐 Website + chat — from €250\n💡 Consultation — from €60/hr\n\n✨ First consultation FREE!',
-      'consult': '📞 Great that you are interested in a consultation!\n\nFirst consultation is completely FREE! 🎉\n\nContact us:\n📧 aiboostpro.lv@gmail.com\n💬 WhatsApp: +371 22389028\n✈️ Telegram: @aiboostpro\n\nWe reply the same day! 😊',
-      'website': '🌐 A modern website — the face of your business!\n\nWe build sites with:\n• Built-in chatbot\n• Mobile version\n• SEO optimization\n\n💰 From €250 one-time',
-      'seo': '🔍 SEO — so Google can find you!\n\nWe help:\n• Appear at the top of Google\n• Attract organic traffic\n• Increase customer flow\n\n💰 Included in marketing package from €300/month',
-      'about': '👩 About AiBoost Pro:\n\nWe are an AI and digital marketing agency in Riga! 🇱🇻\n\nOur mission: help small businesses compete with big ones using the latest AI.\n\nWe work in LV, RU, EN with heart and enthusiasm! ❤️',
-      'default': 'What an interesting question! 🤔💭\n\nFor a precise answer, please contact us directly:\n\n📧 aiboostpro.lv@gmail.com\n💬 WhatsApp: +371 22389028\n✈️ Telegram: @aiboostpro\n\nWe reply the same day! 😊❤️'
-    }
-  }
-};
-
-function setLang(lang, btn) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  inputEl.placeholder = t[lang].placeholder;
-  renderQuickBtns();
-  msgsDiv.innerHTML = '';
-  setTimeout(() => addMsg(t[lang].greeting, 'bot'), 300);
 }
 
-function renderQuickBtns() {
-  const container = document.getElementById('chat-quick');
-  container.innerHTML = '';
-  t[currentLang].quick.forEach(q => {
-    const btn = document.createElement('button');
-    btn.className = 'quick-btn';
-    btn.textContent = q;
-    btn.onclick = () => {
-      addMsg(q, 'user');
-      const key = q.replace(/^[^\w\s]*\s*/, '').toLowerCase();
-      setTimeout(() => addMsg(getReply(key), 'bot'), 600);
-    };
-    container.appendChild(btn);
-  });
+document.getElementById('chat-btn').onclick=toggleChat;
+
+function addMessage(text,side){
+    const msg=document.createElement('div');
+    msg.className='msg '+side;
+    msg.textContent=text;
+    document.getElementById('chat-msgs').appendChild(msg);
+    const obj=document.getElementById("chat-msgs");
+    obj.scrollTop=obj.scrollHeight;
 }
 
-function getReply(text) {
-  const r = t[currentLang].r;
-  for (let key in r) {
-    if (key !== 'default' && text.includes(key)) return r[key];
-  }
-  return r['default'];
+function sendMessage(){
+    const input=document.getElementById('chat-input');
+    const text=input.value.trim();
+    if(!text)return;
+
+    addMessage(text,'user');
+    input.value='';
+
+    setTimeout(()=>{
+        if(text.toLowerCase().includes("cena") || text.toLowerCase().includes("maksā")){
+            addMessage("Čatbotu izveide sākas no 150€, bet sociālo tīklu vadība no 200€/mēn. Pirmā konsultācija ir bezmaksas!",'bot');
+        }else{
+            addMessage("Paldies par jautājumu! Lai saņemtu personalizētu piedāvājumu, rakstiet WhatsApp +371 22389028",'bot');
+        }
+    },800);
 }
 
-function addMsg(text, from) {
-  const div = document.createElement('div');
-  div.className = 'msg ' + from;
-  div.textContent = text;
-  msgsDiv.appendChild(div);
-  msgsDiv.scrollTop = msgsDiv.scrollHeight;
-}
-
-function showTyping() {
-  const div = document.createElement('div');
-  div.className = 'msg bot typing';
-  div.id = 'typing-indicator';
-  div.textContent = t[currentLang].typing;
-  msgsDiv.appendChild(div);
-  msgsDiv.scrollTop = msgsDiv.scrollHeight;
-}
-
-function hideTyping() {
-  const el = document.getElementById('typing-indicator');
-  if (el) el.remove();
-}
-
-function sendMsg() {
-  const val = inputEl.value.trim();
-  if (!val || isTyping) return;
-  addMsg(val, 'user');
-  inputEl.value = '';
-  isTyping = true;
-  showTyping();
-  setTimeout(() => {
-    hideTyping();
-    addMsg(getReply(val.toLowerCase()), 'bot');
-    isTyping = false;
-  }, 800);
-}
-
-// Init
-document.getElementById('chat-btn').onclick = () => {
-  const w = document.getElementById('chat-window');
-  const isOpen = w.style.display === 'flex';
-  w.style.display = isOpen ? 'none' : 'flex';
-  w.style.flexDirection = 'column';
-  if (!isOpen && msgsDiv.children.length === 0) {
-    renderQuickBtns();
-    setTimeout(() => addMsg(t[currentLang].greeting, 'bot'), 300);
-  }
-};
-
-document.getElementById('chat-close').onclick = () => {
-  document.getElementById('chat-window').style.display = 'none';
-};
-
-document.getElementById('chat-send').onclick = sendMsg;
-inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') sendMsg(); });
 </script>
-
-
 
 </body>
 </html>
