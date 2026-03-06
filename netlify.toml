@@ -17,3 +17,5 @@
 
 [build.processing.images]
   compress = false
+[build.processing.html]
+  email_obfuscation = false
