@@ -5,7 +5,7 @@
   skip_processing = false
 
 [build.processing.html]
-  pretty_urls = false
+  pretty_urls = true
   email_obfuscation = false
 
 [build.processing.css]
