@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .nav-links a{color:var(--white);text-decoration:none;font-size:0.85rem;opacity:0.7;transition:opacity 0.2s;}
 .nav-links a:hover{opacity:1;}
 .nav-cta{background:var(--accent)!important;color:var(--black)!important;opacity:1!important;padding:0.45rem 1.1rem;border-radius:100px;font-weight:600!important;}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px;z-index:201;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;}
 .mobile-menu{display:none;position:fixed;top:61px;left:0;right:0;background:rgba(10,10,10,0.98);z-index:199;border-bottom:1px solid rgba(255,255,255,0.08);padding:0.5rem 0;}
 .mobile-menu.open{display:block;}
@@ -265,6 +265,11 @@ footer span{color:var(--accent);}
 
 .skip-link{position:absolute;top:-100px;left:0;background:var(--accent);color:#000;padding:8px 16px;font-weight:700;z-index:99999;transition:top 0.2s;}
 .skip-link:focus{top:0;}
+
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.hamburger span{transition:all 0.3s ease;}
 </style>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -301,16 +306,16 @@ fbq("track","PageView");
     <li><a href="#kontakti">Kontakti</a></li>
     <li><a href="#kontakti" class="nav-cta">Sazināties</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Atvērt navigāciju"><span></span><span></span><span></span></button>
+  <button class="hamburger" aria-label="Atvērt navigāciju"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#pakalpojumi" onclick="toggleMenu()">Pakalpojumi</a>
-  <a href="#cenas" onclick="toggleMenu()">Cenas</a>
-  <a href="#liaa" onclick="toggleMenu()">LIAA Granti</a>
-  <a href="#par-mums" onclick="toggleMenu()">Par mani</a>
-  <a href="#faq" onclick="toggleMenu()">FAQ</a>
-  <a href="#kontakti" onclick="toggleMenu()">Kontakti</a>
-  <a href="#kontakti" onclick="toggleMenu()">✨ Bezmaksas konsultācija</a>
+  <a href="#pakalpojumi">Pakalpojumi</a>
+  <a href="#cenas">Cenas</a>
+  <a href="#liaa">LIAA Granti</a>
+  <a href="#par-mums">Par mani</a>
+  <a href="#faq">FAQ</a>
+  <a href="#kontakti">Kontakti</a>
+  <a href="#kontakti">✨ Bezmaksas konsultācija</a>
 </div>
 
 <main id="main-content">
@@ -673,11 +678,44 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 // NAV
-const hamburger = document.querySelector(".hamburger");
-const mobileMenu = document.querySelector(".mobile-menu");
-if(hamburger) hamburger.addEventListener("click", () => { mobileMenu.classList.toggle("open"); });
-function toggleMenu(){mobileMenu.classList.toggle("open");}
-window.toggleMenu=toggleMenu;
+
+// Hamburger menu
+document.addEventListener("DOMContentLoaded", function(){
+  var hBtn = document.querySelector(".hamburger");
+  var hMenu = document.getElementById("mobileMenu");
+  if(!hBtn || !hMenu) return;
+
+  // Toggle on hamburger click
+  hBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    hMenu.classList.toggle("open");
+    hBtn.classList.toggle("active");
+  });
+
+  // Close when any link inside menu clicked
+  hMenu.addEventListener("click", function(e){
+    var link = e.target.closest("a");
+    if(link){
+      hMenu.classList.remove("open");
+      hBtn.classList.remove("active");
+      // Smooth scroll to target
+      var href = link.getAttribute("href");
+      if(href && href.startsWith("#")){
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if(target) setTimeout(function(){ target.scrollIntoView({behavior:"smooth"}); }, 50);
+      }
+    }
+  });
+
+  // Close when clicking outside menu
+  document.addEventListener("click", function(e){
+    if(!hMenu.contains(e.target) && !hBtn.contains(e.target)){
+      hMenu.classList.remove("open");
+      hBtn.classList.remove("active");
+    }
+  });
+});
 
 // FAQ
 document.querySelectorAll(".faq-question").forEach(q => {
@@ -719,14 +757,13 @@ window.pcCheckout=pcCheckout;
 window.pcConsult=pcConsult;
 
 // CHATBOT
+var CLAUDE_KEY="";
 var curLang=0;
 var waiting=false;
 var chatHistory=[];
 var msgs=document.getElementById("chat-msgs");
 var inp=document.getElementById("chat-input");
 var chatWin=document.getElementById("chat-window");
-
-var SYSTEM_PROMPT="Tu esi Kristīne — AiBoost Pro AI asistente. Atbildi tajā valodā, kurā jautā lietotājs (latviešu, krievu vai angļu). Esi draudzīga, profesionāla un kodolīga (max 3-4 teikumi).\n\nPAKALPOJUMI UN CENAS:\n- Čatbotu izveide: no 150€ (vienreizēji)\n- Sociālie tīkli Starter: 80€/mēn (8-12 ieraksti)\n- Sociālie tīkli Growth: 200€/mēn (satura plānošana, komentāri, atskaite)\n- Digitālais mārketings Performance: 300€/mēn (SEO, reklāmas, analītika)\n- Mājaslapa + čatbots (Biznesa starts): 250€ vienreizēji\n- AI konsultācijas: no 60€/stundā\n- Reklāmu pārvaldība: 80€/mēn\n\nSVARĪGI:\n- LIAA grants sedz līdz 50% MVU uzņēmumiem Latvijā\n- Strādājam LV, RU, EN valodās\n- Pirmā konsultācija bezmaksas\n- WhatsApp: +371 22389028\n- E-pasts: info@aiboostpro.lv\n\nBeidzot atbildi vienmēr mudini uz bezmaksas konsultāciju vai WhatsApp.";
 
 var DATA=[
   {ph:"Raksti...",
@@ -844,32 +881,25 @@ async function sendMessage(){
   waiting=true;
   addMsg(txt,"user");
   chatHistory.push({role:"user",content:txt});
-  if(chatHistory.length>20) chatHistory.splice(0,2);
+  if(chatHistory.length>20) chatHistory.shift();
   showTyping();
   var reply;
-  try{
-    var res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-haiku-4-5-20251001",
-        max_tokens:400,
-        system:SYSTEM_PROMPT,
-        messages:chatHistory
-      })
-    });
-    if(res.ok){
-      var data=await res.json();
-      reply=data.content&&data.content[0]&&data.content[0].text;
-    }
-  }catch(e){}
+  if(CLAUDE_KEY&&CLAUDE_KEY.indexOf("sk-ant")===0){
+    try{
+      var li=detectLang(txt);
+      var langs=["latviesu","krievu","anglu"];
+      var sys="Tu esi Kristine, AiBoost Pro AI asistente. Atbildi "+langs[li]+" valoda. Esi draudziga. Pakalpojumi: Catbots no 150EUR, Socialie tikli no 200EUR/men, Majaslapa no 250EUR. LIAA grants lidz 50%. WhatsApp: +371 22389028";
+      var res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":CLAUDE_KEY,"anthropic-version":"2023-06-01","anthropic-dangerous-allow-browser":"true"},body:JSON.stringify({model:"claude-haiku-4-5-20251001",max_tokens:400,system:sys,messages:chatHistory})});
+      if(res.ok){var data=await res.json();reply=data.content[0].text;}
+    }catch(e){}
+  }
   if(!reply) reply=getReply(txt);
   setTimeout(function(){
     hideTyping();
     addMsg(reply,"bot");
     chatHistory.push({role:"assistant",content:reply});
     waiting=false;
-  },400);
+  },500);
 }
 
 function setLang(idx,btn){
