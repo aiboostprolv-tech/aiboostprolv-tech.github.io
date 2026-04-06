@@ -31,7 +31,10 @@
 "addressLocality":"Riga",
 "addressCountry":"LV"
 },
-"telephone":"+37122389028"
+"telephone":"+37122389028",
+"email":"info@aiboostpro.lv",
+"priceRange":"€80–€500",
+"sameAs":["https://www.facebook.com/share/1AeCYCRLKz/","https://www.instagram.com/aiboostpro.lv","https://www.tiktok.com/@aiboostpro3","https://www.linkedin.com/company/aiboostpro"]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -270,14 +273,21 @@ footer span{color:var(--accent);}
 .hamburger.active span:nth-child(2){opacity:0;}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 .hamburger span{transition:all 0.3s ease;}
+
+/* Tawk.to - mūsu čatbots augstāk lai nepārklājas */
+#chat-btn { bottom: 90px !important; right: 30px !important; }
+
+.back-to-top{position:fixed;bottom:140px;right:30px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;opacity:0;transition:opacity 0.3s,transform 0.2s;pointer-events:none;z-index:998;}
+.back-to-top.visible{opacity:1;pointer-events:auto;}
+.back-to-top:hover{transform:translateY(-3px);background:var(--accent);color:#000;border-color:var(--accent);}
 </style>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JV5RM26FHE"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
 window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag("js",new Date());
-gtag("config","G-JV5RM26FHE");
+gtag("config","G-XXXXXXXXXX");
 </script>
 
 <script>
@@ -395,7 +405,7 @@ fbq("track","PageView");
     <div class="service-card"><span class="service-icon" style="color:var(--accent);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><h3>Mājaslapa un čats</h3><p>Moderna mājaslapa ar iebūvētu čatbotu. Wix, WordPress un citas platformas.</p><div class="service-price">No 250&euro; &mdash; vienreizēji</div></div>
     <div class="service-card"><span class="service-icon" style="color:var(--accent);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.5 4.5-3 6l-1 3H9l-1-3C6.5 13.5 5 11.5 5 9a7 7 0 0 1 7-7z"/></svg></span><h3>AI Konsultācijas</h3><p>Individuālas konsultācijas par AI izmantošanu jūsu biznesā.</p><div class="service-price">No 60&euro;/stundā</div></div>
   <div style="text-align:center;margin-top:1.5rem;">
-    <a href="https://wa.me/37122389028?text=Sveika!%20Velos%20uzzinaat%20par%20pakalpojumiem." target="_blank" rel="noopener noreferrer" class="btn-primary">Pieteikties konsultācijai →</a>
+    <a href="https://wa.me/37122389028?text=Sveika!%20V%C4%93los%20uzzin%C4%81t%20par%20pakalpojumiem." target="_blank" rel="noopener noreferrer" class="btn-primary">Pieteikties konsultācijai →</a>
   </div>
   </div>
 </div>
@@ -507,7 +517,7 @@ fbq("track","PageView");
     <div class="liaa-cta">
       <div><div class="liaa-cta-title">🎯 Bezmaksas LIAA konsultācija!</div><div class="liaa-cta-sub">Pārbaudīsim vai jūsu uzņēmums var saņemt grantu.</div></div>
       <div style="display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;">
-        <a href="https://wa.me/37122389028?text=Sveika!%20Velos%20uzzinaat%20par%20LIAA%20grantu." target="_blank" rel="noopener noreferrer" style="background:var(--accent);color:#000;padding:0.7rem 1.4rem;border-radius:100px;font-weight:700;font-size:0.82rem;text-decoration:none;">💬 Jautāt par grantu</a>
+        <a href="https://wa.me/37122389028?text=Sveika!%20V%C4%93los%20uzzin%C4%81t%20par%20LIAA%20grantu." target="_blank" rel="noopener noreferrer" style="background:var(--accent);color:#000;padding:0.7rem 1.4rem;border-radius:100px;font-weight:700;font-size:0.82rem;text-decoration:none;">💬 Jautāt par grantu</a>
         <a href="https://liaa.gov.lv" target="_blank" rel="noopener noreferrer" style="border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:0.7rem 1.4rem;border-radius:100px;font-size:0.82rem;text-decoration:none;">🏛 LIAA mājaslapa</a>
       </div>
     </div>
@@ -952,6 +962,15 @@ document.addEventListener("DOMContentLoaded",function(){
   if(decline) decline.onclick=function(){banner.style.display="none";};
 });
 
+// Back to top
+const backBtn = document.getElementById("backToTop");
+if(backBtn){
+  window.addEventListener("scroll", function(){ 
+    if(window.scrollY > 500) backBtn.classList.add("visible"); 
+    else backBtn.classList.remove("visible"); 
+  });
+  backBtn.addEventListener("click", function(){ window.scrollTo({top:0,behavior:"smooth"}); });
+}
 })();
 </script>
 <a id="wa-btn" href="https://wa.me/37122389028?text=Sveika!%20Interesējos%20par%20AI%20risinājumiem%20savam%20biznesam." target="_blank" rel="noopener noreferrer">
@@ -967,5 +986,31 @@ WhatsApp konsultācija
   </div>
 </div>
 
+
+
+
+<!-- Start of Tawk.to Script -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/698a4e0b55a5d71c35acb854/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+// Back to top
+const backBtn = document.getElementById("backToTop");
+if(backBtn){
+  window.addEventListener("scroll", function(){ 
+    if(window.scrollY > 500) backBtn.classList.add("visible"); 
+    else backBtn.classList.remove("visible"); 
+  });
+  backBtn.addEventListener("click", function(){ window.scrollTo({top:0,behavior:"smooth"}); });
+}
+})();
+</script>
+<!-- End of Tawk.to Script -->
+<button class="back-to-top" id="backToTop" aria-label="Atgriezties augšā">↑</button>
 </body>
 </html>
