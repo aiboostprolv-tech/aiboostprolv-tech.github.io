@@ -496,7 +496,17 @@ body.banner-open .back-to-top{bottom:166px;}
 #cookie-accept{background:var(--accent);color:#000;border:none;padding:0.5rem 1.3rem;border-radius:100px;font-weight:700;cursor:pointer;font-size:0.8rem;font-family:"DM Sans",sans-serif;}
 #cookie-decline{background:transparent;color:#c9c9c4;border:1px solid rgba(255,255,255,0.15);padding:0.5rem 1rem;border-radius:100px;cursor:pointer;font-size:0.8rem;font-family:"DM Sans",sans-serif;margin-left:0.4rem;}
 
+#chat-teaser{position:fixed;bottom:86px;right:24px;max-width:260px;background:#141414;color:#fff;border:1px solid rgba(0,229,160,0.35);border-radius:16px 16px 4px 16px;padding:0.85rem 2.2rem 0.85rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,0.5);z-index:9991;font-size:0.85rem;line-height:1.45;font-family:"DM Sans",sans-serif;display:none;opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;}
+#chat-teaser.show{display:block;}
+#chat-teaser.visible{opacity:1;transform:none;}
+#chat-teaser-open{background:none;border:none;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:0;}
+#chat-teaser-close{position:absolute;top:6px;right:8px;background:none;border:none;color:rgba(255,255,255,0.55);font-size:1.1rem;line-height:1;cursor:pointer;padding:2px 4px;}
+#chat-teaser-close:hover{color:#fff;}
+body.teaser-open .back-to-top{display:none;}
+body.banner-open #chat-teaser{bottom:166px;}
+
 @media(max-width:768px){
+#chat-teaser{right:14px;bottom:74px;max-width:min(280px,calc(100vw - 28px));}
 nav{padding:0.85rem 1.2rem;}
 .nav-links{display:none;}
 .hamburger{display:flex;}
@@ -1030,6 +1040,7 @@ This information is general and may change. The availability, size and condition
 <a href="https://wa.me/37123231001?text=Sveiki!%20V%C4%93los%20bezmaksas%20konsult%C4%81ciju." target="_blank" rel="noopener" id="wa-btn">WhatsApp</a>
 
 <button id="chat-btn" aria-expanded="false">Chat</button>
+<div id="chat-teaser" aria-live="polite"><button type="button" id="chat-teaser-open">Hi! 👋 Looking for a chatbot or a website? Ask me — I'll answer right away.</button><button type="button" id="chat-teaser-close" aria-label="Close">×</button></div>
 
 <div id="chat-window" role="dialog" aria-label="Chat">
 <div id="chat-header">
@@ -1431,6 +1442,35 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     addMsg(CHAT[lang].greeting, "bot");
   });
 });
+
+/* ---------- Čata uzruna: pēc dažām sekundēm parāda sveicienu (vienreiz sesijā) ---------- */
+(function(){
+  var teaser = document.getElementById("chat-teaser");
+  if (!teaser) return;
+  var KEY = "chatTeaserShown";
+  function seen(){ try { return sessionStorage.getItem(KEY) === "1"; } catch(e){ return false; } }
+  function mark(){ try { sessionStorage.setItem(KEY, "1"); } catch(e){} }
+  function hide(){
+    teaser.classList.remove("visible", "show");
+    document.body.classList.remove("teaser-open");
+  }
+  function show(){
+    if (seen() || chatWindow.classList.contains("open")) return;
+    // Negaidīsim virs sīkdatņu paziņojuma — vispirms lai cilvēks to aizver
+    if (document.body.classList.contains("banner-open")){ setTimeout(show, 2000); return; }
+    mark();
+    teaser.classList.add("show");
+    document.body.classList.add("teaser-open");
+    requestAnimationFrame(function(){ teaser.classList.add("visible"); });
+  }
+  document.getElementById("chat-teaser-open").addEventListener("click", function(){
+    hide();
+    if (!chatWindow.classList.contains("open")) chatBtn.click();
+  });
+  document.getElementById("chat-teaser-close").addEventListener("click", function(){ hide(); mark(); });
+  chatBtn.addEventListener("click", function(){ hide(); mark(); });
+  if (!seen()) setTimeout(show, 8000);
+})();
 
 })();
 
