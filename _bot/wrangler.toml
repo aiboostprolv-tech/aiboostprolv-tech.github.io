@@ -14,3 +14,6 @@ BOT_ENABLED = "true"
 
 # Slepenās atslēgas (ANTHROPIC_API_KEY, VERIFY_TOKEN u.c.) ievada Cloudflare panelī:
 # Worker → Settings → Variables and Secrets → Add → Secret. Nekad nerakstīt šeit.
+
+[observability]
+enabled = true
