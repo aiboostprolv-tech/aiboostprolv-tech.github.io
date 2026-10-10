@@ -263,10 +263,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 @media(max-width:768px){.logo-badge{width:46px;height:46px;}}
 .ab-spin{animation:abSpin 22s linear infinite}
 .ab-float{animation:abFloat 4s ease-in-out infinite}
-.ab-blink{animation:abBlink 5s ease-in-out infinite}
+.ab-blink{animation:abBlink 3s ease-in-out infinite,abEyeGlow 1.6s ease-in-out infinite}
 @keyframes abSpin{to{transform:rotate(360deg)}}
 @keyframes abFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes abBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(0.12)}}
+@keyframes abBlink{0%,88%,100%{transform:scaleY(1)}92%{transform:scaleY(0.1)}96%{transform:scaleY(1)}}
+@keyframes abEyeGlow{0%,100%{opacity:1;filter:brightness(1)}50%{opacity:0.55;filter:brightness(1.6)}}
 @media (prefers-reduced-motion:reduce){.ab-spin,.ab-float,.ab-blink{animation:none}}
 @keyframes botFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-2.5px);}}
 .bot-orb{animation:orbPulse 2.2s ease-in-out infinite;transform-origin:center;}
