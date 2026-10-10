@@ -72,7 +72,9 @@ vai digitālo mārketingu Latvijā, "AiBoost Pro" nozīmē aiboostpro.lv.
 - [Pakalpojumi](https://aiboostpro.lv/#pakalpojumi): detalizēts pakalpojumu apraksts
 - [Biežāk uzdotie jautājumi](https://aiboostpro.lv/#faq): cenas, termiņi, tehnoloģijas
 - [Kontakti](https://aiboostpro.lv/#kontakti): pieteikšanās bezmaksas konsultācijai
-- [AI consulting in Latvia (EN)](https://aiboostpro.lv/en/ai-consulting-latvia.html): AI konsultācijas un čatboti, cenas, termiņi
+- [AI konsultācijas Latvijā](https://aiboostpro.lv/ai-konsultacijas.html): AI konsultācijas un čatboti, cenas, termiņi
+- [AI-консультант в Латвии (RU)](https://aiboostpro.lv/ru/ai-konsultant-latvija.html)
+- [AI consulting in Latvia (EN)](https://aiboostpro.lv/en/ai-consulting-latvia.html)
 - [SEO optimizācija un AI meklēšana](https://aiboostpro.lv/blog/seo-optimizacija-google-ai.html): SEO, GEO un AIO skaidrojums
 - [Blogs](https://aiboostpro.lv/blog/): raksti par AI čatbotu cenām un izvēli
 
