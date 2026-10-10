@@ -19,6 +19,15 @@ export default {
     if (url.pathname === "/" && request.method === "GET") {
       return new Response("AiBoost Pro bots darbojas.", { status: 200 });
     }
+    if (url.pathname === "/health") {
+      // Tikai jā/nē — nekādas slepenās vērtības netiek parādītas
+      const k = env.ANTHROPIC_API_KEY || "";
+      return new Response(JSON.stringify({
+        ok: true, ai_key: Boolean(k), ai_key_format: k.startsWith("sk-ant-"), ai_key_spaces: k !== k.trim(),
+        model: env.MODEL || null, kv: Boolean(env.BOT_KV), telegram: Boolean(env.TELEGRAM_BOT_TOKEN),
+        admin_password: Boolean(env.ADMIN_PASSWORD), bot_enabled: env.BOT_ENABLED !== "false",
+      }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
+    }
     if (url.pathname === "/chat") return handleSiteChat(request, env, ctx);
     if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return handleAdmin(request, env);
     if (url.pathname !== "/webhook") return new Response("Not found", { status: 404 });
@@ -269,7 +278,7 @@ async function askClaude(messages, env, extra = "") {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "x-api-key": env.ANTHROPIC_API_KEY,
+      "x-api-key": (env.ANTHROPIC_API_KEY || "").trim(),
       "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify({
