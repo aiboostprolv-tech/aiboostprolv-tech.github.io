@@ -295,15 +295,22 @@ async function askClaudeOnce(messages, env, extra = "") {
     },
     body: JSON.stringify({
       model: env.MODEL || "claude-haiku-5-5",
-      max_tokens: 400,
+      max_tokens: 1500,
       system: `${BRAIN}\n\nPašreizējais laiks Rīgā: ${rigaNow()}.${extra}`,
       messages,
     }),
   });
   if (!res.ok) throw new Error(`Claude ${res.status}: ${await res.text()}`);
   const data = await res.json();
-  const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("").trim();
+  let text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("").trim();
   if (!text) throw new Error("Claude empty response");
+  if (data.stop_reason === "max_tokens") {
+    // Atbilde nogriezta: atstāj tikai pilnos teikumus, lai klients neredz pusvārdu
+    console.warn("claude max_tokens", data.usage);
+    const cut = Math.max(text.lastIndexOf(". "), text.lastIndexOf("! "), text.lastIndexOf("? "), text.lastIndexOf("\n"));
+    text = cut > 40 ? text.slice(0, cut + 1).trim() : text;
+    if (cut <= 40 && !/[.!?]$/.test(text)) throw new Error("Claude truncated");
+  }
   return text;
 }
 
