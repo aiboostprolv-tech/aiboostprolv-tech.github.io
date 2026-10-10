@@ -777,9 +777,9 @@ html{scroll-behavior:auto;}
 <div class="sb-blk sb-nav"><div class="sb-logo"></div><div class="sb-links"><i></i><i></i><i></i></div></div>
 <div class="sb-row">
 <div class="sb-blk sb-hero"><div class="sb-h1"></div><div class="sb-p"></div><span class="sb-cta">Book now</span></div>
-<div class="sb-blk sb-img"><img src="https://images.unsplash.com/photo-1752650735119-8929e5f7d1ec?w=400&q=70&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="180" height="120"></div>
+<div class="sb-blk sb-img"><img src="https://images.unsplash.com/photo-1752650735119-8929e5f7d1ec?w=360&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="180" height="120"></div>
 </div>
-<div class="sb-cards"><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=240&q=70&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Fitness studio</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1780404850213-0f72ef537c3a?w=240&q=70&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Sports club</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1595218841793-d38b949402d2?w=240&q=70&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Hair salon</b></div></div>
+<div class="sb-cards"><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=200&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Fitness studio</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1780404850213-0f72ef537c3a?w=200&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Sports club</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1595218841793-d38b949402d2?w=200&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Hair salon</b></div></div>
 <div style="height:34px"></div>
 <div class="sb-chatdot"></div>
 <svg class="sb-cursor" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
@@ -1640,18 +1640,15 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     current = id;
     links.forEach(function(a){ a.classList.toggle("current", !!id && a.getAttribute("href") === "#" + id); });
   }
-  function update(){
-    var line = window.innerHeight * 0.35, found = null;
-    ids.forEach(function(id){
-      var r = document.getElementById(id).getBoundingClientRect();
-      if (r.top <= line && r.bottom > line) found = id;
-    });
+  if (!("IntersectionObserver" in window)) return;
+  var visible = {};
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ visible[e.target.id] = e.isIntersecting; });
+    var found = null;
+    ids.forEach(function(id){ if (visible[id]) found = id; });
     mark(found);
-  }
-  var ticking = false;
-  window.addEventListener("scroll", function(){ if (!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; update(); }); } }, { passive: true });
-  window.addEventListener("resize", update);
-  update();
+  }, { rootMargin: "-35% 0px -64% 0px" });
+  ids.forEach(function(id){ io.observe(document.getElementById(id)); });
 })();
 
 /* ---------- Hero animācija: mājaslapa top soli pa solim ---------- */
@@ -1866,9 +1863,11 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   if (astro){
     var probe = astro.querySelector(".as-probe"), body = astro.querySelector(".as-body"), lines = astro.querySelectorAll(".as-line path");
     var t0 = performance.now(), seed = Math.random() * 100, visibleSince = 0, on = false;
-    var px = window.innerWidth * 0.3, ax = px, ay = 300, avx = 0, avy = 0;
+    var VW = 1200, VH = 800, px = 400, ax = 400, ay = 300, avx = 0, avy = 0;
+    function measure(){ VW = window.innerWidth; VH = window.innerHeight; }
+    window.addEventListener("resize", measure);
     function astroFrame(now){
-      var t = (now - t0) / 1000, vw = window.innerWidth, vh = window.innerHeight;
+      var t = (now - t0) / 1000, vw = VW, vh = VH;
       var phase = t % 40, show = phase < 32;
       if (show !== on){ on = show; astro.classList.toggle("on", on); if (on) seed = Math.random() * 100; }
       var ts = (t + seed) * 0.5; // lēnāk
@@ -1896,7 +1895,8 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
       for (var li = 0; li < lines.length; li++) lines[li].setAttribute("d", dd);
       requestAnimationFrame(astroFrame);
     }
-    requestAnimationFrame(astroFrame);
+    function startAstro(){ measure(); ax = VW * 0.5; t0 = performance.now(); requestAnimationFrame(astroFrame); }
+    if (document.readyState === "complete") setTimeout(startAstro, 2500); else window.addEventListener("load", function(){ setTimeout(startAstro, 2500); });
   }
 
   build();
