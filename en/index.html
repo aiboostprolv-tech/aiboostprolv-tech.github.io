@@ -598,9 +598,18 @@ footer{padding:1.5rem 1.2rem;}
 @keyframes chatShine{0%,60%{background-position:120% 0;}100%{background-position:-120% 0;}}
 .contact-hours{color:var(--muted);font-size:0.9rem;margin-top:-0.4rem;}
 
-#astro{position:fixed;top:0;left:0;z-index:0;pointer-events:none;opacity:0;will-change:transform;}
-#astro.fall{animation:astroFall 16s linear forwards;}
-@keyframes astroFall{0%{opacity:0;transform:translate(var(--ax0),-160px) rotate(-25deg);}8%{opacity:0.7;}85%{opacity:0.7;}100%{opacity:0;transform:translate(var(--ax1),110vh) rotate(160deg);}}
+#astro{position:fixed;top:0;left:0;width:110px;height:100vh;z-index:0;pointer-events:none;opacity:0;}
+#astro.fall{animation:astroFade 9s ease-in-out forwards;}
+#astro .as-probe{position:absolute;top:78px;left:23px;animation:probeHover 3s ease-in-out infinite;}
+#astro .as-led{animation:abEyeGlow 1.2s ease-in-out infinite;}
+#astro .as-tether{position:absolute;top:108px;left:54px;width:2px;height:0;background:linear-gradient(#00e5a0,rgba(0,229,160,0.35));box-shadow:0 0 6px rgba(0,229,160,0.6);}
+#astro .as-body{position:absolute;top:100px;left:0;}
+#astro.fall .as-tether{animation:tetherLen 9s cubic-bezier(.45,0,.4,1) forwards;}
+#astro.fall .as-body{animation:bodyDrop 9s cubic-bezier(.45,0,.4,1) forwards;}
+@keyframes astroFade{0%{opacity:0}6%{opacity:0.75}90%{opacity:0.75}100%{opacity:0}}
+@keyframes tetherLen{0%{height:0}40%{height:52vh}48%{height:49vh}56%{height:53vh}100%{height:0}}
+@keyframes bodyDrop{0%{transform:translateY(-20px) rotate(-30deg)}40%{transform:translateY(52vh) rotate(10deg)}48%{transform:translateY(49vh) rotate(-6deg)}56%{transform:translateY(53vh) rotate(5deg)}100%{transform:translateY(-20px) rotate(-20deg)}}
+@keyframes probeHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 #astro .as-arm,#astro .as-leg,#astro .as-head{transform-box:view-box;}
 #astro .as-armL{transform-origin:52px 78px;animation:asArmL 2.2s ease-in-out infinite;}
 #astro .as-armR{transform-origin:108px 78px;animation:asArmR 2.6s ease-in-out infinite;}
@@ -628,7 +637,9 @@ html{scroll-behavior:auto;}
 </head>
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
-<div id="astro" aria-hidden="true"><svg viewBox="0 0 160 200" width="110" height="138">
+<div id="astro" aria-hidden="true"><div class="as-probe"><svg viewBox="0 0 80 40" width="64" height="32"><rect x="2" y="14" width="20" height="10" rx="2" fill="#1b3b78" stroke="#4d8aff" stroke-width="1"/><path d="M6 14v10M10 14v10M14 14v10M18 14v10" stroke="#4d8aff" stroke-width="0.6"/><rect x="58" y="14" width="20" height="10" rx="2" fill="#1b3b78" stroke="#4d8aff" stroke-width="1"/><path d="M62 14v10M66 14v10M70 14v10M74 14v10" stroke="#4d8aff" stroke-width="0.6"/><rect x="22" y="18" width="36" height="2" fill="#8a96a8"/><rect x="28" y="8" width="24" height="22" rx="7" fill="#dfe5ee"/><circle cx="40" cy="19" r="5" fill="#0a0a0a"/><circle class="as-led" cx="40" cy="19" r="2.6" fill="#00e5a0"/><rect x="38" y="30" width="4" height="5" fill="#8a96a8"/></svg></div>
+<div class="as-tether"></div>
+<div class="as-body"><svg viewBox="0 0 160 200" width="110" height="138">
 <defs>
 <linearGradient id="asSuit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="0.6" stop-color="#dfe5ee"/><stop offset="1" stop-color="#9aa6b8"/></linearGradient>
 <linearGradient id="asShade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b3bdcc"/></linearGradient>
@@ -654,7 +665,7 @@ html{scroll-behavior:auto;}
 <circle cx="94" cy="56" r="2.5" fill="#fff" opacity="0.5"/>
 <rect x="110" y="34" width="8" height="18" rx="3" fill="#b3bdcc"/>
 </g>
-</svg></div>
+</svg></div></div>
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 
@@ -1847,13 +1858,12 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   var astro = document.getElementById("astro");
   function fall(){
     if (!astro || document.hidden) return;
-    var vw = window.innerWidth, x0 = Math.round(vw * (0.1 + Math.random() * 0.75));
-    astro.style.setProperty("--ax0", x0 + "px");
-    astro.style.setProperty("--ax1", (x0 + Math.round((Math.random() - 0.5) * vw * 0.4)) + "px");
+    var vw = window.innerWidth;
+    astro.style.left = Math.round(vw * (0.05 + Math.random() * 0.8)) + "px";
     astro.classList.remove("fall"); void astro.offsetWidth; astro.classList.add("fall");
   }
-  setTimeout(fall, 6000);
-  setInterval(fall, 26000);
+  setTimeout(fall, 2500);
+  setInterval(fall, 11000);
 
   build();
   frame();
