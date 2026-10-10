@@ -1645,7 +1645,7 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     document.body.classList.add("teaser-open");
     requestAnimationFrame(function(){ teaser.classList.add("visible"); });
     clearTimeout(hideTimer);
-    hideTimer = setTimeout(hide, 14000);
+    hideTimer = setTimeout(hide, 10000);
   }
   document.getElementById("chat-teaser-open").addEventListener("click", function(){
     hide();
@@ -1680,8 +1680,8 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
       setTimeout(function(){ chatBtn.classList.remove("popped"); }, 500);
     }, 1600);
   }
-  setTimeout(cycle, 5000);
-  setInterval(cycle, 25000);
+  setTimeout(cycle, 1400); // uzlāde 1,6 s → sprādziens ~3. sekundē
+  setInterval(cycle, 15000);
 })();
 
 })();
