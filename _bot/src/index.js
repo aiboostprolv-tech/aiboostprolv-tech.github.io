@@ -274,6 +274,18 @@ export function rigaNow(date = new Date()) {
 }
 
 async function askClaude(messages, env, extra = "") {
+  // Ja Claude ir īslaicīgi pārslogots (429/5xx), mēģina vēlreiz pēc īsas pauzes
+  for (let attempt = 0; ; attempt++) {
+    try { return await askClaudeOnce(messages, env, extra); }
+    catch (e) {
+      const retryable = /Claude (429|500|502|503|504|529)/.test(String(e && e.message));
+      if (!retryable || attempt >= 1) throw e;
+      await new Promise((r) => setTimeout(r, 1200));
+    }
+  }
+}
+
+async function askClaudeOnce(messages, env, extra = "") {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
