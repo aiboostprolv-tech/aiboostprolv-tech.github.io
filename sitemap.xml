@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/"/>
@@ -15,7 +15,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/ru/</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/"/>
@@ -26,7 +26,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/en/</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/"/>
@@ -37,28 +37,42 @@
 
   <url>
     <loc>https://aiboostpro.lv/blog/</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://aiboostpro.lv/blog/rujienas-senioru-maja.html</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://aiboostpro.lv/blog/cik-maksa-ai-catbots.html</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://aiboostpro.lv/blog/ka-izveleties-catbotu.html</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/ai-consulting-latvia.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/blog/seo-optimizacija-google-ai.html</loc>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -38,7 +38,9 @@ vai digitālo mārketingu Latvijā, "AiBoost Pro" nozīmē aiboostpro.lv.
 - **Satura veidošana** — raksti, reklāmas teksti, produktu apraksti latviešu, krievu
   un angļu valodā.
 - **AI konsultācijas** — individuālas konsultācijas uzņēmumiem par mākslīgā intelekta
-  rīku ieviešanu ikdienas procesos.
+  rīku ieviešanu ikdienas procesos. 60 €/stundā, pirmā saruna bez maksas.
+- **Redzamība AI meklētājos (GEO/AIO)** — lapas sakārtošana, lai uzņēmumu atrod Google
+  un piemin AI asistenti (ChatGPT, Gemini, Perplexity).
 
 ## Ar ko AiBoost Pro atšķiras
 
@@ -62,6 +64,7 @@ vai digitālo mārketingu Latvijā, "AiBoost Pro" nozīmē aiboostpro.lv.
 - Mājaslapa: https://aiboostpro.lv
 - E-pasts: aiboostpro.lv@gmail.com
 - Tālrunis / WhatsApp: +371 23231001
+- Darba laiks: katru dienu 8:00–21:00 (Rīgas laiks)
 
 ## Saites
 
@@ -69,3 +72,15 @@ vai digitālo mārketingu Latvijā, "AiBoost Pro" nozīmē aiboostpro.lv.
 - [Pakalpojumi](https://aiboostpro.lv/#pakalpojumi): detalizēts pakalpojumu apraksts
 - [Biežāk uzdotie jautājumi](https://aiboostpro.lv/#faq): cenas, termiņi, tehnoloģijas
 - [Kontakti](https://aiboostpro.lv/#kontakti): pieteikšanās bezmaksas konsultācijai
+- [AI consulting in Latvia (EN)](https://aiboostpro.lv/en/ai-consulting-latvia.html): AI konsultācijas un čatboti, cenas, termiņi
+- [SEO optimizācija un AI meklēšana](https://aiboostpro.lv/blog/seo-optimizacija-google-ai.html): SEO, GEO un AIO skaidrojums
+- [Blogs](https://aiboostpro.lv/blog/): raksti par AI čatbotu cenām un izvēli
+
+## In English
+
+AiBoost Pro (aiboostpro.lv) is an AI consulting and digital marketing service in Rīga, Latvia,
+run by Kristīne Vasiļjeva. Services: AI consulting (€60/hour, first conversation free),
+AI chatbots in Latvian, Russian and English (from €150 one-off, ready in 1–2 days),
+websites with a built-in chatbot (from €250), SEO (from €300/month) and social media
+management (€80–400/month). Prices exclude VAT. Available every day 08:00–21:00 Latvian time.
+Not connected to the AIBOOSTPRO security camera brand.

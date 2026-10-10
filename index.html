@@ -55,7 +55,12 @@
       "telephone": "+37123231001",
       "email": "aiboostpro.lv@gmail.com",
       "priceRange": "€60–€900",
-      "openingHours": "Mo-Fr 09:00-18:00",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "08:00",
+        "closes": "21:00"
+      },
       "founder": {
         "@type": "Person",
         "name": "Kristīne Vasiļjeva",
@@ -79,7 +84,9 @@
         "Mājaslapu izstrāde",
         "Sociālo tīklu pārvaldība",
         "SEO optimizācija",
-        "Satura veidošana latviešu un krievu valodā"
+        "Satura veidošana latviešu un krievu valodā",
+        "AI konsultācijas uzņēmumiem",
+        "Redzamība AI meklētājos (GEO/AIO)"
       ],
       "sameAs": [
         "https://www.facebook.com/share/1AeCYCRLKz/",
@@ -727,7 +734,7 @@ html{scroll-behavior:auto;}
 <div class="service-card">
 <span class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
 <h3>SEO un digitālais mārketings</h3>
-<p>Tehniskā optimizācija, atslēgvārdu izpēte, reklāmu kampaņas un analītika.</p>
+<p>Tehniskā optimizācija, atslēgvārdu izpēte, reklāmu kampaņas un analītika. <a href="/blog/seo-optimizacija-google-ai.html" style="color:var(--accent);text-decoration:none;font-weight:500;">Kā parādīties Google un AI atbildēs →</a></p>
 <div class="service-price">No 300 €/mēnesī</div>
 </div>
 
