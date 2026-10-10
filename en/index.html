@@ -598,6 +598,9 @@ footer{padding:1.5rem 1.2rem;}
 @keyframes chatShine{0%,60%{background-position:120% 0;}100%{background-position:-120% 0;}}
 .contact-hours{color:var(--muted);font-size:0.9rem;margin-top:-0.4rem;}
 
+#astro{position:fixed;top:0;left:0;z-index:0;pointer-events:none;opacity:0;will-change:transform;}
+#astro.fall{animation:astroFall 14s linear forwards;}
+@keyframes astroFall{0%{opacity:0;transform:translate(var(--ax0),-140px) rotate(-20deg);}8%{opacity:0.85;}85%{opacity:0.85;}100%{opacity:0;transform:translate(var(--ax1),110vh) rotate(320deg);}}
 @media(prefers-reduced-motion:reduce){
 *{animation:none!important;transition:none!important;}
 html{scroll-behavior:auto;}
@@ -607,11 +610,27 @@ html{scroll-behavior:auto;}
 #chat-btn::after{display:none;}
 .logo-bot,.bot-orb,.bot-eye,.bot-scan{animation:none!important;}
 #particles-bg{display:none;}
+#astro{display:none;}
 }
 </style>
 </head>
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
+<div id="astro" aria-hidden="true"><svg viewBox="0 0 120 140" width="90" height="105">
+<defs><linearGradient id="asSuit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#aab4c3"/></linearGradient>
+<linearGradient id="asVisor" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4d8aff"/><stop offset="0.5" stop-color="#0b1a33"/><stop offset="1" stop-color="#00e5a0"/></linearGradient></defs>
+<rect x="36" y="46" width="48" height="40" rx="10" fill="#8a96a8"/>
+<rect x="20" y="58" width="16" height="34" rx="8" fill="url(#asSuit)" transform="rotate(-25 28 60)"/>
+<rect x="84" y="58" width="16" height="34" rx="8" fill="url(#asSuit)" transform="rotate(30 92 60)"/>
+<rect x="38" y="52" width="44" height="46" rx="14" fill="url(#asSuit)"/>
+<rect x="50" y="64" width="20" height="12" rx="3" fill="#17171c"/><circle cx="55" cy="70" r="2" fill="#00e5a0"/><circle cx="62" cy="70" r="2" fill="#4d8aff"/>
+<rect x="40" y="92" width="16" height="34" rx="8" fill="url(#asSuit)" transform="rotate(12 48 94)"/>
+<rect x="64" y="92" width="16" height="34" rx="8" fill="url(#asSuit)" transform="rotate(-18 72 94)"/>
+<circle cx="60" cy="34" r="26" fill="url(#asSuit)"/>
+<ellipse cx="60" cy="35" rx="18" ry="15" fill="url(#asVisor)"/>
+<ellipse cx="53" cy="29" rx="6" ry="3.5" fill="#fff" opacity="0.55"/>
+</svg></div>
+
 <a href="#main-content" class="skip-link">Skip to content</a>
 
 <nav>
@@ -1769,8 +1788,47 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
         }
       }
     }
+    drawBooms();
     raf = requestAnimationFrame(frame);
   }
+
+  // Zvaigznes sprādziens: gredzens + dzirksteles
+  var booms = [];
+  function boom(){
+    if (!parts || !parts.length || document.hidden) return;
+    var p = parts[Math.floor(Math.random() * parts.length)];
+    var sp = [];
+    for (var k = 0; k < 18; k++){ var a = Math.random() * Math.PI * 2, v = (1 + Math.random() * 2.4) * DPR; sp.push({ x: p.x, y: p.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v }); }
+    booms.push({ x: p.x, y: p.y, t: 0, c: p.c, sp: sp });
+    p.x = Math.random() * W; p.y = Math.random() * H; // zvaigzne "piedzimst" citur
+  }
+  function drawBooms(){
+    for (var i = booms.length - 1; i >= 0; i--){
+      var b = booms[i]; b.t++;
+      var life = 1 - b.t / 60;
+      if (life <= 0){ booms.splice(i, 1); continue; }
+      ctx.beginPath(); ctx.arc(b.x, b.y, (4 + b.t * 1.6) * DPR, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(" + b.c + "," + (0.8 * life) + ")"; ctx.lineWidth = 2 * DPR; ctx.stroke();
+      ctx.beginPath(); ctx.arc(b.x, b.y, 6 * DPR * life, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255," + life + ")"; ctx.fill();
+      for (var k = 0; k < b.sp.length; k++){ var s = b.sp[k]; s.x += s.vx; s.y += s.vy; s.vx *= 0.97; s.vy *= 0.97;
+        ctx.beginPath(); ctx.arc(s.x, s.y, 1.6 * DPR * life + 0.4, 0, Math.PI * 2); ctx.fillStyle = "rgba(" + b.c + "," + life + ")"; ctx.fill(); }
+    }
+  }
+  setInterval(boom, 4500);
+  setTimeout(boom, 1500);
+
+  // Kosmonauts krīt no augšas ik pa laikam
+  var astro = document.getElementById("astro");
+  function fall(){
+    if (!astro || document.hidden) return;
+    var vw = window.innerWidth, x0 = Math.round(vw * (0.1 + Math.random() * 0.75));
+    astro.style.setProperty("--ax0", x0 + "px");
+    astro.style.setProperty("--ax1", (x0 + Math.round((Math.random() - 0.5) * vw * 0.4)) + "px");
+    astro.classList.remove("fall"); void astro.offsetWidth; astro.classList.add("fall");
+  }
+  setTimeout(fall, 6000);
+  setInterval(fall, 26000);
 
   build();
   frame();
