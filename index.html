@@ -1550,6 +1550,7 @@ chatClose.addEventListener("click", function(){
   chatBtn.setAttribute("aria-expanded","false");
 });
 chatSend.addEventListener("click", function(){ send(); });
+if (location.hash === "#jauta-ai") setTimeout(function(){ if (!chatWindow.classList.contains("open")) chatBtn.click(); }, 600);
 chatInput.addEventListener("keypress", function(e){ if (e.key === "Enter") send(); });
 
 Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(btn){

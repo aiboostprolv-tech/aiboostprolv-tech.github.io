@@ -108,24 +108,42 @@
 
 <nav>
 <a href="/" class="logo" aria-label="AiBoost Pro">
-<svg class="logo-bot" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<svg class="logo-badge" width="46" height="46" viewBox="0 0 200 200" aria-hidden="true">
 <defs>
-<linearGradient id="botHead" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4cedc"/><stop offset="1" stop-color="#3a4250"/></linearGradient>
-<linearGradient id="botEar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c788a"/><stop offset="1" stop-color="#343c48"/></linearGradient>
-<linearGradient id="botVisor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2028"/><stop offset="1" stop-color="#0a0d12"/></linearGradient>
+<radialGradient id="lgbg" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#14302a"/><stop offset="0.55" stop-color="#0d1513"/><stop offset="1" stop-color="#070909"/></radialGradient>
+<linearGradient id="lghead" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2f6fb"/><stop offset="0.45" stop-color="#b9c4d3"/><stop offset="1" stop-color="#4a5464"/></linearGradient>
+<linearGradient id="lgear" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a4250"/><stop offset="0.5" stop-color="#8a96a8"/><stop offset="1" stop-color="#3a4250"/></linearGradient>
+<linearGradient id="lgvisor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2530"/><stop offset="1" stop-color="#05070a"/></linearGradient>
+<radialGradient id="lgorb" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#d9fff1"/><stop offset="0.4" stop-color="#00e5a0"/><stop offset="1" stop-color="#00805a"/></radialGradient>
+<radialGradient id="lgeye" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#eafff7"/><stop offset="0.35" stop-color="#00e5a0"/><stop offset="1" stop-color="#00a676"/></radialGradient>
+<filter id="lgglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="lgshadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+<path id="lgring" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/>
 </defs>
-<rect x="46" y="8" width="8" height="22" rx="3" fill="#6c788a"/>
-<circle class="bot-orb" cx="50" cy="9" r="8" fill="#00e5a0"/>
-<rect x="3" y="46" width="9" height="24" rx="4" fill="url(#botEar)"/>
-<rect x="88" y="46" width="9" height="24" rx="4" fill="url(#botEar)"/>
-<rect x="14" y="26" width="72" height="66" rx="24" fill="url(#botHead)"/>
-<path d="M26 34 Q50 27 74 34" stroke="#00e5a0" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"/>
-<rect x="22" y="42" width="56" height="28" rx="13" fill="url(#botVisor)"/>
-<circle cx="38" cy="56" r="6.5" fill="#00e5a0"/>
-<circle cx="62" cy="56" r="6.5" fill="#00e5a0"/>
-<rect x="41" y="76" width="3.5" height="6" rx="1.5" fill="#8892a2"/>
-<rect x="47" y="76" width="3.5" height="6" rx="1.5" fill="#8892a2"/>
-<rect x="53" y="76" width="3.5" height="6" rx="1.5" fill="#8892a2"/>
+<circle cx="100" cy="100" r="97" fill="url(#lgbg)"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="#00e5a0" stroke-width="3"/>
+<circle cx="100" cy="100" r="64" fill="none" stroke="#00e5a0" stroke-opacity="0.22" stroke-width="1"/>
+<g class="ab-spin" style="transform-origin:100px 100px">
+<text font-family="Syne, 'DM Sans', sans-serif" font-weight="800" font-size="13.5" fill="#f5f3ee" letter-spacing="2"><textPath href="#lgring" textLength="486" lengthAdjust="spacing">AIBOOSTPRO • AIBOOSTPRO • AIBOOSTPRO • </textPath></text>
+</g>
+<g class="ab-float"><g transform="translate(100 52) scale(0.72) translate(-100 -52)">
+<ellipse cx="100" cy="142" rx="30" ry="5" fill="#000" opacity="0.5" filter="url(#lgshadow)"/>
+<rect x="97.5" y="56" width="5" height="14" rx="2.5" fill="url(#lgear)"/>
+<circle cx="100" cy="54" r="7" fill="url(#lgorb)" filter="url(#lgglow)"/>
+<circle cx="97.5" cy="51.5" r="2" fill="#fff" opacity="0.85"/>
+<rect x="60" y="88" width="9" height="24" rx="4.5" fill="url(#lgear)"/>
+<rect x="131" y="88" width="9" height="24" rx="4.5" fill="url(#lgear)"/>
+<rect x="66" y="68" width="68" height="64" rx="24" fill="url(#lghead)"/>
+<path d="M76 74 Q100 66 124 74" stroke="#ffffff" stroke-opacity="0.75" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="73" y="84" width="54" height="28" rx="14" fill="url(#lgvisor)"/>
+<path d="M79 89 Q100 85 121 89" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<circle class="ab-blink" cx="88" cy="98" r="6" fill="url(#lgeye)" filter="url(#lgglow)" style="transform-origin:88px 98px"/>
+<circle class="ab-blink" cx="112" cy="98" r="6" fill="url(#lgeye)" filter="url(#lgglow)" style="transform-origin:112px 98px"/>
+<rect x="92" y="119" width="3" height="6" rx="1.5" fill="#5b6576"/><rect x="98.5" y="119" width="3" height="6" rx="1.5" fill="#5b6576"/><rect x="105" y="119" width="3" height="6" rx="1.5" fill="#5b6576"/>
+</g></g>
+<text x="100" y="138" text-anchor="middle" font-family="Syne, 'DM Sans', sans-serif" font-weight="800" font-size="21" letter-spacing="-0.4"><tspan fill="#00e5a0">Ai</tspan><tspan fill="#f5f3ee">Boost</tspan><tspan fill="#4d8aff">Pro</tspan></text>
+<rect x="85" y="152" width="30" height="16" rx="8" fill="#00e5a0"/>
+<text x="100" y="164" text-anchor="middle" font-family="Syne, 'DM Sans', sans-serif" font-weight="800" font-size="11" fill="#04120c" letter-spacing="1">LV</text>
 </svg>
 <span><span class="ai">Ai</span>Boost<span class="pro">Pro</span></span>
 </a>

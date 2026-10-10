@@ -95,3 +95,13 @@ html{scroll-behavior:auto;}
 ::selection{background:rgba(0,229,160,0.35);color:#fff;}
 .nav-back{border:1px solid transparent;border-radius:100px;padding:0.35rem 0.8rem;-webkit-tap-highlight-color:transparent;transition:color 0.2s,border-color 0.2s,box-shadow 0.2s;}
 .nav-back:hover,.nav-back:active{border-color:rgba(0,229,160,0.55);box-shadow:0 0 14px rgba(0,229,160,0.35);}
+
+.logo-badge{width:46px;height:46px;flex-shrink:0;}
+.ab-spin{animation:abSpin 22s linear infinite}
+.ab-float{animation:abFloat 4s ease-in-out infinite}
+.ab-blink{animation:abBlink 3s ease-in-out infinite,abEyeGlow 1.6s ease-in-out infinite}
+@keyframes abSpin{to{transform:rotate(360deg)}}
+@keyframes abFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes abBlink{0%,88%,100%{transform:scaleY(1)}92%{transform:scaleY(0.1)}96%{transform:scaleY(1)}}
+@keyframes abEyeGlow{0%,100%{opacity:1;filter:brightness(1)}50%{opacity:0.55;filter:brightness(1.6)}}
+@media (prefers-reduced-motion:reduce){.ab-spin,.ab-float,.ab-blink{animation:none}}
