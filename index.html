@@ -268,8 +268,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .bot-scan{animation:botScan 3.5s ease-in-out infinite;}
 @keyframes botScan{0%,100%{opacity:0;}45%{opacity:0.55;}55%{opacity:0.55;}}
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
-.nav-links a{color:var(--white);text-decoration:none;font-size:0.85rem;opacity:0.7;transition:opacity 0.2s;}
-.nav-links a:hover{opacity:1;}
+.nav-links{gap:0.6rem;}
+.nav-links a{color:var(--white);text-decoration:none;font-size:0.85rem;opacity:0.75;padding:0.45rem 0.85rem;border-radius:100px;border:1px solid transparent;transition:opacity 0.2s,border-color 0.2s,box-shadow 0.2s,background 0.2s,color 0.2s;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
+.nav-links a:not(.nav-cta):hover,.nav-links a:not(.nav-cta):focus-visible{opacity:1;color:var(--accent);border-color:rgba(0,229,160,0.55);box-shadow:0 0 14px rgba(0,229,160,0.35);outline:none;}
+.nav-links a:not(.nav-cta):active,.nav-links a:not(.nav-cta).current{opacity:1;color:var(--accent);background:rgba(0,229,160,0.1);border-color:var(--accent);box-shadow:0 0 18px rgba(0,229,160,0.55),inset 0 0 8px rgba(0,229,160,0.2);}
+.nav-links a.nav-cta:active{box-shadow:0 0 22px rgba(0,229,160,0.8);}
+.mobile-menu a{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:color 0.2s,text-shadow 0.2s;}
+.mobile-menu a:active,.mobile-menu a.current{color:var(--accent)!important;text-shadow:0 0 14px rgba(0,229,160,0.7);}
+::selection{background:rgba(0,229,160,0.35);color:#fff;}
 .nav-cta{background:var(--accent)!important;color:var(--black)!important;opacity:1!important;padding:0.45rem 1.1rem;border-radius:100px;font-weight:600!important;}
 .lang-switch{display:flex;gap:0.25rem;margin-left:0.7rem;}
 .lang-switch a{font-size:0.7rem;padding:0.22rem 0.5rem;border-radius:6px;border:1px solid rgba(255,255,255,0.15);color:var(--white);text-decoration:none;opacity:0.55;transition:all 0.2s;}
@@ -1510,6 +1516,21 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     addMsg(CHAT[lang].greeting, "bot");
   });
 });
+
+/* ---------- Izvēlne: aktīvā sadaļa iezīmēta zaļi ---------- */
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"], .mobile-menu a[href^="#"]'));
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  function mark(id){
+    links.forEach(function(a){ a.classList.toggle("current", a.getAttribute("href") === "#" + id); });
+  }
+  links.forEach(function(a){ a.addEventListener("click", function(){ mark(a.getAttribute("href").slice(1)); }); });
+  var ids = []; links.forEach(function(a){ var id = a.getAttribute("href").slice(1); if (ids.indexOf(id) < 0 && document.getElementById(id)) ids.push(id); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) mark(e.target.id); });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  ids.forEach(function(id){ io.observe(document.getElementById(id)); });
+})();
 
 /* ---------- Hero animācija: mājaslapa top soli pa solim ---------- */
 (function(){

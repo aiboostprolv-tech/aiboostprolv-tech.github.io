@@ -91,3 +91,7 @@ nav{padding:0.8rem 1.1rem;}
 *{animation:none!important;transition:none!important;}
 html{scroll-behavior:auto;}
 }
+
+::selection{background:rgba(0,229,160,0.35);color:#fff;}
+.nav-back{border:1px solid transparent;border-radius:100px;padding:0.35rem 0.8rem;-webkit-tap-highlight-color:transparent;transition:color 0.2s,border-color 0.2s,box-shadow 0.2s;}
+.nav-back:hover,.nav-back:active{border-color:rgba(0,229,160,0.55);box-shadow:0 0 14px rgba(0,229,160,0.35);}
