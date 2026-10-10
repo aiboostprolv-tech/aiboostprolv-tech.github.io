@@ -538,13 +538,25 @@ footer{padding:1.5rem 1.2rem;}
 
 
 /* Čata poga: spīdums un lēciens, lai aicinātu uzspiest */
-#chat-btn{padding:0.85rem 1.4rem;font-size:0.95rem;box-shadow:0 0 0 0 rgba(0,229,160,0.55),0 6px 24px rgba(0,229,160,0.45);animation:chatPulse 2.4s ease-out infinite,chatBounce 6s ease-in-out 3s infinite;overflow:visible;}
+#chat-btn{padding:0.85rem 1.4rem;font-size:0.95rem;box-shadow:0 0 0 0 rgba(0,229,160,0.55),0 6px 24px rgba(0,229,160,0.45);animation:chatPulse 2.4s ease-out infinite,chatGrow 1.2s ease-in-out infinite;overflow:visible;}
 #chat-btn::before{content:"";width:9px;height:9px;border-radius:50%;background:#04120c;box-shadow:0 0 0 3px rgba(4,18,12,0.18);flex:none;}
 #chat-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,0.6) 50%,transparent 70%);background-size:250% 100%;animation:chatShine 3.2s ease-in-out infinite;pointer-events:none;}
 #chat-btn[aria-expanded="true"]{animation:none;}
 #chat-btn[aria-expanded="true"]::after{display:none;}
 @keyframes chatPulse{0%{box-shadow:0 0 0 0 rgba(0,229,160,0.55),0 6px 24px rgba(0,229,160,0.45);}70%{box-shadow:0 0 0 16px rgba(0,229,160,0),0 6px 24px rgba(0,229,160,0.45);}100%{box-shadow:0 0 0 0 rgba(0,229,160,0),0 6px 24px rgba(0,229,160,0.45);}}
 @keyframes chatBounce{0%,86%,100%{transform:translateY(0);}89%{transform:translateY(-10px);}92%{transform:translateY(0);}95%{transform:translateY(-5px);}}
+@keyframes chatGrow{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+#chat-btn.charging{animation:chatCharge 1.6s cubic-bezier(.4,0,.6,1) forwards;}
+@keyframes chatCharge{0%{transform:scale(1);}20%{transform:scale(1.12);}30%{transform:scale(1.04);}50%{transform:scale(1.22);}60%{transform:scale(1.12);}85%{transform:scale(1.38);box-shadow:0 0 0 6px rgba(0,229,160,0.35),0 0 40px rgba(0,229,160,0.9);}100%{transform:scale(1.45);box-shadow:0 0 0 10px rgba(0,229,160,0.2),0 0 60px rgba(0,229,160,1);}}
+#chat-btn.popped{animation:chatPop 0.45s cubic-bezier(.2,1.6,.4,1) forwards;}
+@keyframes chatPop{0%{transform:scale(1.45);}55%{transform:scale(0.9);}100%{transform:scale(1);}}
+.chat-burst{position:fixed;width:0;height:0;z-index:9992;pointer-events:none;}
+.chat-burst i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(0,229,160,0.9);animation:burstFly 1s cubic-bezier(.1,.7,.3,1) forwards;}
+.chat-burst i:nth-child(3n){background:#fff;width:7px;height:7px;}
+.chat-burst i:nth-child(4n){background:var(--accent2);}
+.chat-burst b{position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;border:3px solid var(--accent);animation:burstRing 0.7s ease-out forwards;}
+@keyframes burstFly{0%{transform:rotate(var(--a)) translateX(0) scale(1.2);opacity:1;}60%{opacity:1;}100%{transform:rotate(var(--a)) translateX(var(--d)) scale(0.3);opacity:0;}}
+@keyframes burstRing{0%{transform:scale(0.6);opacity:1;}100%{transform:scale(3.2);opacity:0;}}
 @keyframes chatShine{0%,60%{background-position:120% 0;}100%{background-position:-120% 0;}}
 .contact-hours{color:var(--muted);font-size:0.9rem;margin-top:-0.4rem;}
 
@@ -1055,7 +1067,7 @@ This information is general and may change. The availability, size and condition
 <a href="https://wa.me/37123231001?text=Sveiki!%20V%C4%93los%20bezmaksas%20konsult%C4%81ciju." target="_blank" rel="noopener" id="wa-btn">WhatsApp</a>
 
 <button id="chat-btn" aria-expanded="false" aria-label="Open chat with the AI assistant">Ask AI</button>
-<div id="chat-teaser" aria-live="polite"><button type="button" id="chat-teaser-open">Hi! 👋 Looking for a chatbot or a website? Ask me — I'll answer right away.</button><button type="button" id="chat-teaser-close" aria-label="Close">×</button></div>
+<div id="chat-teaser" aria-live="polite"><button type="button" id="chat-teaser-open">Hi! 👋 You're in the right place. I can help with a website, an AI chatbot or social media. What would you like to know?</button><button type="button" id="chat-teaser-close" aria-label="Close">×</button></div>
 
 <div id="chat-window" role="dialog" aria-label="Chat">
 <div id="chat-header">
@@ -1541,6 +1553,9 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     // Negaidīsim virs sīkdatņu paziņojuma — vispirms lai cilvēks to aizver
     if (document.body.classList.contains("banner-open")){ setTimeout(show, 2000); return; }
     mark();
+    reveal();
+  }
+  function reveal(){
     teaser.classList.add("show");
     document.body.classList.add("teaser-open");
     requestAnimationFrame(function(){ teaser.classList.add("visible"); });
@@ -1551,7 +1566,43 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   });
   document.getElementById("chat-teaser-close").addEventListener("click", function(){ hide(); mark(); });
   chatBtn.addEventListener("click", function(){ hide(); mark(); });
-  if (!seen()) setTimeout(show, 8000);
+  // Poga "uzlādējas", uzsprāgst un tikai tad parāda uzrunu
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function burst(){
+    var r = chatBtn.getBoundingClientRect();
+    var b = document.createElement("div");
+    b.className = "chat-burst";
+    b.style.left = (r.left + r.width / 2) + "px";
+    b.style.top = (r.top + r.height / 2) + "px";
+    var html = "<b></b>";
+    for (var k = 0; k < 14; k++) html += '<i style="--a:' + Math.round(k * 360 / 14 + Math.random() * 12) + 'deg;--d:' + (60 + Math.round(Math.random() * 45)) + 'px"></i>';
+    b.innerHTML = html;
+    document.body.appendChild(b);
+    setTimeout(function(){ if (b.parentNode) b.parentNode.removeChild(b); }, 1100);
+  }
+  function chargeAndBurst(after){
+    if (reduceMotion || chatWindow.classList.contains("open")){ if (after) after(); return; }
+    chatBtn.classList.remove("popped");
+    chatBtn.classList.add("charging");
+    setTimeout(function(){
+      chatBtn.classList.remove("charging");
+      chatBtn.classList.add("popped");
+      burst();
+      if (after) after();
+      setTimeout(function(){ chatBtn.classList.remove("popped"); }, 500);
+    }, 1600);
+  }
+  function start(){
+    if (seen() || chatWindow.classList.contains("open")) return;
+    if (document.body.classList.contains("banner-open")){ setTimeout(start, 2000); return; }
+    chargeAndBurst(show);
+  }
+  if (!seen()) setTimeout(start, 5000);
+  // Arī vēlāk ik pa laikam atgādina par sevi, kamēr čats nav atvērts
+  setInterval(function(){
+    if (document.hidden || chatWindow.classList.contains("open") || teaser.classList.contains("visible")) return;
+    chargeAndBurst(null);
+  }, 25000);
 })();
 
 })();
