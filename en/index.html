@@ -304,32 +304,50 @@ body>nav{z-index:200;}
 .hero-left{min-width:0;}
 
 /* --- Animēts čata demo --- */
-.hero-demo{position:relative;justify-self:center;width:100%;max-width:400px;animation:fadeUp 0.7s 0.35s ease both;}
+.hero-demo{position:relative;justify-self:center;width:100%;max-width:420px;animation:fadeUp 0.7s 0.35s ease both;}
 .demo-glow{position:absolute;inset:-30% -20%;background:radial-gradient(ellipse at 50% 40%,rgba(0,229,160,0.16),transparent 65%);pointer-events:none;z-index:-1;}
 .sb-win{position:relative;background:#111114;border:1px solid rgba(255,255,255,0.09);border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(0,229,160,0.06);}
-.sb-top{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#17171c;border-bottom:1px solid rgba(255,255,255,0.06);}
-.sb-top i{width:9px;height:9px;border-radius:50%;background:#2a2a33;display:block;}
+.sb-top{position:relative;display:flex;align-items:center;gap:6px;padding:10px 12px;background:#17171c;border-bottom:1px solid rgba(255,255,255,0.06);}
+.sb-top i{width:9px;height:9px;border-radius:50%;display:block;}
 .sb-top i:nth-child(1){background:#ff5f57;}.sb-top i:nth-child(2){background:#febc2e;}.sb-top i:nth-child(3){background:#28c840;}
 .sb-url{margin-left:8px;flex:1;background:#0d0d10;border-radius:999px;padding:4px 10px;font-size:0.62rem;color:var(--muted);white-space:nowrap;overflow:hidden;}
 .sb-url b{color:#d3fff0;font-weight:500;}
-.sb-body{position:relative;padding:14px;min-height:250px;display:flex;flex-direction:column;gap:10px;}
-.sb-el{opacity:0;transform:translateY(10px) scale(0.98);transition:opacity 0.45s ease,transform 0.45s ease;}
-.sb-el.on{opacity:1;transform:none;}
-.sb-nav{display:flex;align-items:center;gap:8px;}
-.sb-logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
-.sb-links{margin-left:auto;display:flex;gap:6px;}.sb-links i{display:block;width:26px;height:6px;border-radius:4px;background:#2a2a33;}
-.sb-hero{background:linear-gradient(135deg,rgba(0,229,160,0.12),rgba(0,102,255,0.12));border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;}
-.sb-h{height:10px;border-radius:5px;background:#e8f0ff;width:78%;margin-bottom:7px;}
-.sb-h.s{width:52%;background:#8892a2;height:7px;}
-.sb-cta{display:inline-block;margin-top:8px;background:var(--accent);color:#04120c;font-size:0.62rem;font-weight:700;border-radius:999px;padding:5px 12px;}
+.sb-prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(0,229,160,0.8);transition:width 0.6s ease;}
+.sb-body{position:relative;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.sb-status{position:absolute;bottom:16px;left:14px;z-index:3;font-size:0.6rem;font-weight:700;color:#04120c;background:var(--accent);border-radius:999px;padding:3px 9px;box-shadow:0 0 12px rgba(0,229,160,0.6);transition:transform 0.3s;}
+.sb-status.done{transform:scale(1.08);transform-origin:left center;}
+.sb-blk{position:relative;border-radius:10px;border:1px dashed rgba(0,229,160,0.45);background:transparent;transition:background 0.5s,border-color 0.5s,box-shadow 0.5s;}
+.sb-blk>*{opacity:0;transform:translateY(6px);transition:opacity 0.45s,transform 0.45s;}
+.sb-blk.wire{border-color:rgba(0,229,160,0.45);}
+.sb-blk:not(.wire){border-color:transparent;}
+.sb-blk.on{border-style:solid;border-color:rgba(255,255,255,0.07);}
+.sb-blk.on>*{opacity:1;transform:none;}
+.sb-blk.flash{box-shadow:0 0 0 2px var(--accent),0 0 22px rgba(0,229,160,0.55);}
+.sb-nav{display:flex;align-items:center;gap:8px;padding:7px 8px;}
+.sb-nav.on{background:#17171c;}
+.sb-logo{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
+.sb-links{margin-left:auto;display:flex;gap:6px;}.sb-links i{display:block;width:24px;height:6px;border-radius:4px;background:#3a3a46;}
+.sb-row{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;}
+.sb-hero{padding:12px;min-height:96px;}
+.sb-hero.on{background:linear-gradient(135deg,rgba(0,229,160,0.13),rgba(0,102,255,0.13));}
+.sb-h1{font-family:"Syne",sans-serif;font-weight:800;font-size:0.82rem;line-height:1.2;color:#f5f3ee;min-height:2.4em;}
+.sb-h1 .caret{display:inline-block;width:2px;height:0.9em;background:var(--accent);vertical-align:-2px;margin-left:1px;animation:caretBlink 0.8s steps(1) infinite;}
+@keyframes caretBlink{50%{opacity:0;}}
+.sb-p{height:6px;border-radius:3px;background:#8892a2;width:80%;margin-top:6px;}
+.sb-cta{display:inline-block;margin-top:9px;background:var(--accent);color:#04120c;font-size:0.6rem;font-weight:700;border-radius:999px;padding:5px 11px;}
+.sb-img{min-height:96px;overflow:hidden;}
+.sb-img.on{background:linear-gradient(180deg,#0b2a4a,#0d3b33);}
+.sb-img svg{position:absolute;inset:0;width:100%;height:100%;}
 .sb-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.sb-cards div{height:46px;border-radius:10px;background:#17171c;border:1px solid rgba(255,255,255,0.06);position:relative;}
-.sb-cards div::after{content:"";position:absolute;left:8px;right:12px;bottom:9px;height:5px;border-radius:3px;background:#2a2a33;}
-.sb-cards div::before{content:"";position:absolute;left:8px;top:8px;width:14px;height:14px;border-radius:5px;background:rgba(0,229,160,0.35);}
-.sb-chat{position:absolute;right:12px;bottom:12px;display:flex;align-items:flex-end;gap:6px;}
-.sb-bubble{background:#141414;border:1px solid rgba(0,229,160,0.35);color:#d3fff0;font-size:0.6rem;border-radius:10px 10px 3px 10px;padding:5px 8px;max-width:130px;}
-.sb-dot{width:30px;height:30px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(0,229,160,0.5);animation:chatPulse 2.4s ease-out infinite;flex:none;}
-.sb-cursor{position:absolute;left:0;top:0;width:16px;height:16px;transition:transform 0.6s cubic-bezier(.5,0,.2,1);z-index:2;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.6));pointer-events:none;}
+.sb-card{height:44px;}
+.sb-card.on{background:#17171c;}
+.sb-card span{position:absolute;left:8px;top:8px;width:14px;height:14px;border-radius:5px;background:rgba(0,229,160,0.45);}
+.sb-card em{position:absolute;left:8px;right:12px;bottom:9px;height:5px;border-radius:3px;background:#3a3a46;}
+.sb-chatdot{position:absolute;right:14px;bottom:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);opacity:0;transform:scale(0);transition:opacity 0.3s,transform 0.4s cubic-bezier(.2,1.6,.4,1);}
+.sb-chatdot.on{opacity:1;transform:scale(1);animation:chatPulse 2.4s ease-out infinite;}
+.sb-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:0.62rem;color:#7ee2a8;background:#0d0d10;border-top:1px solid rgba(255,255,255,0.06);padding:7px 12px;white-space:nowrap;overflow:hidden;}
+.sb-code::before{content:"> ";color:var(--muted);}
+.sb-cursor{position:absolute;left:0;top:0;width:16px;height:16px;transition:transform 0.6s cubic-bezier(.5,0,.2,1);z-index:4;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.6));pointer-events:none;}
 .sb-cap{text-align:center;color:var(--muted);font-size:0.78rem;margin-top:0.8rem;}
 .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);color:var(--accent);font-size:0.75rem;padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;}
 .hero-tag::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
@@ -570,7 +588,7 @@ footer{padding:1.5rem 1.2rem;}
 *{animation:none!important;transition:none!important;}
 html{scroll-behavior:auto;}
 .fade-up{opacity:1;transform:none;}
-.sb-el{opacity:1;transform:none;}
+.sb-blk>*{opacity:1;transform:none;}
 .sb-cursor{display:none;}
 #chat-btn::after{display:none;}
 .logo-bot,.bot-orb,.bot-eye,.bot-scan{animation:none!important;}
@@ -663,17 +681,23 @@ html{scroll-behavior:auto;}
 </div>
 </div>
 
-<div class="hero-demo" id="site-build" aria-hidden="true">
+<div class="hero-demo" id="site-build" aria-hidden="true" data-h1="Your business online" data-build="Building" data-done="✓ Website ready" data-code='["&lt;nav&gt; menu", "&lt;h1&gt; headline", "&lt;img&gt; gallery", ".services { grid }", "AI chatbot: on", "SEO + publish ✓"]'>
 <div class="demo-glow"></div>
 <div class="sb-win">
-<div class="sb-top"><i></i><i></i><i></i><div class="sb-url">https://<b>your-business.lv</b></div></div>
+<div class="sb-top"><i></i><i></i><i></i><div class="sb-url">https://<b>your-business.lv</b></div><div class="sb-prog"></div></div>
 <div class="sb-body">
-<div class="sb-el sb-nav"><div class="sb-logo"></div><div class="sb-links"><i></i><i></i><i></i></div></div>
-<div class="sb-el sb-hero"><div class="sb-h"></div><div class="sb-h s"></div><span class="sb-cta">Book now</span></div>
-<div class="sb-el sb-cards"><div></div><div></div><div></div></div>
-<div class="sb-el sb-chat"><div class="sb-bubble">Hi! How can I help?</div><div class="sb-dot"></div></div>
+<div class="sb-status">Building 0%</div>
+<div class="sb-blk sb-nav"><div class="sb-logo"></div><div class="sb-links"><i></i><i></i><i></i></div></div>
+<div class="sb-row">
+<div class="sb-blk sb-hero"><div class="sb-h1"></div><div class="sb-p"></div><span class="sb-cta">Book now</span></div>
+<div class="sb-blk sb-img"><svg viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice"><circle cx="74" cy="20" r="8" fill="#febc2e" opacity="0.9"/><path d="M0 70 L30 34 L48 52 L66 30 L100 70Z" fill="#00e5a0" opacity="0.55"/><path d="M0 70 L22 48 L40 62 L58 44 L84 70Z" fill="#0066ff" opacity="0.55"/></svg></div>
+</div>
+<div class="sb-cards"><div class="sb-blk sb-card"><span></span><em></em></div><div class="sb-blk sb-card"><span></span><em></em></div><div class="sb-blk sb-card"><span></span><em></em></div></div>
+<div style="height:34px"></div>
+<div class="sb-chatdot"></div>
 <svg class="sb-cursor" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
 </div>
+<div class="sb-code">npm create site</div>
 </div>
 <p class="sb-cap">How your website with an AI chatbot comes together</p>
 </div>
@@ -1536,58 +1560,85 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
 (function(){
   var box = document.getElementById("site-build");
   if (!box) return;
-  var els = box.querySelectorAll(".sb-el");
-  var cursor = box.querySelector(".sb-cursor");
-  var body = box.querySelector(".sb-body");
+  var body = box.querySelector(".sb-body"), cursor = box.querySelector(".sb-cursor");
+  var prog = box.querySelector(".sb-prog"), status = box.querySelector(".sb-status"), code = box.querySelector(".sb-code");
+  var h1 = box.querySelector(".sb-h1"), dot = box.querySelector(".sb-chatdot");
+  var blocks = Array.prototype.slice.call(box.querySelectorAll(".sb-blk"));
+  var H1 = box.getAttribute("data-h1"), BUILD = box.getAttribute("data-build"), DONE = box.getAttribute("data-done");
+  var CODE = []; try { CODE = JSON.parse(box.getAttribute("data-code")); } catch(e){}
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduce){ Array.prototype.forEach.call(els, function(e){ e.classList.add("on"); }); if (cursor) cursor.style.display = "none"; return; }
-  var i = 0, timer = null;
+  var timers = [], running = false;
+  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+  function clearAll(){ timers.forEach(clearTimeout); timers = []; }
+  function setProg(p){ prog.style.width = p + "%"; status.textContent = p >= 100 ? DONE : BUILD + " " + p + "%"; status.classList.toggle("done", p >= 100); }
   function moveTo(el){
-    if (!cursor || !body) return;
+    if (!cursor) return;
     var b = body.getBoundingClientRect(), r = el.getBoundingClientRect();
     cursor.style.transform = "translate(" + Math.round(r.left - b.left + r.width * 0.6) + "px," + Math.round(r.top - b.top + r.height * 0.55) + "px)";
   }
-  function step(){
-    if (i < els.length){ els[i].classList.add("on"); moveTo(els[i]); i++; timer = setTimeout(step, 750); }
-    else { timer = setTimeout(function(){ Array.prototype.forEach.call(els, function(e){ e.classList.remove("on"); }); i = 0; timer = setTimeout(step, 700); }, 3200); }
+  function fill(el){ el.classList.remove("wire"); el.classList.add("on", "flash"); moveTo(el); later(function(){ el.classList.remove("flash"); }, 450); }
+  function finalState(){ blocks.forEach(function(b){ b.classList.remove("wire"); b.classList.add("on"); }); h1.textContent = H1; dot.classList.add("on"); setProg(100); code.textContent = CODE[CODE.length - 1] || ""; if (cursor) cursor.style.display = "none"; }
+  function reset(){
+    blocks.forEach(function(b){ b.classList.remove("on", "flash"); b.classList.add("wire"); });
+    h1.textContent = ""; dot.classList.remove("on"); setProg(0); code.textContent = "npm create site";
   }
+  function run(){
+    running = true; reset();
+    var t = 600, step = 0, total = 6;
+    function stage(el, extra){
+      var i = step++;
+      later(function(){ if (el) fill(el); code.textContent = CODE[i] || ""; setProg(Math.round((i + 1) / total * 100)); if (extra) extra(); }, t);
+      t += 950;
+    }
+    stage(blocks[0]);
+    stage(blocks[1], function(){
+      var k = 0; h1.innerHTML = '<span class="caret"></span>';
+      (function type(){ if (k > H1.length) { h1.textContent = H1; return; } h1.innerHTML = H1.slice(0, k++) + '<span class="caret"></span>'; later(type, 45); })();
+    });
+    stage(blocks[2]);
+    stage(null, function(){ [3,4,5].forEach(function(n, j){ later(function(){ fill(blocks[n]); }, j * 220); }); });
+    stage(null, function(){ dot.classList.add("on"); moveTo(dot); });
+    stage(null);
+    later(run, t + 3200);
+  }
+  if (reduce){ finalState(); return; }
+  reset();
   if ("IntersectionObserver" in window){
     new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if (en.isIntersecting && !timer) step(); else if (!en.isIntersecting && timer){ clearTimeout(timer); timer = null; } });
+      entries.forEach(function(en){
+        if (en.isIntersecting && !running) run();
+        else if (!en.isIntersecting && running){ clearAll(); running = false; }
+      });
     }).observe(box);
-  } else step();
+  } else run();
 })();
 
-/* ---------- Čata uzruna: pēc dažām sekundēm parāda sveicienu (vienreiz sesijā) ---------- */
+/* ---------- Čata uzruna: poga uzlādējas, uzsprāgst un parāda jautājumu ---------- */
 (function(){
   var teaser = document.getElementById("chat-teaser");
   if (!teaser) return;
-  var KEY = "chatTeaserShown";
-  function seen(){ try { return sessionStorage.getItem(KEY) === "1"; } catch(e){ return false; } }
-  function mark(){ try { sessionStorage.setItem(KEY, "1"); } catch(e){} }
+  var KEY = "chatTeaserClosed";
+  function closed(){ try { return sessionStorage.getItem(KEY) === "1"; } catch(e){ return false; } }
+  function markClosed(){ try { sessionStorage.setItem(KEY, "1"); } catch(e){} }
+  var hideTimer = null;
   function hide(){
     teaser.classList.remove("visible", "show");
     document.body.classList.remove("teaser-open");
   }
   function show(){
-    if (seen() || chatWindow.classList.contains("open")) return;
-    // Negaidīsim virs sīkdatņu paziņojuma — vispirms lai cilvēks to aizver
-    if (document.body.classList.contains("banner-open")){ setTimeout(show, 2000); return; }
-    mark();
-    reveal();
-  }
-  function reveal(){
+    if (closed() || chatWindow.classList.contains("open")) return;
     teaser.classList.add("show");
     document.body.classList.add("teaser-open");
     requestAnimationFrame(function(){ teaser.classList.add("visible"); });
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hide, 14000);
   }
   document.getElementById("chat-teaser-open").addEventListener("click", function(){
     hide();
     if (!chatWindow.classList.contains("open")) chatBtn.click();
   });
-  document.getElementById("chat-teaser-close").addEventListener("click", function(){ hide(); mark(); });
-  chatBtn.addEventListener("click", function(){ hide(); mark(); });
-  // Poga "uzlādējas", uzsprāgst un tikai tad parāda uzrunu
+  document.getElementById("chat-teaser-close").addEventListener("click", function(){ hide(); markClosed(); });
+  chatBtn.addEventListener("click", function(){ hide(); });
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function burst(){
     var r = chatBtn.getBoundingClientRect();
@@ -1601,29 +1652,22 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     document.body.appendChild(b);
     setTimeout(function(){ if (b.parentNode) b.parentNode.removeChild(b); }, 1100);
   }
-  function chargeAndBurst(after){
-    if (reduceMotion || chatWindow.classList.contains("open")){ if (after) after(); return; }
+  function cycle(){
+    if (document.hidden || chatWindow.classList.contains("open") || teaser.classList.contains("visible")) return;
+    if (reduceMotion){ show(); return; }
     chatBtn.classList.remove("popped");
     chatBtn.classList.add("charging");
     setTimeout(function(){
       chatBtn.classList.remove("charging");
+      if (chatWindow.classList.contains("open")) return;
       chatBtn.classList.add("popped");
       burst();
-      if (after) after();
+      show();
       setTimeout(function(){ chatBtn.classList.remove("popped"); }, 500);
     }, 1600);
   }
-  function start(){
-    if (seen() || chatWindow.classList.contains("open")) return;
-    if (document.body.classList.contains("banner-open")){ setTimeout(start, 2000); return; }
-    chargeAndBurst(show);
-  }
-  if (!seen()) setTimeout(start, 5000);
-  // Arī vēlāk ik pa laikam atgādina par sevi, kamēr čats nav atvērts
-  setInterval(function(){
-    if (document.hidden || chatWindow.classList.contains("open") || teaser.classList.contains("visible")) return;
-    chargeAndBurst(null);
-  }, 25000);
+  setTimeout(cycle, 5000);
+  setInterval(cycle, 25000);
 })();
 
 })();
