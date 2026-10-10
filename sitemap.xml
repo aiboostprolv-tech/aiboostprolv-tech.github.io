@@ -104,6 +104,145 @@
   </url>
 
   <url>
+    <loc>https://aiboostpro.lv/ai-catbots.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-catbots.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/chat-bot.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/ai-chatbot.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-catbots.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/chat-bot.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-catbots.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/chat-bot.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/ai-chatbot.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-catbots.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/ai-chatbot.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-catbots.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/chat-bot.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/ai-chatbot.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-catbots.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/majaslapas-izstrade.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/majaslapas-izstrade.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/sozdanie-sajta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/website-development.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/majaslapas-izstrade.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/sozdanie-sajta.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/majaslapas-izstrade.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/sozdanie-sajta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/website-development.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/majaslapas-izstrade.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/website-development.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/majaslapas-izstrade.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/sozdanie-sajta.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/website-development.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/majaslapas-izstrade.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/socialo-tiklu-vadiba.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/socialo-tiklu-vadiba.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/vedenie-socsetej.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/social-media-management.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/socialo-tiklu-vadiba.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/vedenie-socsetej.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/socialo-tiklu-vadiba.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/vedenie-socsetej.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/social-media-management.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/socialo-tiklu-vadiba.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/social-media-management.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/socialo-tiklu-vadiba.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/vedenie-socsetej.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/social-media-management.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/socialo-tiklu-vadiba.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/seo-pakalpojumi.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/seo-pakalpojumi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/seo-prodvizhenie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/seo-services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/seo-pakalpojumi.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/seo-prodvizhenie.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/seo-pakalpojumi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/seo-prodvizhenie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/seo-services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/seo-pakalpojumi.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/seo-services.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/seo-pakalpojumi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/seo-prodvizhenie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/seo-services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/seo-pakalpojumi.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/blog/liaa-atbalsts-majaslapas-izstradei.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://aiboostpro.lv/privacy.html</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>yearly</changefreq>
