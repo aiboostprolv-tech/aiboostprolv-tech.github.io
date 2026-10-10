@@ -1,0 +1,16 @@
+# AiBoost Pro AI bots — Cloudflare Worker.
+# Šī mape (_bot) mājaslapā netiek publicēta (Jekyll izlaiž mapes, kas sākas ar _).
+name = "aiboost-bot"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+keep_vars = true
+
+[vars]
+MODEL = "claude-haiku-5-5"
+GRAPH_VERSION = "v25.0"
+HUMAN_PAUSE_HOURS = "12"
+BOT_ENABLED = "true"
+
+# Slepenās atslēgas (ANTHROPIC_API_KEY, VERIFY_TOKEN u.c.) ievada Cloudflare panelī:
+# Worker → Settings → Variables and Secrets → Add → Secret. Nekad nerakstīt šeit.
