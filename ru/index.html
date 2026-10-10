@@ -1413,13 +1413,44 @@ function renderQuick(){
   });
 }
 
+/* AI režīms: ja AI_CHAT_URL ir iestatīts, atbild AI bots; ja tas nav pieejams, atbild atslēgvārdu bots. */
+var AI_CHAT_URL = "";
+var aiHistory = [];
+var aiBusy = false;
 function send(forced){
   var text = forced || chatInput.value.trim();
-  if (!text) return;
+  if (!text || aiBusy) return;
   chatInput.value = "";
   addMsg(text, "user");
-  var answer = reply(text);
-  setTimeout(function(){ addMsg(answer, "bot"); }, 350);
+  if (!AI_CHAT_URL) {
+    var answer = reply(text);
+    setTimeout(function(){ addMsg(answer, "bot"); }, 350);
+    return;
+  }
+  aiHistory.push({ role: "user", content: text });
+  aiBusy = true;
+  var typing = document.createElement("div");
+  typing.className = "msg bot";
+  typing.textContent = "…";
+  chatMsgs.appendChild(typing);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  var done = function(answer){
+    aiBusy = false;
+    if (typing.parentNode) typing.parentNode.removeChild(typing);
+    addMsg(answer, "bot");
+    aiHistory.push({ role: "assistant", content: answer });
+    if (aiHistory.length > 10) aiHistory = aiHistory.slice(-10);
+  };
+  var ctrl = window.AbortController ? new AbortController() : null;
+  var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 20000);
+  fetch(AI_CHAT_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ messages: aiHistory }),
+    signal: ctrl ? ctrl.signal : undefined
+  }).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(d){ clearTimeout(timer); done(d && d.reply ? d.reply : reply(text)); })
+    .catch(function(){ clearTimeout(timer); done(reply(text)); });
 }
 
 chatBtn.addEventListener("click", function(){
@@ -1445,6 +1476,7 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     btn.classList.add("active");
     chatInput.placeholder = CHAT[lang].placeholder;
     chatMsgs.innerHTML = "";
+    aiHistory = [];
     renderQuick();
     addMsg(CHAT[lang].greeting, "bot");
   });
