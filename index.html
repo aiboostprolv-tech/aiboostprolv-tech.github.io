@@ -605,11 +605,15 @@ footer{padding:1.5rem 1.2rem;}
 #astro .as-line{position:absolute;inset:0;overflow:visible;}
 #astro .as-l2{filter:drop-shadow(0 0 3px rgba(0,229,160,0.6));}
 #astro .as-arm,#astro .as-leg,#astro .as-head{transform-box:view-box;}
-#astro .as-armL{transform-origin:52px 78px;animation:asArmL 2.2s ease-in-out infinite;}
-#astro .as-armR{transform-origin:108px 78px;animation:asArmR 2.6s ease-in-out infinite;}
-#astro .as-legL{transform-origin:68px 130px;animation:asLegL 2.4s ease-in-out infinite;}
-#astro .as-legR{transform-origin:92px 130px;animation:asLegR 2s ease-in-out infinite;}
-#astro .as-head{transform-origin:80px 70px;animation:asHead 3s ease-in-out infinite;}
+#astro .as-eyes{transform-box:view-box;transform-origin:80px 49px;animation:as3Blink 3.4s ease-in-out infinite;}
+#astro .as-eye{animation:abEyeGlow 1.4s ease-in-out infinite;}
+@keyframes as3Blink{0%,86%,100%{transform:scaleY(1)}90%{transform:scaleY(0.08)}94%{transform:scaleY(1)}}
+
+#astro .as-armL{transform-origin:52px 78px;animation:asArmL 4.4s ease-in-out infinite;}
+#astro .as-armR{transform-origin:108px 78px;animation:asArmR 5.2s ease-in-out infinite;}
+#astro .as-legL{transform-origin:68px 130px;animation:asLegL 4.8s ease-in-out infinite;}
+#astro .as-legR{transform-origin:92px 130px;animation:asLegR 4.2s ease-in-out infinite;}
+#astro .as-head{transform-origin:80px 70px;animation:asHead 6s ease-in-out infinite;}
 @keyframes asArmL{0%,100%{transform:rotate(0)}50%{transform:rotate(38deg)}}
 @keyframes asArmR{0%,100%{transform:rotate(0)}50%{transform:rotate(-42deg)}}
 @keyframes asLegL{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(22deg)}}
@@ -632,32 +636,41 @@ html{scroll-behavior:auto;}
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
 <div id="astro" aria-hidden="true"><div class="as-probe"><svg viewBox="0 0 80 40" width="100" height="50"><rect x="2" y="14" width="20" height="10" rx="2" fill="#1b3b78" stroke="#4d8aff" stroke-width="1"/><path d="M6 14v10M10 14v10M14 14v10M18 14v10" stroke="#4d8aff" stroke-width="0.6"/><rect x="58" y="14" width="20" height="10" rx="2" fill="#1b3b78" stroke="#4d8aff" stroke-width="1"/><path d="M62 14v10M66 14v10M70 14v10M74 14v10" stroke="#4d8aff" stroke-width="0.6"/><rect x="22" y="18" width="36" height="2" fill="#8a96a8"/><rect x="28" y="8" width="24" height="22" rx="7" fill="#dfe5ee"/><circle cx="40" cy="19" r="5" fill="#0a0a0a"/><circle class="as-led" cx="40" cy="19" r="2.6" fill="#00e5a0"/><rect x="38" y="30" width="4" height="5" fill="#8a96a8"/></svg></div>
-<svg class="as-line" width="100%" height="100%"><path class="as-l1" d="" fill="none" stroke="#00e5a0" stroke-width="12" stroke-opacity="0.18" stroke-linecap="round"/><path class="as-l2" d="" fill="none" stroke="#c9d1dd" stroke-width="7" stroke-linecap="round"/><path class="as-l3" d="" fill="none" stroke="#5b6576" stroke-width="7" stroke-dasharray="2 5"/><path class="as-l4" d="" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round"/></svg>
-<div class="as-body" style="transform-origin:55px 20px"><svg viewBox="0 0 160 200" width="110" height="138">
+<svg class="as-line" width="100%" height="100%"><path class="as-l1" d="" fill="none" stroke="#00e5a0" stroke-width="12" stroke-opacity="0.18" stroke-linecap="round"/><path class="as-l2" d="" fill="none" stroke="#c9d1dd" stroke-width="7" stroke-linecap="round"/><path class="as-l3" d="" fill="none" stroke="#5b6576" stroke-width="7" stroke-dasharray="2 4"/><path class="as-l4" d="" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="as-body" style="transform-origin:58px 20px"><svg viewBox="0 0 160 200" width="116" height="145">
 <defs>
-<linearGradient id="asSuit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="0.6" stop-color="#dfe5ee"/><stop offset="1" stop-color="#9aa6b8"/></linearGradient>
-<linearGradient id="asShade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b3bdcc"/></linearGradient>
-<radialGradient id="asVisor" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#7fb0ff"/><stop offset="0.35" stop-color="#1b3b78"/><stop offset="0.75" stop-color="#071226"/><stop offset="1" stop-color="#00e5a0"/></radialGradient>
-<linearGradient id="asPack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9d1dd"/><stop offset="1" stop-color="#6f7b8d"/></linearGradient>
+<radialGradient id="as3Helm" cx="35%" cy="28%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.45" stop-color="#e3e8ef"/><stop offset="0.8" stop-color="#9aa6b8"/><stop offset="1" stop-color="#5d6878"/></radialGradient>
+<radialGradient id="as3Torso" cx="35%" cy="25%" r="85%"><stop offset="0" stop-color="#ffffff"/><stop offset="0.55" stop-color="#d8dee7"/><stop offset="1" stop-color="#7c8799"/></radialGradient>
+<linearGradient id="as3Limb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8794a6"/><stop offset="0.35" stop-color="#ffffff"/><stop offset="0.7" stop-color="#d5dbe4"/><stop offset="1" stop-color="#7a8698"/></linearGradient>
+<radialGradient id="as3Visor" cx="38%" cy="32%" r="78%"><stop offset="0" stop-color="#2a4f9a"/><stop offset="0.45" stop-color="#0b1730"/><stop offset="0.85" stop-color="#03070f"/><stop offset="1" stop-color="#0f3a3a"/></radialGradient>
+<linearGradient id="as3Pack" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9dfe8"/><stop offset="1" stop-color="#5d6878"/></linearGradient>
+<radialGradient id="as3Eye" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#eafff7"/><stop offset="0.4" stop-color="#00e5a0"/><stop offset="1" stop-color="#008a60"/></radialGradient>
+<filter id="as3Glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="as3Soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.2"/></filter>
 </defs>
-<g class="as-arm as-armL"><path d="M50 78 C38 84 30 96 28 110" stroke="url(#asShade)" stroke-width="17" stroke-linecap="round" fill="none"/><path d="M33 98 l-9 4" stroke="#8a96a8" stroke-width="3" stroke-linecap="round"/><circle cx="27" cy="114" r="9" fill="#e8ecf2" stroke="#8a96a8" stroke-width="1.5"/></g>
-<g class="as-leg as-legL"><path d="M66 132 C62 148 60 162 60 174" stroke="url(#asShade)" stroke-width="19" stroke-linecap="round" fill="none"/><path d="M54 154 h13" stroke="#8a96a8" stroke-width="3" stroke-linecap="round"/><rect x="48" y="172" width="26" height="14" rx="6" fill="#5b6576"/></g>
-<rect x="44" y="64" width="72" height="62" rx="16" fill="url(#asPack)"/>
-<g class="as-leg as-legR"><path d="M94 132 C98 148 102 160 106 172" stroke="url(#asShade)" stroke-width="19" stroke-linecap="round" fill="none"/><path d="M95 154 h13" stroke="#8a96a8" stroke-width="3" stroke-linecap="round"/><rect x="94" y="170" width="26" height="14" rx="6" fill="#5b6576" transform="rotate(-12 107 177)"/></g>
-<rect x="52" y="70" width="56" height="66" rx="20" fill="url(#asSuit)"/>
-<path d="M80 74 V132" stroke="#c3cbd8" stroke-width="1.5"/>
-<rect x="64" y="90" width="32" height="20" rx="4" fill="#1a1f28"/>
-<circle cx="72" cy="100" r="3" fill="#00e5a0"/><circle cx="80" cy="100" r="3" fill="#4d8aff"/><rect x="85" y="97" width="7" height="6" rx="1.5" fill="#ff5f57"/>
-<rect x="56" y="122" width="48" height="8" rx="4" fill="#a7b1c1"/>
-<g class="as-arm as-armR"><path d="M110 78 C122 84 132 92 136 104" stroke="url(#asShade)" stroke-width="17" stroke-linecap="round" fill="none"/><path d="M127 92 l9 -3" stroke="#8a96a8" stroke-width="3" stroke-linecap="round"/><circle cx="138" cy="108" r="9" fill="#e8ecf2" stroke="#8a96a8" stroke-width="1.5"/></g>
+<g class="as-arm as-armL"><path d="M50 80 C38 86 30 98 28 112" stroke="url(#as3Limb)" stroke-width="18" stroke-linecap="round" fill="none"/><path d="M35 96 q-6 2 -10 6" stroke="#7c8799" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M31 104 q-6 2 -9 6" stroke="#7c8799" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="27" cy="116" r="9.5" fill="url(#as3Helm)"/><circle cx="24" cy="113" r="3" fill="#fff" opacity="0.8"/></g>
+<g class="as-leg as-legL"><path d="M66 134 C62 150 60 164 60 176" stroke="url(#as3Limb)" stroke-width="20" stroke-linecap="round" fill="none"/><path d="M52 152 h16 M51 160 h16" stroke="#7c8799" stroke-width="2.5" stroke-linecap="round"/><path d="M47 172 h26 a6 6 0 0 1 6 6 v4 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 v-4 a6 6 0 0 1 4 -6z" fill="#4a5464"/><rect x="47" y="173" width="22" height="4" rx="2" fill="#8a96a8" opacity="0.7"/></g>
+<rect x="42" y="62" width="76" height="66" rx="18" fill="url(#as3Pack)"/>
+<rect x="46" y="66" width="6" height="58" rx="3" fill="#ffffff" opacity="0.35"/>
+<g class="as-leg as-legR"><path d="M94 134 C98 150 102 162 106 174" stroke="url(#as3Limb)" stroke-width="20" stroke-linecap="round" fill="none"/><path d="M93 152 h16 M95 160 h16" stroke="#7c8799" stroke-width="2.5" stroke-linecap="round"/><g transform="rotate(-12 107 179)"><path d="M93 171 h26 a6 6 0 0 1 6 6 v4 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 v-4 a6 6 0 0 1 4 -6z" fill="#4a5464"/></g></g>
+<rect x="51" y="70" width="58" height="68" rx="22" fill="url(#as3Torso)"/>
+<ellipse cx="66" cy="84" rx="10" ry="6" fill="#fff" opacity="0.7" filter="url(#as3Soft)"/>
+<path d="M80 74 V134" stroke="#b8c1ce" stroke-width="1.5"/>
+<rect x="63" y="92" width="34" height="21" rx="5" fill="#141922" stroke="#8a96a8" stroke-width="1.2"/>
+<circle class="as-led" cx="71" cy="102" r="3" fill="#00e5a0" filter="url(#as3Glow)"/><circle cx="79" cy="102" r="3" fill="#4d8aff"/><rect x="85" y="99" width="8" height="6" rx="1.5" fill="#ff5f57"/>
+<rect x="55" y="124" width="50" height="9" rx="4.5" fill="#9aa6b8"/><rect x="74" y="124" width="12" height="9" rx="2" fill="#c8a24a"/>
+<g class="as-arm as-armR"><path d="M110 80 C122 86 132 94 136 106" stroke="url(#as3Limb)" stroke-width="18" stroke-linecap="round" fill="none"/><path d="M125 90 q6 0 10 4 M129 97 q6 0 9 4" stroke="#7c8799" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="138" cy="110" r="9.5" fill="url(#as3Helm)"/><circle cx="135" cy="107" r="3" fill="#fff" opacity="0.8"/></g>
 <g class="as-head">
-<circle cx="80" cy="44" r="34" fill="url(#asSuit)"/>
-<circle cx="80" cy="44" r="34" fill="none" stroke="#9aa6b8" stroke-width="2"/>
-<ellipse cx="80" cy="46" rx="24" ry="20" fill="url(#asVisor)"/>
-<ellipse cx="80" cy="46" rx="24" ry="20" fill="none" stroke="#d4af37" stroke-width="2.5"/>
-<path d="M66 36 Q72 30 82 30" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.7" fill="none"/>
-<circle cx="94" cy="56" r="2.5" fill="#fff" opacity="0.5"/>
-<rect x="110" y="34" width="8" height="18" rx="3" fill="#b3bdcc"/>
+<circle cx="80" cy="44" r="35" fill="url(#as3Helm)"/>
+<circle cx="80" cy="44" r="35" fill="none" stroke="#6c788a" stroke-width="1.5"/>
+<ellipse cx="80" cy="47" rx="25" ry="21" fill="#c8a24a"/>
+<ellipse cx="80" cy="47" rx="22.5" ry="18.5" fill="url(#as3Visor)"/>
+<g class="as-eyes"><ellipse class="as-eye" cx="72" cy="49" rx="4" ry="4.5" fill="url(#as3Eye)" filter="url(#as3Glow)"/><ellipse class="as-eye" cx="88" cy="49" rx="4" ry="4.5" fill="url(#as3Eye)" filter="url(#as3Glow)"/></g>
+<path d="M63 40 Q70 31 84 31" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.65" fill="none"/>
+<ellipse cx="92" cy="58" rx="4" ry="2" fill="#7fb0ff" opacity="0.45"/>
+<ellipse cx="66" cy="22" rx="12" ry="6" fill="#ffffff" opacity="0.6" filter="url(#as3Soft)"/>
+<rect x="112" y="34" width="9" height="20" rx="3.5" fill="url(#as3Limb)"/>
+<circle class="as-led" cx="116.5" cy="38" r="2" fill="#00e5a0" filter="url(#as3Glow)"/>
 </g>
 </svg></div></div>
 
@@ -1856,25 +1869,30 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     var px = window.innerWidth * 0.3, ax = px, ay = 300, avx = 0, avy = 0;
     function astroFrame(now){
       var t = (now - t0) / 1000, vw = window.innerWidth, vh = window.innerHeight;
-      // epizodes: 22 s lido, 8 s pauze
-      var phase = t % 30, show = phase < 22;
+      var phase = t % 40, show = phase < 32;
       if (show !== on){ on = show; astro.classList.toggle("on", on); if (on) seed = Math.random() * 100; }
-      // zonde lēni slīd pa ekrāna augšu
-      px = vw * (0.5 + 0.38 * Math.sin((t + seed) * 0.07));
-      var py = 128 + 8 * Math.sin(t * 1.3);
-      // mērķis: līkloču ceļš (Lisažū līkne) zem zondes
-      var r = Math.min(vw, 900) * 0.28;
-      var tx = px + r * Math.sin((t + seed) * 0.43) + r * 0.35 * Math.sin((t + seed) * 1.17);
-      var ty = py + 160 + (vh * 0.28) * (0.5 + 0.5 * Math.sin((t + seed) * 0.31)) + 40 * Math.sin((t + seed) * 0.9);
-      // vienmērīga, mīksta kustība kā bezsvarā
-      avx += (tx - ax) * 0.0025; avy += (ty - ay) * 0.0025; avx *= 0.965; avy *= 0.965;
+      var ts = (t + seed) * 0.5; // lēnāk
+      // zonde peld līkločiem pa ekrāna augšdaļu
+      px = vw * (0.5 + 0.36 * Math.sin(ts * 0.11) + 0.06 * Math.sin(ts * 0.53));
+      var py = 140 + 30 * Math.sin(ts * 0.29) + 12 * Math.sin(ts * 0.9);
+      // kosmonauts riņķo ap zondi bezsvarā (nekrīt)
+      var r = Math.min(vw * 0.22, 230);
+      var tx = px + r * Math.sin(ts * 0.37) + r * 0.25 * Math.sin(ts * 1.03);
+      var ty = py + 150 + 70 * Math.sin(ts * 0.27 + 1) + 25 * Math.cos(ts * 0.8);
+      avx += (tx - ax) * 0.0012; avy += (ty - ay) * 0.0012; avx *= 0.975; avy *= 0.975;
       ax += avx; ay += avy;
-      var rot = Math.sin((t + seed) * 0.37) * 35 + avx * 6;
+      var rot = Math.sin(ts * 0.21) * 28 + avx * 8;
       probe.style.transform = "translate(" + (px - 50) + "px," + (py - 26) + "px)";
-      body.style.transform = "translate(" + (ax - 55) + "px," + (ay - 20) + "px) rotate(" + rot.toFixed(1) + "deg)";
-      // trose: brīvi nokareni izliekta
-      var mx = (px + ax) / 2 + avy * 20, my = (py + ay) / 2 + 60;
-      var dd = "M" + px.toFixed(1) + " " + (py + 14).toFixed(1) + " Q" + mx.toFixed(1) + " " + my.toFixed(1) + " " + ax.toFixed(1) + " " + (ay - 14).toFixed(1);
+      body.style.transform = "translate(" + (ax - 58) + "px," + (ay - 20) + "px) rotate(" + rot.toFixed(1) + "deg)";
+      // trose: viļņaina, kustīga
+      var x1 = px, y1 = py + 16, x2 = ax, y2 = ay - 14, dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy) || 1;
+      var nx = -dy / len, ny = dx / len, dd = "";
+      for (var q = 0; q <= 40; q++){
+        var u = q / 40, amp = 22 * Math.sin(Math.PI * u) * Math.sin(u * Math.PI * 3 - t * 1.2);
+        var sag = 40 * Math.sin(Math.PI * u);
+        var xx = x1 + dx * u + nx * amp, yy = y1 + dy * u + ny * amp + sag;
+        dd += (q ? " L" : "M") + xx.toFixed(1) + " " + yy.toFixed(1);
+      }
       for (var li = 0; li < lines.length; li++) lines[li].setAttribute("d", dd);
       requestAnimationFrame(astroFrame);
     }
