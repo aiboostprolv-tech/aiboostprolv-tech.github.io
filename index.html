@@ -270,7 +270,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
 .nav-links{gap:0.6rem;}
 .nav-links a{color:var(--white);text-decoration:none;font-size:0.85rem;opacity:0.75;padding:0.45rem 0.85rem;border-radius:100px;border:1px solid transparent;transition:opacity 0.2s,border-color 0.2s,box-shadow 0.2s,background 0.2s,color 0.2s;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
-.nav-links a:not(.nav-cta):hover,.nav-links a:not(.nav-cta):focus-visible{opacity:1;color:var(--accent);border-color:rgba(0,229,160,0.55);box-shadow:0 0 14px rgba(0,229,160,0.35);outline:none;}
+.nav-links a:not(.nav-cta):hover{opacity:1;color:var(--accent);text-shadow:0 0 12px rgba(0,229,160,0.6);}
+.nav-links a:not(.nav-cta):focus-visible{opacity:1;color:var(--accent);border-color:rgba(0,229,160,0.55);outline:none;}
 .nav-links a:not(.nav-cta):active,.nav-links a:not(.nav-cta).current{opacity:1;color:var(--accent);background:rgba(0,229,160,0.1);border-color:var(--accent);box-shadow:0 0 18px rgba(0,229,160,0.55),inset 0 0 8px rgba(0,229,160,0.2);}
 .nav-links a.nav-cta:active{box-shadow:0 0 22px rgba(0,229,160,0.8);}
 .mobile-menu a{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:color 0.2s,text-shadow 0.2s;}
@@ -1541,19 +1542,30 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   });
 });
 
-/* ---------- Izvēlne: aktīvā sadaļa iezīmēta zaļi ---------- */
+/* ---------- Izvēlne: aktīvā sadaļa iezīmēta zaļi (tikai viena) ---------- */
 (function(){
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"], .mobile-menu a[href^="#"]'));
-  if (!links.length || !("IntersectionObserver" in window)) return;
+  if (!links.length) return;
+  var ids = [];
+  links.forEach(function(a){ var id = a.getAttribute("href").slice(1); if (ids.indexOf(id) < 0 && document.getElementById(id)) ids.push(id); });
+  var current = null;
   function mark(id){
-    links.forEach(function(a){ a.classList.toggle("current", a.getAttribute("href") === "#" + id); });
+    if (id === current) return;
+    current = id;
+    links.forEach(function(a){ a.classList.toggle("current", !!id && a.getAttribute("href") === "#" + id); });
   }
-  links.forEach(function(a){ a.addEventListener("click", function(){ mark(a.getAttribute("href").slice(1)); }); });
-  var ids = []; links.forEach(function(a){ var id = a.getAttribute("href").slice(1); if (ids.indexOf(id) < 0 && document.getElementById(id)) ids.push(id); });
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if (e.isIntersecting) mark(e.target.id); });
-  }, { rootMargin: "-45% 0px -50% 0px" });
-  ids.forEach(function(id){ io.observe(document.getElementById(id)); });
+  function update(){
+    var line = window.innerHeight * 0.35, found = null;
+    ids.forEach(function(id){
+      var r = document.getElementById(id).getBoundingClientRect();
+      if (r.top <= line && r.bottom > line) found = id;
+    });
+    mark(found);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function(){ if (!ticking){ ticking = true; requestAnimationFrame(function(){ ticking = false; update(); }); } }, { passive: true });
+  window.addEventListener("resize", update);
+  update();
 })();
 
 /* ---------- Hero animācija: mājaslapa top soli pa solim ---------- */
