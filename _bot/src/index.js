@@ -3,6 +3,8 @@
 // uzģenerē atbildi ar Claude un nosūta to atpakaļ.
 
 import { BRAIN, HANDOFF_MARKER } from "./brain.js";
+import { recordExchange, validSid } from "./log.js";
+import { handleAdmin } from "./admin.js";
 
 const BOT_TAG = "aiboost-bot";          // Messenger "metadata", lai atpazītu bota paša ziņas
 const HISTORY_TURNS = 10;               // cik pēdējās ziņas atcerēties sarunā
@@ -17,7 +19,8 @@ export default {
     if (url.pathname === "/" && request.method === "GET") {
       return new Response("AiBoost Pro bots darbojas.", { status: 200 });
     }
-    if (url.pathname === "/chat") return handleSiteChat(request, env);
+    if (url.pathname === "/chat") return handleSiteChat(request, env, ctx);
+    if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return handleAdmin(request, env);
     if (url.pathname !== "/webhook") return new Response("Not found", { status: 404 });
 
     // 1) Meta verifikācija
@@ -69,7 +72,7 @@ function cors(origin, env) {
   } : {} };
 }
 
-export async function handleSiteChat(request, env) {
+export async function handleSiteChat(request, env, ctx) {
   const origin = request.headers.get("Origin") || "";
   const c = cors(origin, env);
   if (request.method === "OPTIONS") return new Response(null, { status: c.ok ? 204 : 403, headers: c.headers });
@@ -94,11 +97,24 @@ export async function handleSiteChat(request, env) {
   while (clean.length && clean[0].role !== "user") clean.shift();
   if (!clean.length || clean[clean.length - 1].role !== "user") return json({ error: "no_message" }, 400, c.headers);
 
+  const sid = validSid(body?.sid) ? body.sid.toLowerCase() : "";
+  const lang = ["lv", "ru", "en"].includes(body?.lang) ? body.lang : "";
+  const pageUrl = typeof body?.page === "string" ? body.page.slice(0, 200) : "";
+  const userText = clean[clean.length - 1].content;
+  const log = (bot, failed) => {
+    if (!sid) return;
+    const p = recordExchange(env, { channel: "site", sid, lang, page: pageUrl, user: userText, bot, failed })
+      .catch((e) => console.error("log error", e));
+    if (ctx && ctx.waitUntil) ctx.waitUntil(p);
+  };
+
   try {
-    const answer = await askClaude(clean, env, SITE_NOTE);
-    return json({ reply: answer.split(HANDOFF_MARKER).join("").trim() }, 200, c.headers);
+    const answer = (await askClaude(clean, env, SITE_NOTE)).split(HANDOFF_MARKER).join("").trim();
+    log(answer, false);
+    return json({ reply: answer }, 200, c.headers);
   } catch (e) {
     console.error("site chat error", e);
+    log("(AI kļūda)", true);
     return json({ error: "ai_error" }, 502, c.headers);
   }
 }
@@ -227,6 +243,8 @@ export async function handleEvent(ev, env) {
   const clean = answer.split(HANDOFF_MARKER).join("").trim();
 
   await sendReply(ev, env, clean);
+  await recordExchange(env, { channel: ev.channel, sid: ev.user, user: userText, bot: clean })
+    .catch((e) => console.error("log error", e));
 
   const newHist = [...messages, { role: "assistant", content: clean }].slice(-HISTORY_TURNS);
   // Claude prasa, lai vēsture sāktos ar "user"

@@ -298,32 +298,33 @@ body>nav{z-index:200;}
 .hero-left{min-width:0;}
 
 /* --- Animēts čata demo --- */
-.hero-demo{position:relative;justify-self:center;width:100%;max-width:330px;animation:fadeUp 0.7s 0.35s ease both;}
-.demo-phone{background:#111114;border:1px solid rgba(255,255,255,0.09);border-radius:26px;padding:0.9rem;box-shadow:0 20px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(0,229,160,0.06);}
+.hero-demo{position:relative;justify-self:center;width:100%;max-width:400px;animation:fadeUp 0.7s 0.35s ease both;}
 .demo-glow{position:absolute;inset:-30% -20%;background:radial-gradient(ellipse at 50% 40%,rgba(0,229,160,0.16),transparent 65%);pointer-events:none;z-index:-1;}
-.demo-bar{display:flex;align-items:center;gap:0.55rem;padding:0 0.3rem 0.75rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:0.75rem;}
-.demo-dot{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));flex-shrink:0;}
-.demo-name{font-family:"Syne",sans-serif;font-size:0.76rem;font-weight:700;line-height:1.2;}
-.demo-live{font-size:0.6rem;color:var(--accent);display:flex;align-items:center;gap:0.25rem;}
-.demo-live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
-.demo-time{margin-left:auto;font-size:0.62rem;color:var(--muted);}
-.demo-feed{display:flex;flex-direction:column;gap:0.45rem;min-height:212px;}
-.demo-msg{font-size:0.73rem;line-height:1.5;padding:0.5rem 0.7rem;max-width:85%;opacity:0;transform:translateY(8px);animation:msgIn 0.45s ease forwards;}
-.demo-msg.u{align-self:flex-end;background:rgba(0,102,255,0.22);border-radius:12px 4px 12px 12px;color:#e8f0ff;}
-.demo-msg.b{align-self:flex-start;background:rgba(0,229,160,0.11);border-radius:4px 12px 12px 12px;color:#d3fff0;}
-.demo-msg:nth-child(1){animation-delay:1.0s;}
-.demo-msg:nth-child(2){animation-delay:2.4s;}
-.demo-msg:nth-child(3){animation-delay:4.6s;}
-.demo-msg:nth-child(4){animation-delay:6.0s;}
-@keyframes msgIn{to{opacity:1;transform:translateY(0);}}
-.demo-typing{align-self:flex-start;display:flex;gap:3px;padding:0.6rem 0.75rem;background:rgba(0,229,160,0.11);border-radius:4px 12px 12px 12px;opacity:0;animation:typeShow 2.2s 2.4s ease forwards;}
-@keyframes typeShow{0%{opacity:0;}12%{opacity:1;}88%{opacity:1;}100%{opacity:0;height:0;padding:0;margin-top:-0.45rem;}}
-.demo-typing i{width:5px;height:5px;border-radius:50%;background:var(--accent);display:block;animation:bounce 1.2s infinite;}
-.demo-typing i:nth-child(2){animation-delay:0.15s;}
-.demo-typing i:nth-child(3){animation-delay:0.3s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-4px);opacity:1;}}
-.demo-foot{margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid rgba(255,255,255,0.06);font-size:0.62rem;color:var(--muted);text-align:center;opacity:0;animation:msgIn 0.5s 7.2s ease forwards;}
-.demo-foot b{color:var(--accent);font-weight:700;}
+.sb-win{position:relative;background:#111114;border:1px solid rgba(255,255,255,0.09);border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(0,229,160,0.06);}
+.sb-top{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#17171c;border-bottom:1px solid rgba(255,255,255,0.06);}
+.sb-top i{width:9px;height:9px;border-radius:50%;background:#2a2a33;display:block;}
+.sb-top i:nth-child(1){background:#ff5f57;}.sb-top i:nth-child(2){background:#febc2e;}.sb-top i:nth-child(3){background:#28c840;}
+.sb-url{margin-left:8px;flex:1;background:#0d0d10;border-radius:999px;padding:4px 10px;font-size:0.62rem;color:var(--muted);white-space:nowrap;overflow:hidden;}
+.sb-url b{color:#d3fff0;font-weight:500;}
+.sb-body{position:relative;padding:14px;min-height:250px;display:flex;flex-direction:column;gap:10px;}
+.sb-el{opacity:0;transform:translateY(10px) scale(0.98);transition:opacity 0.45s ease,transform 0.45s ease;}
+.sb-el.on{opacity:1;transform:none;}
+.sb-nav{display:flex;align-items:center;gap:8px;}
+.sb-logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
+.sb-links{margin-left:auto;display:flex;gap:6px;}.sb-links i{display:block;width:26px;height:6px;border-radius:4px;background:#2a2a33;}
+.sb-hero{background:linear-gradient(135deg,rgba(0,229,160,0.12),rgba(0,102,255,0.12));border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;}
+.sb-h{height:10px;border-radius:5px;background:#e8f0ff;width:78%;margin-bottom:7px;}
+.sb-h.s{width:52%;background:#8892a2;height:7px;}
+.sb-cta{display:inline-block;margin-top:8px;background:var(--accent);color:#04120c;font-size:0.62rem;font-weight:700;border-radius:999px;padding:5px 12px;}
+.sb-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.sb-cards div{height:46px;border-radius:10px;background:#17171c;border:1px solid rgba(255,255,255,0.06);position:relative;}
+.sb-cards div::after{content:"";position:absolute;left:8px;right:12px;bottom:9px;height:5px;border-radius:3px;background:#2a2a33;}
+.sb-cards div::before{content:"";position:absolute;left:8px;top:8px;width:14px;height:14px;border-radius:5px;background:rgba(0,229,160,0.35);}
+.sb-chat{position:absolute;right:12px;bottom:12px;display:flex;align-items:flex-end;gap:6px;}
+.sb-bubble{background:#141414;border:1px solid rgba(0,229,160,0.35);color:#d3fff0;font-size:0.6rem;border-radius:10px 10px 3px 10px;padding:5px 8px;max-width:130px;}
+.sb-dot{width:30px;height:30px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(0,229,160,0.5);animation:chatPulse 2.4s ease-out infinite;flex:none;}
+.sb-cursor{position:absolute;left:0;top:0;width:16px;height:16px;transition:transform 0.6s cubic-bezier(.5,0,.2,1);z-index:2;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.6));pointer-events:none;}
+.sb-cap{text-align:center;color:var(--muted);font-size:0.78rem;margin-top:0.8rem;}
 .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);color:var(--accent);font-size:0.75rem;padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;}
 .hero-tag::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
@@ -519,7 +520,7 @@ nav{padding:0.85rem 1.2rem;}
 .hamburger{display:flex;}
 .hero{padding:5.5rem 1.2rem 3rem;}
 .hero-content{grid-template-columns:1fr;gap:2.5rem;}
-.hero-demo{max-width:300px;}
+.hero-demo{max-width:340px;}
 .hero-stats{margin-top:0;padding-top:2rem;gap:1.5rem;}
 .strip{padding:1.5rem 1.2rem;}
 .section-wrap{padding:3.5rem 1.2rem;}
@@ -535,12 +536,25 @@ footer{padding:1.5rem 1.2rem;}
 .back-to-top{bottom:78px;right:16px;}
 }
 
+
+/* Čata poga: spīdums un lēciens, lai aicinātu uzspiest */
+#chat-btn{padding:0.85rem 1.4rem;font-size:0.95rem;box-shadow:0 0 0 0 rgba(0,229,160,0.55),0 6px 24px rgba(0,229,160,0.45);animation:chatPulse 2.4s ease-out infinite,chatBounce 6s ease-in-out 3s infinite;overflow:visible;}
+#chat-btn::before{content:"";width:9px;height:9px;border-radius:50%;background:#04120c;box-shadow:0 0 0 3px rgba(4,18,12,0.18);flex:none;}
+#chat-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,0.6) 50%,transparent 70%);background-size:250% 100%;animation:chatShine 3.2s ease-in-out infinite;pointer-events:none;}
+#chat-btn[aria-expanded="true"]{animation:none;}
+#chat-btn[aria-expanded="true"]::after{display:none;}
+@keyframes chatPulse{0%{box-shadow:0 0 0 0 rgba(0,229,160,0.55),0 6px 24px rgba(0,229,160,0.45);}70%{box-shadow:0 0 0 16px rgba(0,229,160,0),0 6px 24px rgba(0,229,160,0.45);}100%{box-shadow:0 0 0 0 rgba(0,229,160,0),0 6px 24px rgba(0,229,160,0.45);}}
+@keyframes chatBounce{0%,86%,100%{transform:translateY(0);}89%{transform:translateY(-10px);}92%{transform:translateY(0);}95%{transform:translateY(-5px);}}
+@keyframes chatShine{0%,60%{background-position:120% 0;}100%{background-position:-120% 0;}}
+.contact-hours{color:var(--muted);font-size:0.9rem;margin-top:-0.4rem;}
+
 @media(prefers-reduced-motion:reduce){
 *{animation:none!important;transition:none!important;}
 html{scroll-behavior:auto;}
 .fade-up{opacity:1;transform:none;}
-.demo-msg,.demo-foot{opacity:1;transform:none;}
-.demo-typing{display:none;}
+.sb-el{opacity:1;transform:none;}
+.sb-cursor{display:none;}
+#chat-btn::after{display:none;}
 .logo-bot,.bot-orb,.bot-eye,.bot-scan{animation:none!important;}
 #particles-bg{display:none;}
 }
@@ -587,7 +601,7 @@ html{scroll-behavior:auto;}
 <li><a href="/blog/">Блог</a></li>
 <li><a href="#par-mani">Обо мне</a></li>
 <li><a href="#faq">FAQ</a></li>
-<li><a href="#kontakti" class="nav-cta">Связаться</a></li>
+<li><a href="#kontakti" class="nav-cta">Контакты</a></li>
 </ul>
 <div class="nav-right">
 <div class="lang-switch">
@@ -606,6 +620,7 @@ html{scroll-behavior:auto;}
 <a href="/blog/">Блог</a>
 <a href="#par-mani">Обо мне</a>
 <a href="#faq">FAQ</a>
+<a href="#kontakti">Контакты</a>
 <a href="#kontakti">Бесплатная консультация</a>
 </div>
 
@@ -630,28 +645,20 @@ html{scroll-behavior:auto;}
 </div>
 </div>
 
-<div class="hero-demo" aria-hidden="true">
+<div class="hero-demo" id="site-build" aria-hidden="true">
 <div class="demo-glow"></div>
-<div class="demo-phone">
-<div class="demo-bar">
-<div class="demo-dot"></div>
-<div>
-<div class="demo-name">Ваша компания</div>
-<div class="demo-live">онлайн</div>
-</div>
-<div class="demo-time">22:47</div>
-</div>
-<div class="demo-feed">
-<div class="demo-msg u">Здравствуйте! Вы работаете по субботам?</div>
-<div class="demo-typing"><i></i><i></i><i></i></div>
-<div class="demo-msg b">Добрый вечер! Да, по субботам работаем с 9:00 до 15:00.</div>
-<div class="demo-msg b">Хотите записаться на визит?</div>
-<div class="demo-msg u">Да, пожалуйста 🙂</div>
-</div>
-<div class="demo-foot">Клиент записался в <b>22:47</b> — пока вы спали</div>
+<div class="sb-win">
+<div class="sb-top"><i></i><i></i><i></i><div class="sb-url">https://<b>vash-biznes.lv</b></div></div>
+<div class="sb-body">
+<div class="sb-el sb-nav"><div class="sb-logo"></div><div class="sb-links"><i></i><i></i><i></i></div></div>
+<div class="sb-el sb-hero"><div class="sb-h"></div><div class="sb-h s"></div><span class="sb-cta">Записаться</span></div>
+<div class="sb-el sb-cards"><div></div><div></div><div></div></div>
+<div class="sb-el sb-chat"><div class="sb-bubble">Здравствуйте! Чем помочь?</div><div class="sb-dot"></div></div>
+<svg class="sb-cursor" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
 </div>
 </div>
-
+<p class="sb-cap">Так создаётся ваш сайт с AI-чатботом</p>
+</div>
 </div>
 </section>
 
@@ -1008,6 +1015,7 @@ html{scroll-behavior:auto;}
 <p class="section-tag">Контакты</p>
 <h2>Начнём?</h2>
 <p>Первая консультация бесплатна и ни к чему не обязывает. Отвечаю в тот же рабочий день на латышском, русском или английском.</p>
+<p class="contact-hours">Часы работы: ежедневно 8:00–21:00 · Рига, Латвия. AI-ассистент в чате отвечает 24/7.</p>
 
 <div class="contact-links">
 <a href="tel:+37123231001" class="contact-item">+371 23231001</a>
@@ -1046,7 +1054,7 @@ html{scroll-behavior:auto;}
 
 <a href="https://wa.me/37123231001?text=Sveiki!%20V%C4%93los%20bezmaksas%20konsult%C4%81ciju." target="_blank" rel="noopener" id="wa-btn">WhatsApp</a>
 
-<button id="chat-btn" aria-expanded="false">Чат</button>
+<button id="chat-btn" aria-expanded="false" aria-label="Открыть чат с AI-ассистентом">Спросить AI</button>
 <div id="chat-teaser" aria-live="polite"><button type="button" id="chat-teaser-open">Здравствуйте! 👋 Ищете чат-бота или сайт? Спросите — отвечу сразу.</button><button type="button" id="chat-teaser-close" aria-label="Закрыть">×</button></div>
 
 <div id="chat-window" role="dialog" aria-label="Чат">
@@ -1417,6 +1425,15 @@ function renderQuick(){
 var AI_CHAT_URL = "https://aiboost-bot.aiboostpro-lv.workers.dev/chat";
 var aiHistory = [];
 var aiBusy = false;
+var aiSid = (function(){
+  var k = "aiChatSid", v = null;
+  try { v = sessionStorage.getItem(k); } catch(e){}
+  if (!v || !/^[a-z0-9]{6,32}$/.test(v)){
+    v = (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).slice(0, 20);
+    try { sessionStorage.setItem(k, v); } catch(e){}
+  }
+  return v;
+})();
 function send(forced){
   var text = forced || chatInput.value.trim();
   if (!text || aiBusy) return;
@@ -1446,7 +1463,7 @@ function send(forced){
   fetch(AI_CHAT_URL, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ messages: aiHistory }),
+    body: JSON.stringify({ messages: aiHistory, sid: aiSid, lang: lang, page: location.pathname }),
     signal: ctrl ? ctrl.signal : undefined
   }).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function(d){ clearTimeout(timer); done(d && d.reply ? d.reply : reply(text)); })
@@ -1481,6 +1498,32 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     addMsg(CHAT[lang].greeting, "bot");
   });
 });
+
+/* ---------- Hero animācija: mājaslapa top soli pa solim ---------- */
+(function(){
+  var box = document.getElementById("site-build");
+  if (!box) return;
+  var els = box.querySelectorAll(".sb-el");
+  var cursor = box.querySelector(".sb-cursor");
+  var body = box.querySelector(".sb-body");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce){ Array.prototype.forEach.call(els, function(e){ e.classList.add("on"); }); if (cursor) cursor.style.display = "none"; return; }
+  var i = 0, timer = null;
+  function moveTo(el){
+    if (!cursor || !body) return;
+    var b = body.getBoundingClientRect(), r = el.getBoundingClientRect();
+    cursor.style.transform = "translate(" + Math.round(r.left - b.left + r.width * 0.6) + "px," + Math.round(r.top - b.top + r.height * 0.55) + "px)";
+  }
+  function step(){
+    if (i < els.length){ els[i].classList.add("on"); moveTo(els[i]); i++; timer = setTimeout(step, 750); }
+    else { timer = setTimeout(function(){ Array.prototype.forEach.call(els, function(e){ e.classList.remove("on"); }); i = 0; timer = setTimeout(step, 700); }, 3200); }
+  }
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting && !timer) step(); else if (!en.isIntersecting && timer){ clearTimeout(timer); timer = null; } });
+    }).observe(box);
+  } else step();
+})();
 
 /* ---------- Čata uzruna: pēc dažām sekundēm parāda sveicienu (vienreiz sesijā) ---------- */
 (function(){
