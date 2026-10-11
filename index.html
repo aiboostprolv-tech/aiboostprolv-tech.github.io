@@ -631,6 +631,15 @@ html{scroll-behavior:auto;}
 #particles-bg{display:none;}
 #astro{display:none;}
 }
+
+.audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:1.5rem;}
+.audit-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.7rem;}
+.audit-list li{position:relative;padding-left:1.8rem;color:rgba(245,243,238,0.85);line-height:1.5;}
+.audit-list li::before{content:"";position:absolute;left:0;top:0.35em;width:1rem;height:1rem;border-radius:50%;background:rgba(0,229,160,0.15);border:1px solid var(--accent);}
+.audit-list li::after{content:"";position:absolute;left:0.33rem;top:0.55em;width:0.3rem;height:0.5rem;border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(45deg);}
+.audit-card{background:linear-gradient(135deg,rgba(0,229,160,0.08),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.3);border-radius:18px;padding:1.6rem;}
+.audit-card .contact-form{margin:0;max-width:none;}
+@media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -759,7 +768,7 @@ html{scroll-behavior:auto;}
 <p class="hero-sub">Veidoju mājaslapas ar iebūvētu čatbotu, pārvaldu sociālos tīklus un rakstu saturu latviešu, krievu un angļu valodā. Strādāju ar maziem un vidējiem uzņēmumiem visā Latvijā.</p>
 <div class="hero-actions">
 <a href="#kontakti" class="btn-primary">Bezmaksas konsultācija</a>
-<a href="#pakalpojumi" class="btn-secondary">Pakalpojumi</a>
+<a href="#audits" class="btn-secondary">Bezmaksas audits</a>
 </div>
 <div class="hero-stats">
 <div><div class="stat-num">3</div><div class="stat-label">Valodas LV · RU · EN</div></div>
@@ -1060,6 +1069,33 @@ LIAA digitalizācijas un mākslīgā intelekta atbalsta programmā pieteikšanā
 </div>
 </section>
 
+<section class="section-wrap fade-up" id="audits">
+<p class="section-tag">Bezmaksas audits</p>
+<h2>Bezmaksas mājaslapas audits</h2>
+<p class="section-desc">Atsūti savas mājaslapas adresi, un 2 darba dienu laikā saņemsi pārskatu latviešu valodā ar vērtējumu un konkrētiem uzlabojumiem. Bez maksas un bez saistībām.</p>
+<div class="audit-grid">
+<ul class="audit-list">
+<li>Ātrums telefonā un datorā (Google PageSpeed)</li>
+<li>SEO: virsraksti, apraksti, strukturētie dati, sitemap</li>
+<li>Redzamība AI atbildēs (ChatGPT, Gemini, Perplexity)</li>
+<li>Google uzņēmuma profils un Google Maps</li>
+<li>Mobilā versija, pieejamība un uzticamības signāli</li>
+<li>Vai un kur AI čatbots tev nestu klientus</li>
+</ul>
+<div class="audit-card">
+<form class="contact-form" id="auditForm" action="https://formspree.io/f/xdaqpwok" method="POST">
+<input type="hidden" name="_subject" value="Bezmaksas audits – aiboostpro.lv">
+<input type="hidden" name="type" value="audit">
+<input type="text" name="website" placeholder="Tavas mājaslapas adrese (piem., jusulapa.lv)" required autocomplete="url">
+<input type="text" name="contact" placeholder="E-pasts vai tālrunis" required>
+<label class="form-consent"><input type="checkbox" name="consent" required><span>Piekrītu, ka mani dati tiek apstrādāti, lai sagatavotu auditu un sazinātos ar mani. <a href="/privacy.html">Privātuma politika</a></span></label>
+<button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Saņemt bezmaksas auditu</button>
+<p class="form-status" id="auditStatus" role="status"></p>
+</form>
+</div>
+</div>
+</section>
+
 <section class="section-wrap" id="faq">
 <p class="section-tag">Biežāk uzdotie jautājumi</p>
 <h2>Jautājumi un atbildes</h2>
@@ -1354,6 +1390,25 @@ form.addEventListener("submit", function(e){
     sendViaWhatsApp();
   });
 });
+
+/* ---------- Audita forma ---------- */
+(function(){
+  var af = document.getElementById("auditForm"), st = document.getElementById("auditStatus");
+  if (!af) return;
+  function viaWA(){
+    var fd = new FormData(af);
+    window.open("https://wa.me/37123231001?text=" + encodeURIComponent('Sveiki! Vēlos bezmaksas mājaslapas auditu. Lapa: ' + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
+    af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Paldies! Auditu atsūtīšu 2 darba dienu laikā.';
+  }
+  af.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!af.checkValidity()) { af.reportValidity(); return; }
+    st.style.color = "#888"; st.textContent = "…";
+    fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
+      .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Paldies! Auditu atsūtīšu 2 darba dienu laikā.'; } else viaWA(); })
+      .catch(viaWA);
+  });
+})();
 
 /* ---------- Čats ---------- */
 var CHAT = {

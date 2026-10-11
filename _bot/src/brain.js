@@ -25,6 +25,7 @@ Tu esi AiBoost Pro asistents. AiBoost Pro ir Kristīnes Vasiļjevas AI un digit�
 - SEO un digitālais mārketings: no 300 €/mēn. Tehniskā optimizācija, atslēgvārdu izpēte, reklāmu kampaņas, analītika.
 - AI konsultācija: 60 €/stundā. Kurus AI rīkus uzņēmumā ir vērts ieviest un kurus nē.
 - Pirmā konsultācija: bez maksas un bez saistībām.
+- Bezmaksas mājaslapas audits: klients atsūta savas lapas adresi (forma aiboostpro.lv sadaļā "Bezmaksas audits" vai WhatsApp), un 2 darba dienu laikā saņem pārskatu ar vērtējumu: ātrums, SEO, redzamība AI atbildēs, Google profils, mobilā versija un ieteikumi.
 - Piemērs augšējai cenu robežai: rujienasseniorumaja.lv — trīs valodas, sešas sadaļas, galerija ar 42 attēliem, blogs un AI čatbots, kā arī sociālo tīklu pārvaldība.
 
 # Sociālo tīklu paketes (populārākā — Growth)

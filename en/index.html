@@ -631,6 +631,15 @@ html{scroll-behavior:auto;}
 #particles-bg{display:none;}
 #astro{display:none;}
 }
+
+.audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:1.5rem;}
+.audit-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.7rem;}
+.audit-list li{position:relative;padding-left:1.8rem;color:rgba(245,243,238,0.85);line-height:1.5;}
+.audit-list li::before{content:"";position:absolute;left:0;top:0.35em;width:1rem;height:1rem;border-radius:50%;background:rgba(0,229,160,0.15);border:1px solid var(--accent);}
+.audit-list li::after{content:"";position:absolute;left:0.33rem;top:0.55em;width:0.3rem;height:0.5rem;border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(45deg);}
+.audit-card{background:linear-gradient(135deg,rgba(0,229,160,0.08),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.3);border-radius:18px;padding:1.6rem;}
+.audit-card .contact-form{margin:0;max-width:none;}
+@media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -759,7 +768,7 @@ html{scroll-behavior:auto;}
 <p class="hero-sub">I build websites with a built-in chatbot, manage social media and write content in Latvian, Russian and English. I work with small and medium businesses across Latvia.</p>
 <div class="hero-actions">
 <a href="#kontakti" class="btn-primary">Free consultation</a>
-<a href="#pakalpojumi" class="btn-secondary">Services</a>
+<a href="#audits" class="btn-secondary">Free audit</a>
 </div>
 <div class="hero-stats">
 <div><div class="stat-num">3</div><div class="stat-label">Languages LV · RU · EN</div></div>
@@ -1060,6 +1069,33 @@ This information is general and may change. The availability, size and condition
 </div>
 </section>
 
+<section class="section-wrap fade-up" id="audits">
+<p class="section-tag">Free audit</p>
+<h2>Free website audit</h2>
+<p class="section-desc">Send your website address and within 2 working days you'll get a report with a score and concrete improvements. Free, no obligation.</p>
+<div class="audit-grid">
+<ul class="audit-list">
+<li>Speed on mobile and desktop (Google PageSpeed)</li>
+<li>SEO: titles, descriptions, structured data, sitemap</li>
+<li>Visibility in AI answers (ChatGPT, Gemini, Perplexity)</li>
+<li>Google Business Profile and Google Maps</li>
+<li>Mobile version, accessibility and trust signals</li>
+<li>Whether and where an AI chatbot would bring you customers</li>
+</ul>
+<div class="audit-card">
+<form class="contact-form" id="auditForm" action="https://formspree.io/f/xdaqpwok" method="POST">
+<input type="hidden" name="_subject" value="Free audit – aiboostpro.lv">
+<input type="hidden" name="type" value="audit">
+<input type="text" name="website" placeholder="Your website address (e.g. yoursite.lv)" required autocomplete="url">
+<input type="text" name="contact" placeholder="Email or phone" required>
+<label class="form-consent"><input type="checkbox" name="consent" required><span>I agree to my data being processed to prepare the audit and contact me. <a href="/privacy.html">Privacy policy</a></span></label>
+<button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Get a free audit</button>
+<p class="form-status" id="auditStatus" role="status"></p>
+</form>
+</div>
+</div>
+</section>
+
 <section class="section-wrap" id="faq">
 <p class="section-tag">Frequently asked questions</p>
 <h2>Questions and answers</h2>
@@ -1354,6 +1390,25 @@ form.addEventListener("submit", function(e){
     sendViaWhatsApp();
   });
 });
+
+/* ---------- Audita forma ---------- */
+(function(){
+  var af = document.getElementById("auditForm"), st = document.getElementById("auditStatus");
+  if (!af) return;
+  function viaWA(){
+    var fd = new FormData(af);
+    window.open("https://wa.me/37123231001?text=" + encodeURIComponent("Hi! I'd like a free website audit. Site: " + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
+    af.reset(); st.style.color = "#00e5a0"; st.textContent = "Thank you! I'll send the audit within 2 working days.";
+  }
+  af.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!af.checkValidity()) { af.reportValidity(); return; }
+    st.style.color = "#888"; st.textContent = "…";
+    fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
+      .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = "Thank you! I'll send the audit within 2 working days."; } else viaWA(); })
+      .catch(viaWA);
+  });
+})();
 
 /* ---------- Čats ---------- */
 var CHAT = {

@@ -631,6 +631,15 @@ html{scroll-behavior:auto;}
 #particles-bg{display:none;}
 #astro{display:none;}
 }
+
+.audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:1.5rem;}
+.audit-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.7rem;}
+.audit-list li{position:relative;padding-left:1.8rem;color:rgba(245,243,238,0.85);line-height:1.5;}
+.audit-list li::before{content:"";position:absolute;left:0;top:0.35em;width:1rem;height:1rem;border-radius:50%;background:rgba(0,229,160,0.15);border:1px solid var(--accent);}
+.audit-list li::after{content:"";position:absolute;left:0.33rem;top:0.55em;width:0.3rem;height:0.5rem;border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(45deg);}
+.audit-card{background:linear-gradient(135deg,rgba(0,229,160,0.08),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.3);border-radius:18px;padding:1.6rem;}
+.audit-card .contact-form{margin:0;max-width:none;}
+@media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -759,7 +768,7 @@ html{scroll-behavior:auto;}
 <p class="hero-sub">Создаю сайты со встроенным чат-ботом, веду соцсети и пишу контент на латышском, русском и английском. Работаю с малым и средним бизнесом по всей Латвии.</p>
 <div class="hero-actions">
 <a href="#kontakti" class="btn-primary">Бесплатная консультация</a>
-<a href="#pakalpojumi" class="btn-secondary">Услуги</a>
+<a href="#audits" class="btn-secondary">Бесплатный аудит</a>
 </div>
 <div class="hero-stats">
 <div><div class="stat-num">3</div><div class="stat-label">Языка: LV · RU · EN</div></div>
@@ -1060,6 +1069,33 @@ html{scroll-behavior:auto;}
 </div>
 </section>
 
+<section class="section-wrap fade-up" id="audits">
+<p class="section-tag">Бесплатный аудит</p>
+<h2>Бесплатный аудит сайта</h2>
+<p class="section-desc">Пришлите адрес вашего сайта, и в течение 2 рабочих дней вы получите отчёт с оценкой и конкретными улучшениями. Бесплатно и ни к чему не обязывает.</p>
+<div class="audit-grid">
+<ul class="audit-list">
+<li>Скорость на телефоне и компьютере (Google PageSpeed)</li>
+<li>SEO: заголовки, описания, структурированные данные, sitemap</li>
+<li>Видимость в ответах AI (ChatGPT, Gemini, Perplexity)</li>
+<li>Профиль компании в Google и Google Maps</li>
+<li>Мобильная версия, доступность и сигналы доверия</li>
+<li>Принесёт ли вам клиентов AI чат-бот и где</li>
+</ul>
+<div class="audit-card">
+<form class="contact-form" id="auditForm" action="https://formspree.io/f/xdaqpwok" method="POST">
+<input type="hidden" name="_subject" value="Бесплатный аудит – aiboostpro.lv">
+<input type="hidden" name="type" value="audit">
+<input type="text" name="website" placeholder="Адрес вашего сайта (напр., vashsait.lv)" required autocomplete="url">
+<input type="text" name="contact" placeholder="E-mail или телефон" required>
+<label class="form-consent"><input type="checkbox" name="consent" required><span>Я согласен(-на) на обработку данных для подготовки аудита и связи со мной. <a href="/privacy.html">Политика конфиденциальности</a></span></label>
+<button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Получить бесплатный аудит</button>
+<p class="form-status" id="auditStatus" role="status"></p>
+</form>
+</div>
+</div>
+</section>
+
 <section class="section-wrap" id="faq">
 <p class="section-tag">Частые вопросы</p>
 <h2>Вопросы и ответы</h2>
@@ -1354,6 +1390,25 @@ form.addEventListener("submit", function(e){
     sendViaWhatsApp();
   });
 });
+
+/* ---------- Audita forma ---------- */
+(function(){
+  var af = document.getElementById("auditForm"), st = document.getElementById("auditStatus");
+  if (!af) return;
+  function viaWA(){
+    var fd = new FormData(af);
+    window.open("https://wa.me/37123231001?text=" + encodeURIComponent('Здравствуйте! Хочу бесплатный аудит сайта. Сайт: ' + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
+    af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Спасибо! Пришлю аудит в течение 2 рабочих дней.';
+  }
+  af.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!af.checkValidity()) { af.reportValidity(); return; }
+    st.style.color = "#888"; st.textContent = "…";
+    fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
+      .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Спасибо! Пришлю аудит в течение 2 рабочих дней.'; } else viaWA(); })
+      .catch(viaWA);
+  });
+})();
 
 /* ---------- Čats ---------- */
 var CHAT = {
