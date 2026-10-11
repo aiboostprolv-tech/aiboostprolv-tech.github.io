@@ -1072,7 +1072,7 @@ This information is general and may change. The availability, size and condition
 <section class="section-wrap fade-up" id="audits">
 <p class="section-tag">Free audit</p>
 <h2>Free website audit</h2>
-<p class="section-desc">Send your website address and within 2 working days you'll get a report with a score and concrete improvements. Free, no obligation.</p>
+<p class="section-desc">Enter your website address — you'll see the first results (speed, SEO, accessibility) right here, and the full report with concrete improvements within 2 working days. Free, no obligation.</p>
 <div class="audit-grid">
 <ul class="audit-list">
 <li>Speed on mobile and desktop (Google PageSpeed)</li>
@@ -1391,24 +1391,6 @@ form.addEventListener("submit", function(e){
   });
 });
 
-/* ---------- Audita forma ---------- */
-(function(){
-  var af = document.getElementById("auditForm"), st = document.getElementById("auditStatus");
-  if (!af) return;
-  function viaWA(){
-    var fd = new FormData(af);
-    window.open("https://wa.me/37123231001?text=" + encodeURIComponent("Hi! I'd like a free website audit. Site: " + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
-    af.reset(); st.style.color = "#00e5a0"; st.textContent = "Thank you! I'll send the audit within 2 working days.";
-  }
-  af.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (!af.checkValidity()) { af.reportValidity(); return; }
-    st.style.color = "#888"; st.textContent = "…";
-    fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
-      .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = "Thank you! I'll send the audit within 2 working days."; } else viaWA(); })
-      .catch(viaWA);
-  });
-})();
 
 /* ---------- Čats ---------- */
 var CHAT = {
@@ -1970,5 +1952,6 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   });
 })();
 </script>
+<script src="/audit.js" defer></script>
 </body>
 </html>

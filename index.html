@@ -1072,7 +1072,7 @@ LIAA digitalizācijas un mākslīgā intelekta atbalsta programmā pieteikšanā
 <section class="section-wrap fade-up" id="audits">
 <p class="section-tag">Bezmaksas audits</p>
 <h2>Bezmaksas mājaslapas audits</h2>
-<p class="section-desc">Atsūti savas mājaslapas adresi, un 2 darba dienu laikā saņemsi pārskatu latviešu valodā ar vērtējumu un konkrētiem uzlabojumiem. Bez maksas un bez saistībām.</p>
+<p class="section-desc">Ievadi savas mājaslapas adresi — pirmos rezultātus (ātrums, SEO, pieejamība) redzēsi uzreiz šeit, bet pilnu pārskatu latviešu valodā ar konkrētiem uzlabojumiem saņemsi 2 darba dienu laikā. Bez maksas un bez saistībām.</p>
 <div class="audit-grid">
 <ul class="audit-list">
 <li>Ātrums telefonā un datorā (Google PageSpeed)</li>
@@ -1391,24 +1391,6 @@ form.addEventListener("submit", function(e){
   });
 });
 
-/* ---------- Audita forma ---------- */
-(function(){
-  var af = document.getElementById("auditForm"), st = document.getElementById("auditStatus");
-  if (!af) return;
-  function viaWA(){
-    var fd = new FormData(af);
-    window.open("https://wa.me/37123231001?text=" + encodeURIComponent('Sveiki! Vēlos bezmaksas mājaslapas auditu. Lapa: ' + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
-    af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Paldies! Auditu atsūtīšu 2 darba dienu laikā.';
-  }
-  af.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (!af.checkValidity()) { af.reportValidity(); return; }
-    st.style.color = "#888"; st.textContent = "…";
-    fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
-      .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Paldies! Auditu atsūtīšu 2 darba dienu laikā.'; } else viaWA(); })
-      .catch(viaWA);
-  });
-})();
 
 /* ---------- Čats ---------- */
 var CHAT = {
@@ -1970,5 +1952,6 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   });
 })();
 </script>
+<script src="/audit.js" defer></script>
 </body>
 </html>
