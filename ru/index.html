@@ -1072,7 +1072,7 @@ html{scroll-behavior:auto;}
 <section class="section-wrap fade-up" id="audits">
 <p class="section-tag">Бесплатный аудит</p>
 <h2>Бесплатный аудит сайта</h2>
-<p class="section-desc">Пришлите адрес вашего сайта, и в течение 2 рабочих дней вы получите отчёт с оценкой и конкретными улучшениями. Бесплатно и ни к чему не обязывает.</p>
+<p class="section-desc">Введите адрес сайта — первые результаты (скорость, SEO, доступность) вы увидите сразу здесь, а полный отчёт с конкретными улучшениями получите в течение 2 рабочих дней. Бесплатно и ни к чему не обязывает.</p>
 <div class="audit-grid">
 <ul class="audit-list">
 <li>Скорость на телефоне и компьютере (Google PageSpeed)</li>
@@ -1391,24 +1391,6 @@ form.addEventListener("submit", function(e){
   });
 });
 
-/* ---------- Audita forma ---------- */
-(function(){
-  var af = document.getElementById("auditForm"), st = document.getElementById("auditStatus");
-  if (!af) return;
-  function viaWA(){
-    var fd = new FormData(af);
-    window.open("https://wa.me/37123231001?text=" + encodeURIComponent('Здравствуйте! Хочу бесплатный аудит сайта. Сайт: ' + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
-    af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Спасибо! Пришлю аудит в течение 2 рабочих дней.';
-  }
-  af.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (!af.checkValidity()) { af.reportValidity(); return; }
-    st.style.color = "#888"; st.textContent = "…";
-    fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
-      .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Спасибо! Пришлю аудит в течение 2 рабочих дней.'; } else viaWA(); })
-      .catch(viaWA);
-  });
-})();
 
 /* ---------- Čats ---------- */
 var CHAT = {
@@ -1970,5 +1952,6 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   });
 })();
 </script>
+<script src="/audit.js" defer></script>
 </body>
 </html>
