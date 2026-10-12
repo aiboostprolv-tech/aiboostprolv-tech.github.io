@@ -12,6 +12,11 @@ GRAPH_VERSION = "v25.0"
 HUMAN_PAUSE_HOURS = "12"
 BOT_ENABLED = "true"
 
+# KV glabātuve tērzēšanas žurnālam (/admin). ID nav slepens.
+[[kv_namespaces]]
+binding = "BOT_KV"
+id = "f8f7862e66414e2482e7b51168b228f9"
+
 # Slepenās atslēgas (ANTHROPIC_API_KEY, VERIFY_TOKEN u.c.) ievada Cloudflare panelī:
 # Worker → Settings → Variables and Secrets → Add → Secret. Nekad nerakstīt šeit.
 
