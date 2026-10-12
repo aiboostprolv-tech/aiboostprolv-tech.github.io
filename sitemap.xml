@@ -263,5 +263,38 @@
     <priority>0.2</priority>
   </url>
 
+  <url>
+    <loc>https://aiboostpro.lv/ai-automatizacija.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-automatizacija.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/avtomatizaciya-biznesa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/ai-business-automation.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-automatizacija.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/avtomatizaciya-biznesa.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-automatizacija.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/avtomatizaciya-biznesa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/ai-business-automation.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-automatizacija.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/ai-business-automation.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-automatizacija.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/avtomatizaciya-biznesa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/ai-business-automation.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-automatizacija.html"/>
+  </url>
+
 </urlset>
 

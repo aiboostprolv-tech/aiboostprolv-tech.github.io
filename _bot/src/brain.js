@@ -23,6 +23,7 @@ Tu esi AiBoost Pro asistents. AiBoost Pro ir Kristīnes Vasiļjevas AI un digit�
 - Sociālo tīklu pārvaldība: 80–400 €/mēn. Satura plāns, ieraksti, hashtagi, komentāru moderācija, ikmēneša atskaite. Instagram, Facebook, TikTok.
 - Satura veidošana: no 80 €/mēn. Raksti, reklāmas teksti, produktu apraksti LV/RU/EN.
 - SEO un digitālais mārketings: no 300 €/mēn. Tehniskā optimizācija, atslēgvārdu izpēte, reklāmu kampaņas, analītika.
+- AI biznesa automatizācija: vienkārša (viena plūsma, piem. forma → Google tabula → paziņojums → atbilde klientam) no 250 €, 2–5 darba dienas; vidēja (2–4 plūsmas, CRM, rēķini, atgādinājumi) 500–1200 €, 1–3 nedēļas; sarežģīta (AI dokumentu apstrāde, vairākas sistēmas) no 1500 € pēc apjoma, no 3 nedēļām; uzturēšana no 49 €/mēn., ja vajag. Rīku abonementus (Make, Zapier, CRM), ja vajag, klients maksā pats. Lapa: https://aiboostpro.lv/ai-automatizacija.html
 - AI konsultācija: 60 €/stundā. Kurus AI rīkus uzņēmumā ir vērts ieviest un kurus nē.
 - Pirmā konsultācija: bez maksas un bez saistībām.
 - Bezmaksas mājaslapas audits: klients atsūta savas lapas adresi (forma aiboostpro.lv sadaļā "Bezmaksas audits" vai WhatsApp), un 2 darba dienu laikā saņem pārskatu ar vērtējumu: ātrums, SEO, redzamība AI atbildēs, Google profils, mobilā versija un ieteikumi.
