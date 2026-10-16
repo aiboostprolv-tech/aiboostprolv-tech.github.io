@@ -1418,6 +1418,8 @@ form.addEventListener("submit", function(e){
   }
   var AUDIT_API = "https://aiboost-bot.aiboostpro-lv.workers.dev/audit";
   var FALLBACK = "Tehnisko pārbaudi šobrīd nevarējām izpildīt. Pilnu pārskatu nosūtīsim 2 darba dienu laikā.";
+  var BLOCKED = "Šo lapu automātiski pārbaudīt nevarējām (serveris neatbild vai bloķē automātiskās pārbaudes). Pilnu auditu nosūtīsim 2 darba dienu laikā.";
+  var NOTE = "Lapa saturu ielādē ar JavaScript, tāpēc automātiskā pārbaude var nerādīt visu. Pilnais audits to ņems vērā.";
   function showAudit(nodes){
     var box = document.getElementById("auditResult");
     if (!box) return;
@@ -1430,7 +1432,7 @@ form.addEventListener("submit", function(e){
     fetch(AUDIT_API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ url: site }) })
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if (!d || d.error || !d.checks) { showAudit([para(FALLBACK)]); return; }
+        if (!d || d.error || !d.checks) { showAudit([para(d && (d.error === "blocked" || d.error === "not_html") ? BLOCKED : FALLBACK)]); return; }
         var nodes = [];
         var h = document.createElement("h3");
         h.textContent = "Tehniskā pārbaude: " + d.passed + " no " + d.total + " izpildītas";
@@ -1443,6 +1445,7 @@ form.addEventListener("submit", function(e){
           li.textContent = (c.ok ? "✓ " : "✗ ") + c.label + (c.value ? " — " + c.value : "");
           ul.appendChild(li);
         });
+        if (d.note === "js_rendered") nodes.push(para(NOTE));
         nodes.push(ul);
         nodes.push(para("Pilnu pārskatu ar ieteikumiem un AI redzamības pārbaudi nosūtīsim 2 darba dienu laikā."));
         showAudit(nodes);

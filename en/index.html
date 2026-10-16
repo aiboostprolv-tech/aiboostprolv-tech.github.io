@@ -1419,6 +1419,8 @@ form.addEventListener("submit", function(e){
   function speedText(s,l){ return "Speed (mobile): " + s + "/100" + (l ? ", LCP " + l : ""); }
   var AUDIT_API = "https://aiboost-bot.aiboostpro-lv.workers.dev/audit";
   var FALLBACK = "We couldn't run the technical check right now. The full report will follow within 2 working days.";
+  var BLOCKED = "We couldn't check this site automatically (the server didn't respond or blocks automated checks). The full audit will follow within 2 working days.";
+  var NOTE = "The site loads its content with JavaScript, so the automatic check may not show everything. The full audit will take this into account.";
   var CHECK_LABELS = {"https": "Connection is secure (HTTPS)", "title": "Title filled in, 30–60 characters", "desc": "Meta description filled in, 70–160 characters", "h1": "Exactly one H1 heading", "lang": "Page language set (lang)", "viewport": "Mobile viewport set (viewport)", "canonical": "Canonical link (canonical) set", "schema": "Structured data (JSON-LD) present", "alt": "All images have alt text", "sitemap": "sitemap.xml available", "robots": "robots.txt available"};
   var VALUE_WORDS = [["nav atrasts", "not found"], ["attēlu nav", "no images"], ["bez alt no", "without alt out of"], ["rakstzīmes", "characters"], ["gab.", "pcs"], ["trūkst", "missing"], ["jā", "yes"], ["nē", "no"]];
   function trValue(v){ VALUE_WORDS.forEach(function(p){ v = v.split(p[0]).join(p[1]); }); return v; }
@@ -1434,7 +1436,7 @@ form.addEventListener("submit", function(e){
     fetch(AUDIT_API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ url: site }) })
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if (!d || d.error || !d.checks) { showAudit([para(FALLBACK)]); return; }
+        if (!d || d.error || !d.checks) { showAudit([para(d && (d.error === "blocked" || d.error === "not_html") ? BLOCKED : FALLBACK)]); return; }
         var nodes = [];
         var h = document.createElement("h3");
         h.textContent = headText(d.passed, d.total);
@@ -1449,6 +1451,7 @@ form.addEventListener("submit", function(e){
           li.textContent = (c.ok ? "✓ " : "✗ ") + label + (value ? " — " + value : "");
           ul.appendChild(li);
         });
+        if (d.note === "js_rendered") nodes.push(para(NOTE));
         nodes.push(ul);
         nodes.push(para("The full report with recommendations and an AI visibility check will follow within 2 working days."));
         showAudit(nodes);

@@ -165,23 +165,30 @@ export async function handleSiteAudit(request, env, store) {
   if (!url) return json({ error: "bad_url" }, 400, c.headers);
 
   const page = await fetchText(url.href);
+  // Ja lapa neatbild ar veiksmīgu HTML atbildi (vai bloķē automātisko pārbaudi), nevērtējam — citādi rezultāts būtu kļūdains.
   if (!page.text) return json({ error: "unreachable", url: url.href }, 200, c.headers);
+  if (page.status < 200 || page.status >= 300) return json({ error: "blocked", status: page.status, url: url.href }, 200, c.headers);
+  if (!/<html[\s>]|<body[\s>]|<head[\s>]/i.test(page.text)) return json({ error: "not_html", url: url.href }, 200, c.headers);
 
   const origin2 = new URL(page.finalUrl || url.href).origin;
   const [sitemap, robots, speed] = await Promise.all([
-    fetchText(origin2 + "/sitemap.xml", { method: "HEAD", timeout: 5000 }),
-    fetchText(origin2 + "/robots.txt", { method: "HEAD", timeout: 5000 }),
+    fetchText(origin2 + "/sitemap.xml", { method: "GET", maxBytes: 200_000, timeout: 5000 }),
+    fetchText(origin2 + "/robots.txt", { method: "GET", maxBytes: 50_000, timeout: 5000 }),
     pageSpeed(url, env.PAGESPEED_API_KEY),
   ]);
 
   const parsed = parsePage(page.text);
   const checks = buildChecks(parsed, url, { sitemap: sitemap.status === 200, robots: robots.status === 200 });
+  // Ja lapā gandrīz nav redzama teksta, saturs visticamāk tiek ielādēts ar JavaScript — botam tas var nebūt redzams.
+  const visibleText = page.text.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/gi, " ").replace(/\s+/g, " ").trim();
+  const note = visibleText.length < 300 ? "js_rendered" : null;
   const result = {
     url: url.href,
     checks,
     passed: checks.filter((x) => x.ok).length,
     total: checks.length,
     speed,
+    note,
   };
 
   // Paziņojums Kristīnei (bez kontaktu datiem — tie paliek formā)
