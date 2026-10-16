@@ -640,11 +640,6 @@ html{scroll-behavior:auto;}
 .audit-list li::after{content:"";position:absolute;left:0.33rem;top:0.55em;width:0.3rem;height:0.5rem;border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(45deg);}
 .audit-card{background:linear-gradient(135deg,rgba(0,229,160,0.08),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.3);border-radius:18px;padding:1.6rem;}
 .audit-card .contact-form{margin:0;max-width:none;}
-.audit-result{margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid rgba(0,229,160,0.25);font-size:0.95rem;line-height:1.5;}
-.audit-result h3{font-size:1.05rem;margin:0 0 0.5rem;}
-.audit-result ul{list-style:none;padding:0;margin:0.6rem 0;}
-.audit-result li{padding:0.25rem 0;}
-.audit-result li.fail{color:#ffb4a8;}
 @media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -1105,7 +1100,6 @@ html{scroll-behavior:auto;}
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Получить бесплатный аудит</button>
 <p class="form-status" id="auditStatus" role="status"></p>
 </form>
-<div class="audit-result" id="auditResult" aria-live="polite" hidden></div>
 </div>
 </div>
 </section>
@@ -1415,53 +1409,9 @@ form.addEventListener("submit", function(e){
     window.open("https://wa.me/37123231001?text=" + encodeURIComponent('Здравствуйте! Хочу бесплатный аудит сайта. Сайт: ' + (fd.get("website") || "") + "\n" + (fd.get("contact") || "")), "_blank", "noopener");
     af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Спасибо! Пришлю аудит в течение 2 рабочих дней.';
   }
-  function headText(p,t){ return "Техническая проверка: " + p + " из " + t + " выполнено"; }
-  function speedText(s,l){ return "Скорость (мобильная): " + s + "/100" + (l ? ", LCP " + l : ""); }
-  var AUDIT_API = "https://aiboost-bot.aiboostpro-lv.workers.dev/audit";
-  var FALLBACK = "Техническую проверку сейчас выполнить не удалось. Полный отчёт пришлю в течение 2 рабочих дней.";
-  var BLOCKED = "Автоматически проверить этот сайт не удалось (сервер не отвечает или блокирует проверку). Полный аудит пришлю в течение 2 рабочих дней.";
-  var NOTE = "Сайт загружает содержимое с помощью JavaScript, поэтому автоматическая проверка может показать не всё. Полный аудит это учтёт.";
-  var CHECK_LABELS = {"https": "Соединение защищено (HTTPS)", "title": "Заголовок (title) заполнен, 30–60 символов", "desc": "Мета-описание заполнено, 70–160 символов", "h1": "Ровно один заголовок H1", "lang": "Язык страницы указан (lang)", "viewport": "Мобильная версия настроена (viewport)", "canonical": "Каноническая ссылка (canonical) указана", "schema": "Структурированные данные (JSON-LD) есть", "alt": "У всех изображений есть alt-текст", "sitemap": "sitemap.xml доступен", "robots": "robots.txt доступен"};
-  var VALUE_WORDS = [["nav atrasts", "не найден"], ["attēlu nav", "изображений нет"], ["bez alt no", "без alt из"], ["rakstzīmes", "симв."], ["gab.", "шт."], ["trūkst", "нет"], ["jā", "да"], ["nē", "нет"]];
-  function trValue(v){ VALUE_WORDS.forEach(function(p){ v = v.split(p[0]).join(p[1]); }); return v; }
-  function showAudit(nodes){
-    var box = document.getElementById("auditResult");
-    if (!box) return;
-    box.textContent = ""; box.hidden = false;
-    nodes.forEach(function(n){ box.appendChild(n); });
-  }
-  function para(text){ var p = document.createElement("p"); p.textContent = text; return p; }
-  function runAudit(site){
-    showAudit([para("Проверяю сайт…")]);
-    fetch(AUDIT_API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ url: site }) })
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if (!d || d.error || !d.checks) { showAudit([para(d && (d.error === "blocked" || d.error === "not_html") ? BLOCKED : FALLBACK)]); return; }
-        var nodes = [];
-        var h = document.createElement("h3");
-        h.textContent = headText(d.passed, d.total);
-        nodes.push(h);
-        if (d.speed) nodes.push(para(speedText(d.speed.score, d.speed.lcp)));
-        var ul = document.createElement("ul");
-        d.checks.forEach(function(c){
-          var li = document.createElement("li");
-          li.className = c.ok ? "pass" : "fail";
-          var label = CHECK_LABELS[c.id] || c.label;
-          var value = c.value ? trValue(c.value) : "";
-          li.textContent = (c.ok ? "✓ " : "✗ ") + label + (value ? " — " + value : "");
-          ul.appendChild(li);
-        });
-        if (d.note === "js_rendered") nodes.push(para(NOTE));
-        nodes.push(ul);
-        nodes.push(para("Полный отчёт с рекомендациями и проверкой видимости в AI пришлю в течение 2 рабочих дней."));
-        showAudit(nodes);
-      })
-      .catch(function(){ showAudit([para(FALLBACK)]); });
-  }
   af.addEventListener("submit", function(e){
     e.preventDefault();
     if (!af.checkValidity()) { af.reportValidity(); return; }
-    runAudit(af.elements["website"].value.trim());
     st.style.color = "#888"; st.textContent = "…";
     fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
       .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = 'Спасибо! Пришлю аудит в течение 2 рабочих дней.'; } else viaWA(); })

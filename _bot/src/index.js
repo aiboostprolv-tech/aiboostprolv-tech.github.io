@@ -5,7 +5,6 @@
 import { BRAIN, HANDOFF_MARKER } from "./brain.js";
 import { recordExchange, validSid } from "./log.js";
 import { handleAdmin } from "./admin.js";
-import { handleSiteAudit } from "./audit.js";
 
 const BOT_TAG = "aiboost-bot";          // Messenger "metadata", lai atpazītu bota paša ziņas
 const HISTORY_TURNS = 10;               // cik pēdējās ziņas atcerēties sarunā
@@ -30,7 +29,6 @@ export default {
       }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
     }
     if (url.pathname === "/chat") return handleSiteChat(request, env, ctx);
-    if (url.pathname === "/audit") return handleSiteAudit(request, env, kv(env));
     if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return handleAdmin(request, env);
     if (url.pathname !== "/webhook") return new Response("Not found", { status: 404 });
 
