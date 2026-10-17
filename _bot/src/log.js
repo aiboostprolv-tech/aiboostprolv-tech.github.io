@@ -5,7 +5,7 @@ const LOG_MAX_MSGS = 60;                 // ziņu skaits vienā sarunā žurnāl
 const PREVIEW_CHARS = 120;
 
 export const CHANNEL_LABEL = {
-  site: "Mājaslapa", messenger: "Messenger", instagram: "Instagram", whatsapp: "WhatsApp",
+  site: "Mājaslapa", messenger: "Messenger", instagram: "Instagram", whatsapp: "WhatsApp", form: "Forma",
 };
 
 export function validSid(sid) {

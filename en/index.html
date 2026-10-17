@@ -1376,9 +1376,17 @@ function sendViaWhatsApp(){
   status.textContent = "Opening WhatsApp with your message ready — just press send.";
 }
 
+window.sendLead = function(f, type){
+  try {
+    var o = { type: type, lang: document.documentElement.lang || "", page: location.href };
+    new FormData(f).forEach(function(v, k){ o[k] = v; });
+    fetch("https://aiboost-bot.aiboostpro-lv.workers.dev/lead", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(o) }).catch(function(){});
+  } catch (e) {}
+};
 form.addEventListener("submit", function(e){
   e.preventDefault();
   if (!form.checkValidity()) { form.reportValidity(); return; }
+  window.sendLead(form, "contact");
   if (form.action.indexOf("xdaqpwok_NOTSET") !== -1) {
     sendViaWhatsApp();
     return;
@@ -1414,6 +1422,7 @@ form.addEventListener("submit", function(e){
   af.addEventListener("submit", function(e){
     e.preventDefault();
     if (!af.checkValidity()) { af.reportValidity(); return; }
+    window.sendLead(af, "audit");
     st.style.color = "#888"; st.textContent = "…";
     fetch(af.action, { method: "POST", body: new FormData(af), headers: { "Accept": "application/json" } })
       .then(function(r){ if (r.ok) { af.reset(); st.style.color = "#00e5a0"; st.textContent = "Thank you! I'll send the audit within 2 working days."; } else viaWA(); })

@@ -26,7 +26,7 @@ export async function handleAdmin(request, env) {
     return page("Sarunas", `<p class="note">Sarunu glabātuve vēl nav pieslēgta (KV <code>BOT_KV</code>).</p>`);
   }
 
-  const m = url.pathname.match(/^\/admin\/s\/(site|messenger|instagram|whatsapp)\/([A-Za-z0-9:_-]{1,80})$/);
+  const m = url.pathname.match(/^\/admin\/s\/(site|messenger|instagram|whatsapp|form)\/([A-Za-z0-9:_-]{1,80})$/);
   if (m) return await sessionPage(store, m[1], m[2]);
   if (url.pathname !== "/admin") return new Response("Not found", { status: 404 });
   return await listPage(env, store, url.searchParams.get("tg"));
