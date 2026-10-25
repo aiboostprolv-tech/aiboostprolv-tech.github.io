@@ -296,5 +296,26 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/ai-automatizacija.html"/>
   </url>
 
+  <url>
+    <loc>https://aiboostpro.lv/cenas.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/cenas.html"/>
+  </url>
+  <url>
+    <loc>https://aiboostpro.lv/demo.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/demo.html"/>
+  </url>
+
 </urlset>
 

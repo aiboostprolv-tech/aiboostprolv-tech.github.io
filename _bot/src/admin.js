@@ -1,5 +1,6 @@
 // Privātā sarunu lapa: /admin (aizsargāta ar paroli ADMIN_PASSWORD).
 import { CHANNEL_LABEL, linkTelegram, telegramChatId } from "./log.js";
+import { readDemo, previewDemo, approveDemo } from "./demo.js";
 
 const LIST_LIMIT = 200;
 
@@ -26,8 +27,12 @@ export async function handleAdmin(request, env) {
     return page("Sarunas", `<p class="note">Sarunu glabātuve vēl nav pieslēgta (KV <code>BOT_KV</code>).</p>`);
   }
 
+  const dm = url.pathname.match(/^\/admin\/demo\/([a-z0-9]{6,32})\/(preview|approve)$/i);
+  if (dm && dm[2] === "preview" && request.method === "GET") return await previewDemo(store, dm[1]);
+  if (dm && dm[2] === "approve" && request.method === "POST") return await approveDemo(store, env, dm[1], url.origin);
+
   const m = url.pathname.match(/^\/admin\/s\/(site|messenger|instagram|whatsapp|form)\/([A-Za-z0-9:_-]{1,80})$/);
-  if (m) return await sessionPage(store, m[1], m[2]);
+  if (m) return await sessionPage(store, m[1], m[2], url.origin);
   if (url.pathname !== "/admin") return new Response("Not found", { status: 404 });
   return await listPage(env, store, url.searchParams.get("tg"));
 }
@@ -85,7 +90,21 @@ async function listPage(env, store, tgMsg) {
   return page("Sarunas", body);
 }
 
-async function sessionPage(store, channel, sid) {
+function demoBlock(d, sid, origin) {
+  if (!d) return "";
+  const pub = `${origin}/demo/${sid}`;
+  if (d.status === "generating") return `<div class="demo-box"><b>Demo tiek sagatavots…</b> Pārlādē lapu pēc dažām minūtēm.</div>`;
+  if (d.status === "error") return `<div class="demo-box warn"><b>Demo neizdevās sagatavot.</b> ${esc(d.error || "")}</div>`;
+  if (d.status === "draft") return `<div class="demo-box"><b>Demo melnraksts gatavs.</b> Pārskati to divreiz: saturu un izskatu.
+    <p><a class="btn" href="/admin/demo/${esc(sid)}/preview" target="_blank" rel="noopener">Skatīt melnrakstu</a></p>
+    <form method="POST" action="/admin/demo/${esc(sid)}/approve"><button class="btn primary" type="submit">Apstiprināt un padarīt publisku</button></form></div>`;
+  if (d.status === "approved") return `<div class="demo-box"><b>Demo apstiprināts.</b> Saite klientam:
+    <p><a href="${esc(pub)}" target="_blank" rel="noopener">${esc(pub)}</a></p>
+    <p><a class="btn" href="/admin/demo/${esc(sid)}/preview" target="_blank" rel="noopener">Skatīt</a></p></div>`;
+  return "";
+}
+
+async function sessionPage(store, channel, sid, origin = "") {
   const raw = await store.get(`log:${channel}:${sid}`);
   if (!raw) return page("Saruna nav atrasta", `<p class="note">Saruna, iespējams, ir vecāka par 90 dienām.</p><p><a class="back" href="/admin">← Visas sarunas</a></p>`, 404);
   const rec = JSON.parse(raw);
@@ -98,7 +117,8 @@ async function sessionPage(store, channel, sid) {
   const head = `<p><a class="back" href="/admin">← Visas sarunas</a></p>
     <div class="session-head"><span class="badge ${esc(channel)}">${esc(CHANNEL_LABEL[channel] || channel)}</span>${rec.lang ? `<span class="lang">${esc(rec.lang.toUpperCase())}</span>` : ""}<span class="time">Sākta ${esc(fmt(rec.started))}</span></div>
     ${rec.page ? `<p class="meta">Lapa: ${esc(rec.page)}</p>` : ""}`;
-  return page("Saruna", head + `<div class="chat">${msgs}</div>`);
+  const demo = channel === "form" ? demoBlock(await readDemo(store, sid), sid, origin) : "";
+  return page("Saruna", head + demo + `<div class="chat">${msgs}</div>`);
 }
 
 // ---------- palīgfunkcijas ----------

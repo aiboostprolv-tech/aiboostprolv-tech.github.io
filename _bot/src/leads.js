@@ -2,12 +2,13 @@
 // blakus čatbota sarunām un nosūta paziņojumu Telegram. Formspree e-pasts paliek kā dublējums.
 
 import { notifyTelegram } from "./log.js";
+import { startDemo } from "./demo.js";
 
 const SITE_ORIGINS = ["https://aiboostpro.lv", "https://www.aiboostpro.lv"];
 const LEAD_TTL = 365 * 24 * 3600;   // pieteikumi glabājas gadu
 const RATE_LIMIT = 10;              // pieteikumi no vienas IP 10 minūtēs
 const MAX_FIELD = 2000;
-const TYPES = { contact: "Kontakts", audit: "Bezmaksas audits" };
+const TYPES = { contact: "Kontakts", audit: "Bezmaksas audits", demo: "Bezmaksas demo" };
 
 const cors = (origin, env) => {
   const allowed = (env.SITE_ORIGINS ? env.SITE_ORIGINS.split(",") : SITE_ORIGINS).map((o) => o.trim());
@@ -47,7 +48,7 @@ export function buildLead(body) {
   return { type, text: lines.join("\n"), summary: `${TYPES[type]}: ${contact}` };
 }
 
-export async function handleLead(request, env, store) {
+export async function handleLead(request, env, store, ctx) {
   const origin = request.headers.get("Origin") || "";
   const c = cors(origin, env);
   if (request.method === "OPTIONS") return new Response(null, { status: c.ok ? 204 : 403, headers: c.headers });
@@ -83,6 +84,13 @@ export async function handleLead(request, env, store) {
       preview: lead.summary.slice(0, 120),
     },
   });
+  if (lead.type === "demo") {
+    // Demo melnraksts top sagatavots fonā; klients saņem atbildi uzreiz
+    const job = startDemo(env, store, sid, {
+      lang: clean(body.lang || ""), message: clean(body.message), website: clean(body.website),
+    }, new URL(request.url).origin);
+    if (ctx && ctx.waitUntil) ctx.waitUntil(job); else await job;
+  }
   try { await notifyTelegram(env, `📩 ${lead.summary}\n\n${lead.text.slice(0, 1000)}`); } catch { /* nav kritiski */ }
 
   return json({ ok: true }, 200, c.headers);

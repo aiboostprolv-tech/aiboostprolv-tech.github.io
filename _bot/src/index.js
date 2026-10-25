@@ -6,6 +6,7 @@ import { BRAIN, HANDOFF_MARKER } from "./brain.js";
 import { recordExchange, validSid } from "./log.js";
 import { handleAdmin } from "./admin.js";
 import { handleLead } from "./leads.js";
+import { servePublicDemo } from "./demo.js";
 
 const BOT_TAG = "aiboost-bot";          // Messenger "metadata", lai atpazītu bota paša ziņas
 const HISTORY_TURNS = 10;               // cik pēdējās ziņas atcerēties sarunā
@@ -30,7 +31,9 @@ export default {
       }), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
     }
     if (url.pathname === "/chat") return handleSiteChat(request, env, ctx);
-    if (url.pathname === "/lead") return handleLead(request, env, env.BOT_KV);
+    if (url.pathname === "/lead") return handleLead(request, env, env.BOT_KV, ctx);
+    const demoMatch = url.pathname.match(/^\/demo\/([a-z0-9]{6,32})$/i);
+    if (demoMatch) return servePublicDemo(request, env.BOT_KV, demoMatch[1]);
     if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return handleAdmin(request, env);
     if (url.pathname !== "/webhook") return new Response("Not found", { status: 404 });
 
