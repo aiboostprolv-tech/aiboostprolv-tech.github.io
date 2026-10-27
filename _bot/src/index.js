@@ -7,6 +7,7 @@ import { recordExchange, validSid } from "./log.js";
 import { handleAdmin } from "./admin.js";
 import { handleLead } from "./leads.js";
 import { servePublicDemo } from "./demo.js";
+import { serveReport, runAuditJobs } from "./audit.js";
 
 const BOT_TAG = "aiboost-bot";          // Messenger "metadata", lai atpazītu bota paša ziņas
 const HISTORY_TURNS = 10;               // cik pēdējās ziņas atcerēties sarunā
@@ -32,6 +33,8 @@ export default {
     }
     if (url.pathname === "/chat") return handleSiteChat(request, env, ctx);
     if (url.pathname === "/lead") return handleLead(request, env, env.BOT_KV, ctx);
+    const auditMatch = url.pathname.match(/^\/audits\/([a-z0-9]{6,32})$/i);
+    if (auditMatch && request.method === "GET") return env.BOT_KV ? serveReport(env.BOT_KV, auditMatch[1]) : new Response("Not found", { status: 404 });
     const demoMatch = url.pathname.match(/^\/demo\/([a-z0-9]{6,32})$/i);
     if (demoMatch) return servePublicDemo(request, env.BOT_KV, demoMatch[1]);
     if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return handleAdmin(request, env);
@@ -61,6 +64,11 @@ export default {
       return new Response("EVENT_RECEIVED", { status: 200 });
     }
     return new Response("Method not allowed", { status: 405 });
+  },
+
+  // Cron (ik minūti): bezmaksas auditu rinda un sekošanas atgādinājumi
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(runAuditJobs(env).catch((e) => console.error("audit cron", e)));
   },
 };
 

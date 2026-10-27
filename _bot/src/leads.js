@@ -3,6 +3,7 @@
 
 import { notifyTelegram } from "./log.js";
 import { startDemo } from "./demo.js";
+import { enqueueAudit } from "./audit.js";
 
 const SITE_ORIGINS = ["https://aiboostpro.lv", "https://www.aiboostpro.lv"];
 const LEAD_TTL = 365 * 24 * 3600;   // pieteikumi glabājas gadu
@@ -43,6 +44,7 @@ export function buildLead(body) {
     f.phone && `Tālrunis: ${f.phone}`,
     f.contact && `Kontakts: ${f.contact}`,
     f.website && `Mājaslapa: ${f.website}`,
+    ["jā", "да", "yes", "on", "true"].includes(String(body.jaunumi || "").toLowerCase()) && "Jaunumi: piekrīt (atsevišķa rūtiņa)",
     f.message && `\n${f.message}`,
   ].filter(Boolean);
   return { type, text: lines.join("\n"), summary: `${TYPES[type]}: ${contact}` };
@@ -84,6 +86,15 @@ export async function handleLead(request, env, store, ctx) {
       preview: lead.summary.slice(0, 120),
     },
   });
+  if (lead.type === "audit") {
+    // Audits tiek sagatavots ar cron (ik minūti); Kristīne to apstiprina /admin
+    try {
+      await enqueueAudit(store, sid, {
+        lang: clean(body.lang || ""), website: clean(body.website), contact: clean(body.contact || body.email || body.phone),
+        news: ["jā", "да", "yes", "on", "true"].includes(String(body.jaunumi || "").toLowerCase()),
+      }, new URL(request.url).origin);
+    } catch (e) { console.error("audit enqueue", e); }
+  }
   if (lead.type === "demo") {
     // Demo melnraksts top sagatavots fonā; klients saņem atbildi uzreiz
     const job = startDemo(env, store, sid, {

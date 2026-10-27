@@ -1,6 +1,7 @@
 // Privātā sarunu lapa: /admin (aizsargāta ar paroli ADMIN_PASSWORD).
 import { CHANNEL_LABEL, linkTelegram, telegramChatId } from "./log.js";
 import { readDemo, previewDemo, approveDemo } from "./demo.js";
+import { readAudit, serveReport, approveAudit, rerunAudit, sendAudit, contactKind, messageFor, fmtScore, SERVICES } from "./audit.js";
 
 const LIST_LIMIT = 200;
 
@@ -30,6 +31,12 @@ export async function handleAdmin(request, env) {
   const dm = url.pathname.match(/^\/admin\/demo\/([a-z0-9]{6,32})\/(preview|approve)$/i);
   if (dm && dm[2] === "preview" && request.method === "GET") return await previewDemo(store, dm[1]);
   if (dm && dm[2] === "approve" && request.method === "POST") return await approveDemo(store, env, dm[1], url.origin);
+
+  const am = url.pathname.match(/^\/admin\/audit\/([a-z0-9]{6,32})\/(preview|approve|rerun|send)$/i);
+  if (am && am[2] === "preview" && request.method === "GET") return await serveReport(store, am[1], { admin: true });
+  if (am && am[2] === "approve" && request.method === "POST") return await approveAudit(store, am[1], url.origin);
+  if (am && am[2] === "rerun" && request.method === "POST") return await rerunAudit(store, am[1], url.origin);
+  if (am && am[2] === "send" && request.method === "GET") return await sendAudit(store, am[1], url.origin, url.searchParams.get("via"), url.searchParams.get("n"));
 
   const m = url.pathname.match(/^\/admin\/s\/(site|messenger|instagram|whatsapp|form)\/([A-Za-z0-9:_-]{1,80})$/);
   if (m) return await sessionPage(store, m[1], m[2], url.origin);
@@ -104,6 +111,42 @@ function demoBlock(d, sid, origin) {
   return "";
 }
 
+function auditBlock(a, sid, origin) {
+  if (!a) return "";
+  const pre = `/admin/audit/${esc(sid)}`;
+  const rerun = `<form method="POST" action="${pre}/rerun"><button class="btn" type="submit">Pārbaudīt vēlreiz</button></form>`;
+  if (a.status === "running" && Date.now() - (a.startedRun || a.created) > 10 * 60 * 1000) return `<div class="demo-box warn"><b>Audits iestrēga.</b> (${esc(a.website)})<p>${rerun}</p></div>`;
+  if (a.status === "queued" || a.status === "running") return `<div class="demo-box"><b>Audits tiek sagatavots…</b> (${esc(a.website)}) Parasti 1–2 minūtes. Pārlādē lapu.</div>`;
+  if (a.status === "error") return `<div class="demo-box warn"><b>Auditu neizdevās sagatavot.</b> ${esc(a.error || "")}<p>${rerun}</p></div>`;
+  const c = contactKind(a.contact);
+  const link = `${origin}/audits/${sid}`;
+  const offers = (a.ai?.offers || []).filter((o) => SERVICES[o.key]).map((o) => SERVICES[o.key].lv[0]).join(", ");
+  const head = `<div class="kv"><span>Lapa</span><b>${esc(a.host || a.website)}</b><span>Vērtējums</span><b>${esc(fmtScore(a.scored?.overall))}/10</b>
+    <span>Valoda</span><b>${esc((a.lang || "").toUpperCase())}</b><span>Kontakts</span><b>${esc(a.contact)}</b>
+    <span>Jaunumi</span><b>${a.news ? "piekrīt" : "nē"}</b><span>Iesaka</span><b>${esc(offers || "—")}</b></div>
+    ${a.aiOk ? "" : `<p class="warn">AI teksts nebija pieejams — izmantots standarta teksts. Pārbaudi pirms sūtīšanas.</p>`}
+    <p><a class="btn" href="${pre}/preview" target="_blank" rel="noopener">Skatīt atskaiti</a></p>`;
+  const sendBtns = (n, label) => {
+    const out = [];
+    if (c.kind === "email") out.push(`<a class="btn primary" href="${pre}/send?via=mail&n=${n}">${label} e-pastā</a>`);
+    if (c.kind === "phone") out.push(`<a class="btn primary" href="${pre}/send?via=wa&n=${n}">${label} WhatsApp</a>`);
+    if (!out.length) out.push(`<span class="warn">Kontakts nav ne e-pasts, ne tālrunis — nosūti pati.</span>`);
+    return out.join(" ");
+  };
+  const msg = (n) => `<details><summary>${n === 0 ? "E-pasta teksts" : n + ". atgādinājuma teksts"}</summary><pre>${esc(messageFor(a, n, link))}</pre></details>`;
+  if (a.status === "draft") return `<div class="demo-box"><b>Audits gatavs pārskatīšanai.</b> Pārbaudi atskaiti un tekstu, tad apstiprini.${head}${msg(0)}
+    <form method="POST" action="${pre}/approve"><button class="btn primary" type="submit">Apstiprināt</button></form> ${rerun}</div>`;
+  if (a.status === "approved") return `<div class="demo-box"><b>Apstiprināts.</b> Saite klientam: <a href="${esc(link)}" target="_blank" rel="noopener">${esc(link)}</a>${head}${msg(0)}
+    <p>${sendBtns(0, "Sūtīt")}</p><p class="meta">Pēc sūtīšanas atgādināšu Telegram 3. un 10. dienā.</p></div>`;
+  if (a.status === "sent") {
+    const fdone = a.followed || {};
+    return `<div class="demo-box"><b>Nosūtīts ${esc(fmt(a.sent))}.</b> Saite: <a href="${esc(link)}" target="_blank" rel="noopener">${esc(link)}</a>${head}
+      ${msg(1)}<p>${sendBtns(1, "1. atgādinājums")}${fdone[1] ? ` <span class="meta">nosūtīts ${esc(fmt(fdone[1]))}</span>` : ""}</p>
+      ${msg(2)}<p>${sendBtns(2, "2. atgādinājums")}${fdone[2] ? ` <span class="meta">nosūtīts ${esc(fmt(fdone[2]))}</span>` : ""}</p></div>`;
+  }
+  return "";
+}
+
 async function sessionPage(store, channel, sid, origin = "") {
   const raw = await store.get(`log:${channel}:${sid}`);
   if (!raw) return page("Saruna nav atrasta", `<p class="note">Saruna, iespējams, ir vecāka par 90 dienām.</p><p><a class="back" href="/admin">← Visas sarunas</a></p>`, 404);
@@ -118,7 +161,8 @@ async function sessionPage(store, channel, sid, origin = "") {
     <div class="session-head"><span class="badge ${esc(channel)}">${esc(CHANNEL_LABEL[channel] || channel)}</span>${rec.lang ? `<span class="lang">${esc(rec.lang.toUpperCase())}</span>` : ""}<span class="time">Sākta ${esc(fmt(rec.started))}</span></div>
     ${rec.page ? `<p class="meta">Lapa: ${esc(rec.page)}</p>` : ""}`;
   const demo = channel === "form" ? demoBlock(await readDemo(store, sid), sid, origin) : "";
-  return page("Saruna", head + demo + `<div class="chat">${msgs}</div>`);
+  const audit = channel === "form" ? auditBlock(await readAudit(store, sid), sid, origin) : "";
+  return page("Saruna", head + demo + audit + `<div class="chat">${msgs}</div>`);
 }
 
 // ---------- palīgfunkcijas ----------
@@ -192,6 +236,11 @@ h1{font-size:15px;font-weight:500;color:var(--muted);margin:0}
 .who{font-size:12px;opacity:.75;margin-bottom:2px}.txt{white-space:pre-wrap;overflow-wrap:anywhere}
 .warn{font-size:12px;color:#ffc9cf;margin-top:6px}
 code{background:#22222a;border-radius:6px;padding:1px 6px}
+.demo-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px}.demo-box.warn{border-color:#7a3a40}
+.demo-box form{display:inline-block;margin:6px 6px 0 0}.btn{display:inline-block;border:1px solid var(--accent);color:var(--accent);background:transparent;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;margin:4px 6px 0 0}
+.btn.primary{background:var(--accent);color:#04120c}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:12px 0;font-size:14px}.kv span{color:var(--muted)}.kv b{overflow-wrap:anywhere}
+details{margin:10px 0}summary{cursor:pointer;color:var(--accent);font-size:14px}pre{white-space:pre-wrap;background:#101014;border:1px solid var(--line);border-radius:10px;padding:10px;font:14px/1.5 system-ui,sans-serif}
 </style></head><body><div class="wrap">
 <header><div class="brand">AiBoost <span>Pro</span></div><h1>${esc(title)}</h1></header>
 ${body}
