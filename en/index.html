@@ -643,6 +643,9 @@ html{scroll-behavior:auto;}
 .audit-card .contact-form{margin:0;max-width:none;}
 @media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
+<style id="lasamiba">/* Lasāmība: teksts ne mazāks par 13 px (audits 27.10.2026) */
+.section-tag,.skill-tag,.case-label,.quick-btn,.pc-consult,.lang-switch a,.lang-btn,.disclaimer,.extra-card p,.chat-status,.stat-label,.price-note,.pc-desc,.lang-badge,.hero-tag,.form-consent,.pc-features,.pc-price span,.service-price,.service-card p,.strip-item p,.liaa-card li,.liaa-cta-sub,.case-card p,.about-role,.sb-cap,.post-meta,.post-meta a,.article-meta,.article-meta span,.updated,footer,footer p,th{font-size:0.8125rem}
+</style>
 </head>
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
@@ -935,7 +938,7 @@ html{scroll-behavior:auto;}
 <p class="case-quiet-links">
 <a href="https://rujienasseniorumaja.lv" target="_blank" rel="noopener">View the site</a>
 <span>·</span>
-<a href="/blog/rujienas-senioru-maja.html">How it was built</a>
+<a href="/en/blog/rujienas-senioru-maja.html">How it was built</a>
 </p>
 </div>
 
@@ -1099,6 +1102,7 @@ This information is general and may change. The availability, size and condition
 <input type="text" name="website" placeholder="Your website address (e.g. yoursite.lv)" required autocomplete="url">
 <input type="text" name="contact" placeholder="Email or phone" required>
 <label class="form-consent"><input type="checkbox" name="consent" required><span>I agree to my data being processed to prepare the audit and contact me. <a href="/privacy.html">Privacy policy</a></span></label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="yes"><span>I’d like to receive AiBoost Pro news and offers by email (optional, unsubscribe at any time).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Get a free audit</button>
 <p class="form-status" id="auditStatus" role="status"></p>
 </form>
@@ -1212,6 +1216,7 @@ This information is general and may change. The availability, size and condition
 <input type="checkbox" name="consent" required>
 <span>I agree to my data being processed so you can contact me. <a href="/privacy.html">Privacy policy</a></span>
 </label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="yes"><span>I’d like to receive AiBoost Pro news and offers by email (optional, unsubscribe at any time).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Send</button>
 <p class="form-status" id="formStatus" role="status"></p>
 </form>

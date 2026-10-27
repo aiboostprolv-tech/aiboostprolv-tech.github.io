@@ -643,6 +643,9 @@ html{scroll-behavior:auto;}
 .audit-card .contact-form{margin:0;max-width:none;}
 @media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
+<style id="lasamiba">/* Lasāmība: teksts ne mazāks par 13 px (audits 27.10.2026) */
+.section-tag,.skill-tag,.case-label,.quick-btn,.pc-consult,.lang-switch a,.lang-btn,.disclaimer,.extra-card p,.chat-status,.stat-label,.price-note,.pc-desc,.lang-badge,.hero-tag,.form-consent,.pc-features,.pc-price span,.service-price,.service-card p,.strip-item p,.liaa-card li,.liaa-cta-sub,.case-card p,.about-role,.sb-cap,.post-meta,.post-meta a,.article-meta,.article-meta span,.updated,footer,footer p,th{font-size:0.8125rem}
+</style>
 </head>
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
@@ -1099,6 +1102,7 @@ LIAA digitalizācijas un mākslīgā intelekta atbalsta programmā pieteikšanā
 <input type="text" name="website" placeholder="Tavas mājaslapas adrese (piem., jusulapa.lv)" required autocomplete="url">
 <input type="text" name="contact" placeholder="E-pasts vai tālrunis" required>
 <label class="form-consent"><input type="checkbox" name="consent" required><span>Piekrītu, ka mani dati tiek apstrādāti, lai sagatavotu auditu un sazinātos ar mani. <a href="/privacy.html">Privātuma politika</a></span></label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="jā"><span>Vēlos saņemt AiBoost Pro jaunumus un piedāvājumus e-pastā (nav obligāti, var atteikties jebkurā brīdī).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Saņemt bezmaksas auditu</button>
 <p class="form-status" id="auditStatus" role="status"></p>
 </form>
@@ -1212,6 +1216,7 @@ LIAA digitalizācijas un mākslīgā intelekta atbalsta programmā pieteikšanā
 <input type="checkbox" name="consent" required>
 <span>Piekrītu, ka mani dati tiek apstrādāti, lai sazinātos ar mani. <a href="/privacy.html">Privātuma politika</a></span>
 </label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="jā"><span>Vēlos saņemt AiBoost Pro jaunumus un piedāvājumus e-pastā (nav obligāti, var atteikties jebkurā brīdī).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Nosūtīt</button>
 <p class="form-status" id="formStatus" role="status"></p>
 </form>

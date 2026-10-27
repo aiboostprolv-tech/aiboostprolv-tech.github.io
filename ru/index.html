@@ -643,6 +643,9 @@ html{scroll-behavior:auto;}
 .audit-card .contact-form{margin:0;max-width:none;}
 @media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
 </style>
+<style id="lasamiba">/* Lasāmība: teksts ne mazāks par 13 px (audits 27.10.2026) */
+.section-tag,.skill-tag,.case-label,.quick-btn,.pc-consult,.lang-switch a,.lang-btn,.disclaimer,.extra-card p,.chat-status,.stat-label,.price-note,.pc-desc,.lang-badge,.hero-tag,.form-consent,.pc-features,.pc-price span,.service-price,.service-card p,.strip-item p,.liaa-card li,.liaa-cta-sub,.case-card p,.about-role,.sb-cap,.post-meta,.post-meta a,.article-meta,.article-meta span,.updated,footer,footer p,th{font-size:0.8125rem}
+</style>
 </head>
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
@@ -935,7 +938,7 @@ html{scroll-behavior:auto;}
 <p class="case-quiet-links">
 <a href="https://rujienasseniorumaja.lv" target="_blank" rel="noopener">Посмотреть сайт</a>
 <span>·</span>
-<a href="/blog/rujienas-senioru-maja.html">Как это делалось</a>
+<a href="/ru/blog/rujienas-senioru-maja.html">Как это делалось</a>
 </p>
 </div>
 
@@ -1099,6 +1102,7 @@ html{scroll-behavior:auto;}
 <input type="text" name="website" placeholder="Адрес вашего сайта (напр., vashsait.lv)" required autocomplete="url">
 <input type="text" name="contact" placeholder="E-mail или телефон" required>
 <label class="form-consent"><input type="checkbox" name="consent" required><span>Я согласен(-на) на обработку данных для подготовки аудита и связи со мной. <a href="/privacy.html">Политика конфиденциальности</a></span></label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="да"><span>Хочу получать новости и предложения AiBoost Pro по e-mail (необязательно, можно отказаться в любой момент).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Получить бесплатный аудит</button>
 <p class="form-status" id="auditStatus" role="status"></p>
 </form>
@@ -1212,6 +1216,7 @@ html{scroll-behavior:auto;}
 <input type="checkbox" name="consent" required>
 <span>Согласен(на) на обработку моих данных для связи со мной. <a href="/privacy.html">Политика конфиденциальности</a></span>
 </label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="да"><span>Хочу получать новости и предложения AiBoost Pro по e-mail (необязательно, можно отказаться в любой момент).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Отправить</button>
 <p class="form-status" id="formStatus" role="status"></p>
 </form>

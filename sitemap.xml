@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/"/>
@@ -15,7 +15,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/ru/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/"/>
@@ -26,7 +26,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/en/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/"/>
@@ -44,9 +44,33 @@
 
   <url>
     <loc>https://aiboostpro.lv/blog/rujienas-senioru-maja.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/blog/rujienas-senioru-maja.html"/>
+  </url>
+  <url>
+    <loc>https://aiboostpro.lv/ru/blog/rujienas-senioru-maja.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/blog/rujienas-senioru-maja.html"/>
+  </url>
+  <url>
+    <loc>https://aiboostpro.lv/en/blog/rujienas-senioru-maja.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/blog/rujienas-senioru-maja.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/blog/rujienas-senioru-maja.html"/>
   </url>
 
   <url>
@@ -87,7 +111,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/en/ai-consulting-latvia.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/ai-konsultacijas.html"/>
@@ -298,7 +322,7 @@
 
   <url>
     <loc>https://aiboostpro.lv/cenas.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/cenas.html"/>
@@ -308,7 +332,51 @@
   </url>
   <url>
     <loc>https://aiboostpro.lv/demo.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/demo.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/cenas.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/cenas.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/cenas.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/cenas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/cenas.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/ru/demo.html</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aiboostpro.lv/ru/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiboostpro.lv/en/demo.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiboostpro.lv/demo.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiboostpro.lv/en/demo.html</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="lv" href="https://aiboostpro.lv/demo.html"/>

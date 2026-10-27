@@ -190,7 +190,7 @@ body>nav{z-index:200;}
 
 .section-wrap{padding:5rem 3rem;max-width:1100px;margin:0 auto;}
 .section-tag{font-size:0.72rem;font-weight:600;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.7rem;}
-.section-wrap h2,.why-section h2,.contact-section h2{font-family:"Syne",sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.8rem;}
+.section-wrap h1,.contact-section h1,.section-wrap h2,.why-section h2,.contact-section h2{font-family:"Syne",sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.8rem;}
 .section-desc{color:var(--muted);font-size:0.88rem;max-width:520px;margin-bottom:2.5rem;line-height:1.7;}
 .prose p{color:var(--muted);font-size:0.9rem;line-height:1.9;margin-bottom:1rem;max-width:760px;}
 .prose h3{font-family:"Syne",sans-serif;font-size:1.15rem;font-weight:700;margin:1.5rem 0 0.7rem;}
@@ -443,6 +443,69 @@ html{scroll-behavior:auto;}
 .audit-card{background:linear-gradient(135deg,rgba(0,229,160,0.08),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.3);border-radius:18px;padding:1.6rem;}
 .audit-card .contact-form{margin:0;max-width:none;}
 @media(max-width:768px){.audit-grid{grid-template-columns:1fr;}}
+.demo-steps{margin:0.8rem auto 1.2rem;padding-left:1.4rem;display:grid;gap:0.7rem;color:var(--white);text-align:left;max-width:520px;}.demo-steps li{line-height:1.55;}.contact-section .demo-steps-h{font-family:"Syne",sans-serif;font-size:1.15rem;font-weight:800;margin-top:1.4rem;color:var(--white);}.demo-steps li::marker{color:var(--accent);font-weight:700;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://aiboostpro.lv/en/demo.html#webpage",
+      "url": "https://aiboostpro.lv/en/demo.html",
+      "name": "Free website demo | AiBoost Pro",
+      "description": "Tell us about your business and get a free draft demo website. No obligation, and a person checks it before we send it.",
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@id": "https://aiboostpro.lv/#website"
+      },
+      "about": {
+        "@id": "https://aiboostpro.lv/#organization"
+      },
+      "dateModified": "2026-10-27"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AiBoost Pro",
+          "item": "https://aiboostpro.lv/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Free demo",
+          "item": "https://aiboostpro.lv/en/demo.html"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://aiboostpro.lv/en/demo.html#service",
+      "name": "Free demo",
+      "provider": {
+        "@type": "ProfessionalService",
+        "@id": "https://aiboostpro.lv/#organization",
+        "name": "AiBoost Pro",
+        "url": "https://aiboostpro.lv/"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Latvia"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+  ]
+}
+</script>
+<style id="lasamiba">/* Lasāmība: teksts ne mazāks par 13 px (audits 27.10.2026) */
+.section-tag,.skill-tag,.case-label,.quick-btn,.pc-consult,.lang-switch a,.lang-btn,.disclaimer,.extra-card p,.chat-status,.stat-label,.price-note,.pc-desc,.lang-badge,.hero-tag,.form-consent,.pc-features,.pc-price span,.service-price,.service-card p,.strip-item p,.liaa-card li,.liaa-cta-sub,.case-card p,.about-role,.sb-cap,.post-meta,.post-meta a,.article-meta,.article-meta span,.updated,footer,footer p,th{font-size:0.8125rem}
 </style>
 </head>
 <body>
@@ -562,8 +625,15 @@ html{scroll-behavior:auto;}
 <main id="main-content">
 <section class="contact-section fade-up" id="demo">
 <p class="section-tag">Free demo</p>
-<h2>Tell us about your business</h2>
+<h1>Tell us about your business</h1>
 <p>Describe your business and we will prepare a simple draft demo website. The demo is free and comes with no obligation. A person checks it before we send the link.</p>
+<p class="demo-steps-h">How it works</p>
+<ol class="demo-steps">
+<li>Describe your business in the form: what you offer, who it is for and which languages you need.</li>
+<li>We prepare a simple draft demo website. A person checks it before we send the link.</li>
+<li>You get the link and decide yourself — free and with no obligation. If you like it, a landing page costs from €250 (excl. VAT), each extra language +€200.</li>
+</ol>
+<p style="margin-bottom:1.4rem;"><a href="/en/cenas.html">All prices →</a></p>
 <form class="contact-form" id="demoForm" novalidate>
 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
 <input type="text" name="name" placeholder="Name" required autocomplete="name">
@@ -571,7 +641,8 @@ html{scroll-behavior:auto;}
 <input type="tel" name="phone" placeholder="Phone (if no email)" autocomplete="tel">
 <input type="url" name="website" placeholder="Current website (if any)">
 <textarea name="message" placeholder="Your company, what you offer, who it is for, site languages" required minlength="30"></textarea>
-<label class="form-consent"><input type="checkbox" name="consent" required><span>I agree that my data is processed to prepare the demo and to contact me. <a href="/privacy.html">Privātuma politika</a></span></label>
+<label class="form-consent"><input type="checkbox" name="consent" required><span>I agree that my data is processed to prepare the demo and to contact me. <a href="/privacy.html">Privacy policy</a></span></label>
+<label class="form-consent form-news"><input type="checkbox" name="jaunumi" value="yes"><span>I’d like to receive AiBoost Pro news and offers by email (optional, unsubscribe at any time).</span></label>
 <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;">Get a free demo</button>
 <p class="form-status" id="demoStatus" role="status"></p>
 </form>
