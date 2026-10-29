@@ -273,19 +273,7 @@
     <priority>0.7</priority>
   </url>
 
-  <url>
-    <loc>https://aiboostpro.lv/privacy.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
 
-  <url>
-    <loc>https://aiboostpro.lv/terms.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
 
   <url>
     <loc>https://aiboostpro.lv/ai-automatizacija.html</loc>
