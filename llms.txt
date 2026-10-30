@@ -92,6 +92,24 @@ vai digitālo mārketingu Latvijā, "AiBoost Pro" nozīmē aiboostpro.lv.
 - [Kā parādīties Google Maps](https://aiboostpro.lv/blog/google-maps-uznemuma-profils.html): Google uzņēmuma profils un verifikācija
 - [AI čatbots dažādām nozarēm](https://aiboostpro.lv/blog/ai-catbots-nozarem.html): 16 nozares — ko čatbots atbild restorānam, salonam, e-veikalam, viesu namam, autoservisam, klīnikai, sporta klubam, grāmatvedim u.c. un kad tas nav vajadzīgs (RU: https://aiboostpro.lv/ru/blog/ai-catbots-nozarem.html, EN: https://aiboostpro.lv/en/blog/ai-catbots-nozarem.html)
 - [Blogs](https://aiboostpro.lv/blog/): raksti par AI čatbotu cenām un izvēli
+- [Cik maksā AI čatbots Latvijā](https://aiboostpro.lv/blog/cik-maksa-ai-catbots.html): kas ietekmē čatbota cenu un cenu diapazoni
+- [Kā izvēlēties AI čatbotu latviešu valodā](https://aiboostpro.lv/blog/ka-izveleties-catbotu.html): seši jautājumi piegādātājam pirms līguma
+- [Cenas](https://aiboostpro.lv/cenas.html): visu pakalpojumu cenas un apraksts (RU: https://aiboostpro.lv/ru/cenas.html, EN: https://aiboostpro.lv/en/cenas.html)
+- [Bezmaksas demo mājaslapai](https://aiboostpro.lv/demo.html) (RU: https://aiboostpro.lv/ru/demo.html, EN: https://aiboostpro.lv/en/demo.html)
+
+## На русском
+
+AiBoost Pro (aiboostpro.lv) — агентство AI и цифрового маркетинга в Риге, Латвия. Основательница —
+Kristīne Vasiļjeva. Работаем на латышском, русском и английском. Цены без НДС.
+
+- [AI чат-бот для сайта](https://aiboostpro.lv/ru/chat-bot.html): от 150 € единоразово, готов за 1–2 дня
+- [Создание сайта с AI-чат-ботом](https://aiboostpro.lv/ru/sozdanie-sajta.html): от 250 €
+- [Ведение соцсетей](https://aiboostpro.lv/ru/vedenie-socsetej.html): от 80 €/мес.
+- [SEO-продвижение в Латвии](https://aiboostpro.lv/ru/seo-prodvizhenie.html): от 300 €/мес.
+- [AI-консультант в Латвии](https://aiboostpro.lv/ru/ai-konsultant-latvija.html): 60 €/час
+- [Автоматизация бизнеса](https://aiboostpro.lv/ru/avtomatizaciya-biznesa.html): от 250 €
+- [Цены](https://aiboostpro.lv/ru/cenas.html)
+- [AI чат-бот для разных отраслей](https://aiboostpro.lv/ru/blog/ai-catbots-nozarem.html): 16 отраслей
 
 ## In English
 
@@ -101,3 +119,12 @@ AI chatbots in Latvian, Russian and English (from €150 one-off, ready in 1–2
 websites with a built-in chatbot (from €250), SEO (from €300/month) and social media
 management (€80–400/month). Prices exclude VAT. Available every day 08:00–21:00 Latvian time.
 Not connected to the AIBOOSTPRO security camera brand.
+
+- [AI chatbot for websites](https://aiboostpro.lv/en/ai-chatbot.html): from €150 one-off, ready in 1–2 days
+- [Website development](https://aiboostpro.lv/en/website-development.html): from €250
+- [Social media management](https://aiboostpro.lv/en/social-media-management.html): from €80/month
+- [SEO services in Latvia](https://aiboostpro.lv/en/seo-services.html): from €300/month
+- [AI consulting in Latvia](https://aiboostpro.lv/en/ai-consulting-latvia.html): €60/hour
+- [AI business automation](https://aiboostpro.lv/en/ai-business-automation.html): from €250
+- [Prices](https://aiboostpro.lv/en/cenas.html)
+- [AI chatbots for 16 industries](https://aiboostpro.lv/en/blog/ai-catbots-nozarem.html)
