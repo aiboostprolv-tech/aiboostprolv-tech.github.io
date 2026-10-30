@@ -15,3 +15,11 @@ Izvietošana: Cloudflare Workers Builds (Root directory `_bot`), automātiski p�
 5. Pēc nosūtīšanas Telegram atgādina 3. un 10. dienā; sekošanas teksti ir admin lapā.
 
 Neobligāti Secrets: `PSI_KEY` (Google PageSpeed API atslēga, ja bez tās bieži 429), `AUDIT_MODEL`.
+
+## Zināšanu bāze (src/knowledge.js)
+
+Čatbots zina visu, kas ir `llms.txt` un lapu FAQ (jautājumi un atbildes no LV lapām un rakstiem).
+`src/knowledge.js` ģenerē `scripts/build-knowledge.mjs` — ar roku nelabo.
+Pēc katras lapu izmaiņas GitHub Action "Čatbota zināšanas" to pārbūvē un iecommito automātiski.
+Ar roku: `node _bot/scripts/build-knowledge.mjs` no repozitorija saknes.
+Noteikumi un cenas paliek `src/brain.js`; mainot cenas lapā, nomaini tās arī tur.

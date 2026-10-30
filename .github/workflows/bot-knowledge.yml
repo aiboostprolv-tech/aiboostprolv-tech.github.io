@@ -1,0 +1,40 @@
+name: Čatbota zināšanas
+
+# Kad mainās lapas vai llms.txt, pārbūvē _bot/src/knowledge.js, lai čatbots zina jaunāko saturu.
+# Commit no šīs darbības neizsauc citas darbības (GITHUB_TOKEN), bet Cloudflare botu izvieto no jauna.
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.html', 'llms.txt', '_bot/scripts/build-knowledge.mjs']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bot-knowledge
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pārbūvē zināšanas
+        run: node _bot/scripts/build-knowledge.mjs
+      - name: Saglabā, ja mainījās
+        run: |
+          if git diff --quiet -- _bot/src/knowledge.js; then
+            echo "Zināšanas jau aktuālas."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _bot/src/knowledge.js
+          git commit -m "Čatbota zināšanas atjaunotas no mājaslapas"
+          git pull --rebase origin main
+          git push origin HEAD:main
