@@ -29,7 +29,9 @@ Princips: "Mēram 10 reizes, vienreiz nogriežam." Neviens fakts, cena vai skait
 AI vairāk citē uzņēmumus, kurus min citi avoti:
 - Google uzņēmuma profils: pakalpojumi ar cenām, foto, iknedēļas ziņa, atbildes uz katru atsauksmi.
 - Atsauksmes Google (visiem klientiem vienādi, bez atlīdzības).
-- Katalogi: firmas.lv, zl.lv, 1188.lv, Bing Places, Apple Business Connect, LinkedIn uzņēmuma lapa, Clutch tipa aģentūru katalogi.
+- Katalogi bez Uzņēmumu reģistra prasības: Bing Places, Apple Business Connect, LinkedIn uzņēmuma lapa, starptautiskie aģentūru katalogi (Clutch u.c.).
+- AiBoost Pro ir saimnieciskās darbības veicēja (reģistrēta VID, ne UR), tāpēc firmas.lv tā nav. 1188.lv reģistrācijas formā prasa reģistrācijas numuru — pirms pieteikšanās noskaidro pie 1188 (info@1188.lv), vai var bez UR numura; personas kodu publiski nenorāda.
+- Klientu SIA/IK var pārbaudīt firmas.lv un 1188.lv.
 - Pieminējumi: klientu vietņu kājenē "Izstrādāja AiBoost Pro" (ar klienta atļauju), raksti/intervijas nozares medijos.
 
 ## 4. Mēri
