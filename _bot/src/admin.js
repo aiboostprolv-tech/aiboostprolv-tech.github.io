@@ -28,6 +28,15 @@ export async function handleAdmin(request, env) {
   const url = new URL(request.url);
   const store = env.BOT_KV;
 
+  // CSRF aizsardzība: darbības (POST) pieņem tikai no pašas admin lapas, ne no citām vietnēm.
+  if (request.method === "POST") {
+    const origin = request.headers.get("Origin");
+    const site = request.headers.get("Sec-Fetch-Site");
+    if ((origin && origin !== url.origin) || (!origin && site && site !== "same-origin")) {
+      return new Response("Aizliegts", { status: 403, headers: { "cache-control": "no-store" } });
+    }
+  }
+
   if (url.pathname === "/admin/telegram" && request.method === "POST") {
     const r = await linkTelegram(env);
     const msg = r.ok ? `ok:${r.name || ""}` : `err:${r.reason}`;

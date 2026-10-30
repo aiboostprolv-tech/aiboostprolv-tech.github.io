@@ -17,6 +17,7 @@ const BOT_TAG = "aiboost-bot";          // Messenger "metadata", lai atpazītu b
 const HISTORY_TURNS = 10;               // cik pēdējās ziņas atcerēties sarunā
 const HISTORY_TTL = 7 * 24 * 3600;      // saruna aizmirstas pēc 7 dienām
 const MAX_INPUT_CHARS = 1000;
+const MAX_HISTORY_CHARS = 6000;        // visa sarunas vēsture vienā pieprasījumā
 const LIMITS = { messenger: 2000, instagram: 1000, whatsapp: 4096 }; // IG: baiti, pārējie: simboli
 
 export default {
@@ -120,6 +121,8 @@ export async function handleSiteChat(request, env, ctx) {
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
     .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_INPUT_CHARS) }))
     .slice(-HISTORY_TURNS);
+  // Kopējais sarunas apjoms ne vairāk kā MAX_HISTORY_CHARS — vecākās ziņas izmet (aizsardzība pret dārgiem pieprasījumiem)
+  while (clean.length > 1 && clean.reduce((n, m) => n + m.content.length, 0) > MAX_HISTORY_CHARS) clean.shift();
   while (clean.length && clean[0].role !== "user") clean.shift();
   if (!clean.length || clean[clean.length - 1].role !== "user") return json({ error: "no_message" }, 400, c.headers);
 
