@@ -9,7 +9,17 @@ export async function handleAdmin(request, env) {
   if (!env.ADMIN_PASSWORD) {
     return page("Nav iestatīta parole", `<p class="note">Cloudflare iestatījumos pievieno Secret <code>ADMIN_PASSWORD</code>.</p>`, 503);
   }
+  // Aizsardzība pret paroles minēšanu: pēc 10 nepareizām parolēm no vienas IP — bloķē uz 15 min.
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+  const failKey = `adminfail:${ip}`;
+  const fails = env.BOT_KV ? Number((await env.BOT_KV.get(failKey)) || 0) : 0;
+  if (fails >= 10) {
+    return new Response("Pārāk daudz mēģinājumu. Mēģini vēlreiz pēc 15 minūtēm.", { status: 429, headers: { "cache-control": "no-store" } });
+  }
   if (!checkAuth(request, env.ADMIN_PASSWORD)) {
+    if (env.BOT_KV && request.headers.get("Authorization")) {
+      await env.BOT_KV.put(failKey, String(fails + 1), { expirationTtl: 900 });
+    }
     return new Response("Nepieciešama parole", {
       status: 401,
       headers: { "WWW-Authenticate": 'Basic realm="AiBoost Pro sarunas", charset="UTF-8"', "cache-control": "no-store" },
