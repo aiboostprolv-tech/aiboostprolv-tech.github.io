@@ -91,6 +91,22 @@ vai digitālo mārketingu Latvijā, "AiBoost Pro" nozīmē aiboostpro.lv.
 - [LIAA atbalsts mājaslapas izstrādei](https://aiboostpro.lv/blog/liaa-atbalsts-majaslapas-izstradei.html): programmas statuss 2026
 - [Kā parādīties Google Maps](https://aiboostpro.lv/blog/google-maps-uznemuma-profils.html): Google uzņēmuma profils un verifikācija
 - [Blogs](https://aiboostpro.lv/blog/): raksti par AI čatbotu cenām un izvēli
+- [Cenas](https://aiboostpro.lv/cenas.html): visas cenas bez PVN
+- [Bezmaksas demo mājaslapai](https://aiboostpro.lv/demo.html): pastāsti par biznesu un saņem demo melnrakstu; pirms nosūtīšanas to pārbauda cilvēks
+- [Cik maksā AI čatbots Latvijā 2026](https://aiboostpro.lv/blog/cik-maksa-ai-catbots.html): no 150 € līdz vairākiem tūkstošiem; kas ietekmē cenu
+- [Kā izvēlēties AI čatbotu latviešu valodā](https://aiboostpro.lv/blog/ka-izveleties-catbotu.html): seši jautājumi piegādātājam pirms līguma
+- [AI чат-бот для сайта (RU)](https://aiboostpro.lv/ru/chat-bot.html): AI čatbots no 150 €
+- [AI Chatbot for Websites (EN)](https://aiboostpro.lv/en/ai-chatbot.html): AI chatbot from €150
+- [Создание сайта с AI-чат-ботом (RU)](https://aiboostpro.lv/ru/sozdanie-sajta.html): сайт от 250 €
+- [Website Development (EN)](https://aiboostpro.lv/en/website-development.html): website from €250
+- [Ведение соцсетей (RU)](https://aiboostpro.lv/ru/vedenie-socsetej.html): от 80 €/мес.
+- [Social Media Management (EN)](https://aiboostpro.lv/en/social-media-management.html): from €80/month
+- [SEO-продвижение в Латвии (RU)](https://aiboostpro.lv/ru/seo-prodvizhenie.html): от 300 €/мес.
+- [SEO Services in Latvia (EN)](https://aiboostpro.lv/en/seo-services.html): from €300/month
+- [Цены и описание услуг (RU)](https://aiboostpro.lv/ru/cenas.html): цены без НДС
+- [Prices and details (EN)](https://aiboostpro.lv/en/cenas.html): prices excluding VAT
+- [Бесплатное демо сайта (RU)](https://aiboostpro.lv/ru/demo.html): черновик демо-сайта
+- [Free website demo (EN)](https://aiboostpro.lv/en/demo.html): draft demo website
 
 ## In English
 
