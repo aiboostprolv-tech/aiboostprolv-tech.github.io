@@ -6,7 +6,7 @@ name: IndexNow ping
 on:
   push:
     branches: [main]
-    paths: ['**.html', 'sitemap.xml']
+    paths: ['**.html', 'sitemap.xml', '!.claude/**']
   workflow_dispatch:
 
 env:
@@ -26,7 +26,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || ! git rev-parse HEAD^ >/dev/null 2>&1; then
             grep -o '<loc>[^<]*' sitemap.xml | sed 's/<loc>//' > urls.txt
           else
-            git diff --name-only HEAD^ HEAD -- '*.html' | grep -v '^_bot/' | grep -v '^404.html$' | while read -r f; do
+            git diff --name-only HEAD^ HEAD -- '*.html' | grep -v '^_bot/' | grep -v '^\.claude/' | grep -v '^404.html$' | while read -r f; do
               [ -f "$f" ] || continue
               p="${f%index.html}"
               echo "https://$HOST/$p"

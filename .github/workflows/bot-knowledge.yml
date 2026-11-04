@@ -6,7 +6,7 @@ name: Čatbota zināšanas
 on:
   push:
     branches: [main]
-    paths: ['**.html', 'llms.txt', '_bot/scripts/build-knowledge.mjs']
+    paths: ['**.html', 'llms.txt', '_bot/scripts/build-knowledge.mjs', '!.claude/**']
   workflow_dispatch:
 
 permissions:
