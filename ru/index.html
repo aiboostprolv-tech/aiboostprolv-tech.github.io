@@ -245,7 +245,7 @@
 
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{--black:#0a0a0a;--white:#f5f3ee;--accent:#00e5a0;--accent2:#0066ff;--gray:#17171c;--gray2:#222;--muted:#888;}
+:root{--black:#0a0a0a;--white:#f5f3ee;--accent:#00e5a0;--accent2:#0066ff;--gray:#17171c;--gray2:#222;--muted:#a9b1bd;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden;}
 a{color:var(--accent);}
@@ -646,6 +646,15 @@ html{scroll-behavior:auto;}
 <style id="lasamiba">/* Lasāmība: teksts ne mazāks par 13 px (audits 27.10.2026) */
 .section-tag,.skill-tag,.case-label,.quick-btn,.pc-consult,.lang-switch a,.lang-btn,.disclaimer,.extra-card p,.chat-status,.stat-label,.price-note,.pc-desc,.lang-badge,.hero-tag,.form-consent,.pc-features,.pc-price span,.service-price,.service-card p,.strip-item p,.liaa-card li,.liaa-cta-sub,.case-card p,.about-role,.sb-cap,.post-meta,.post-meta a,.article-meta,.article-meta span,.updated,footer,footer p,th{font-size:0.8125rem}
 </style>
+<style id="lasamiba-2">/* Lasāmība telefonā (dizaina audits 04.11.2026): lielāks teksts, gaišāks pelēkais, astronauts aiz satura */
+@media (max-width:768px){
+.prose p,.about-text p,.faq-answer,.section-desc,.why-list li,.contact-section p,.case-quiet p,.contact-hours{font-size:1rem;line-height:1.65}
+.service-card p,.strip-item p,.extra-card p,.pc-features li,.liaa-box li,.service-price,.about-role,.liaa-cta-sub{font-size:0.9375rem;line-height:1.6}
+.disclaimer,.price-note,.form-consent,.form-consent span,footer p,.contact-item,.foot-portfolio,#cookie-banner,#cookie-banner p{font-size:0.875rem}
+#astro.on{opacity:0.22}
+}
+.pop-badge{font-size:0.8125rem}
+</style>
 </head>
 <body>
 <canvas id="particles-bg" aria-hidden="true"></canvas>
@@ -791,9 +800,9 @@ html{scroll-behavior:auto;}
 <div class="sb-blk sb-nav"><div class="sb-logo"></div><div class="sb-links"><i></i><i></i><i></i></div></div>
 <div class="sb-row">
 <div class="sb-blk sb-hero"><div class="sb-h1"></div><div class="sb-p"></div><span class="sb-cta">Записаться</span></div>
-<div class="sb-blk sb-img"><img src="https://images.unsplash.com/photo-1752650735119-8929e5f7d1ec?w=360&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="180" height="120"></div>
+<div class="sb-blk sb-img"><img src="https://images.unsplash.com/photo-1752650735119-8929e5f7d1ec?w=360&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="180" height="120"></div>
 </div>
-<div class="sb-cards"><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=200&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Фитнес-студия</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1780404850213-0f72ef537c3a?w=200&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Спортклуб</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1595218841793-d38b949402d2?w=200&q=60&auto=format&fit=crop" alt="" loading="lazy" decoding="async" width="120" height="58"><b>Парикмахерская</b></div></div>
+<div class="sb-cards"><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=200&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Фитнес-студия</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1780404850213-0f72ef537c3a?w=200&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Спортклуб</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1595218841793-d38b949402d2?w=200&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Парикмахерская</b></div></div>
 <div style="height:34px"></div>
 <div class="sb-chatdot"></div>
 <svg class="sb-cursor" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>

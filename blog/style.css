@@ -1,7 +1,7 @@
 
 /* AiBoost Pro — bloga stili */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{--black:#0a0a0a;--white:#f5f3ee;--accent:#00e5a0;--accent2:#0066ff;--gray:#17171c;--gray2:#222;--muted:#888;}
+:root{--black:#0a0a0a;--white:#f5f3ee;--accent:#00e5a0;--accent2:#0066ff;--gray:#17171c;--gray2:#222;--muted:#a9b1bd;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:"DM Sans",sans-serif;line-height:1.7;}
 a{color:var(--accent);}
