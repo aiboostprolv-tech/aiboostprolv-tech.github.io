@@ -169,10 +169,11 @@ body>nav{z-index:200;}
 .hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);color:var(--accent);font-size:0.75rem;padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;}
 .hero-tag::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes heroRise{from{transform:translateY(16px);}to{transform:translateY(0);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.hero h1{font-family:"Syne",sans-serif;font-size:clamp(1.9rem,4.6vw,3.4rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.2rem;animation:fadeUp 0.7s ease both;}
+.hero h1{font-family:"Syne",sans-serif;font-size:clamp(1.9rem,4.6vw,3.4rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.2rem;animation:heroRise 0.7s ease both;}
 .hero h1 em{font-style:normal;color:var(--accent);}
-.hero-sub{font-size:1rem;color:var(--muted);max-width:520px;margin-bottom:2rem;animation:fadeUp 0.7s 0.1s ease both;}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:520px;margin-bottom:2rem;animation:heroRise 0.7s 0.1s ease both;}
 .hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.2s ease both;}
 .btn-primary{background:var(--accent);color:var(--black);padding:0.8rem 1.7rem;border-radius:100px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;display:inline-block;}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(0,229,160,0.35);}
