@@ -1,0 +1,19 @@
+{
+  "name": "reel-remotion",
+  "private": true,
+  "description": "Optional: the title, the end card and the boards, animated, on a transparent background (scripts/finish.py lays them over the video). Needs Node 18+.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Overlay out/overlay.mov --codec=prores --prores-profile=4444 --pixel-format=yuva444p10le --image-format=png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.528",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.528"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "^5"
+  }
+}
