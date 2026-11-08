@@ -268,7 +268,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 @keyframes abSpin{to{transform:rotate(360deg)}}
 @keyframes abFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 @keyframes abBlink{0%,88%,100%{transform:scaleY(1)}92%{transform:scaleY(0.1)}96%{transform:scaleY(1)}}
-@keyframes abEyeGlow{0%,100%{opacity:1;filter:brightness(1)}50%{opacity:0.55;filter:brightness(1.6)}}
+@keyframes abEyeGlow{0%,100%{opacity:1}50%{opacity:0.55}}
 @media (prefers-reduced-motion:reduce){.ab-spin,.ab-float,.ab-blink{animation:none}}
 @keyframes botFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-2.5px);}}
 .bot-orb{animation:orbPulse 2.2s ease-in-out infinite;transform-origin:center;}
@@ -324,7 +324,7 @@ body>nav{z-index:200;}
 .sb-top i:nth-child(1){background:#ff5f57;}.sb-top i:nth-child(2){background:#febc2e;}.sb-top i:nth-child(3){background:#28c840;}
 .sb-url{margin-left:8px;flex:1;background:#0d0d10;border-radius:999px;padding:4px 10px;font-size:0.62rem;color:var(--muted);white-space:nowrap;overflow:hidden;}
 .sb-url b{color:#d3fff0;font-weight:500;}
-.sb-prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(0,229,160,0.8);transition:width 0.6s ease;}
+.sb-prog{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(0,229,160,0.8);transition:transform 0.6s ease;}
 .sb-body{position:relative;padding:14px;display:flex;flex-direction:column;gap:10px;}
 .sb-status{position:absolute;bottom:16px;left:14px;z-index:3;font-size:0.6rem;font-weight:700;color:#04120c;background:var(--accent);border-radius:999px;padding:3px 9px;box-shadow:0 0 12px rgba(0,229,160,0.6);transition:transform 0.3s;}
 .sb-status.done{transform:scale(1.08);transform-origin:left center;}
@@ -802,9 +802,9 @@ html{scroll-behavior:auto;}
 <div class="sb-blk sb-nav"><div class="sb-logo"></div><div class="sb-links"><i></i><i></i><i></i></div></div>
 <div class="sb-row">
 <div class="sb-blk sb-hero"><div class="sb-h1"></div><div class="sb-p"></div><span class="sb-cta">Pieteikties</span></div>
-<div class="sb-blk sb-img"><img src="https://images.unsplash.com/photo-1752650735119-8929e5f7d1ec?w=360&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="180" height="120"></div>
+<div class="sb-blk sb-img"><img src="https://images.unsplash.com/photo-1752650735119-8929e5f7d1ec?w=180&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="180" height="120"></div>
 </div>
-<div class="sb-cards"><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=200&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Fitnesa studija</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1780404850213-0f72ef537c3a?w=200&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Sporta klubs</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1595218841793-d38b949402d2?w=200&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Frizētava</b></div></div>
+<div class="sb-cards"><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=160&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Fitnesa studija</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1780404850213-0f72ef537c3a?w=160&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Sporta klubs</b></div><div class="sb-blk sb-card"><img src="https://images.unsplash.com/photo-1595218841793-d38b949402d2?w=160&q=60&auto=format&fit=crop" alt="" onerror="this.remove()" loading="lazy" decoding="async" width="120" height="58"><b>Frizētava</b></div></div>
 <div style="height:34px"></div>
 <div class="sb-chatdot"></div>
 <svg class="sb-cursor" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
@@ -1757,7 +1757,7 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
   var timers = [], running = false;
   function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
   function clearAll(){ timers.forEach(clearTimeout); timers = []; }
-  function setProg(p){ prog.style.width = p + "%"; status.textContent = p >= 100 ? DONE : BUILD + " " + p + "%"; status.classList.toggle("done", p >= 100); }
+  function setProg(p){ prog.style.transform = "scaleX(" + (p / 100) + ")"; status.textContent = p >= 100 ? DONE : BUILD + " " + p + "%"; status.classList.toggle("done", p >= 100); }
   function moveTo(el){
     if (!cursor) return;
     var b = body.getBoundingClientRect(), r = el.getBoundingClientRect();
