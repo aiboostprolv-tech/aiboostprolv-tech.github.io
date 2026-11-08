@@ -1991,8 +1991,10 @@ Array.prototype.forEach.call(document.querySelectorAll(".lang-btn"), function(bt
     if (document.readyState === "complete") setTimeout(startAstro, 2500); else window.addEventListener("load", function(){ setTimeout(startAstro, 2500); });
   }
 
-  build();
-  frame();
+  // Sākam pēc ielādes, lai nepiespiestu pārkārtošanu skriptu izpildes laikā
+  function start(){ build(); frame(); }
+  if (document.readyState === "complete") setTimeout(start, 0);
+  else window.addEventListener("load", function(){ setTimeout(start, 0); });
 
   var t;
   window.addEventListener("resize", function(){
