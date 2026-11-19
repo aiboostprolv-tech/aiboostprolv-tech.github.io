@@ -32,8 +32,10 @@ export async function handleAdmin(request, env) {
   if (request.method === "POST") {
     const origin = request.headers.get("Origin");
     const site = request.headers.get("Sec-Fetch-Site");
-    if ((origin && origin !== url.origin) || (!origin && site && site !== "same-origin")) {
-      return new Response(`Aizliegts [diag] origin=${origin} site=${site} host=${url.origin}`, { status: 403, headers: { "cache-control": "no-store" } });
+    // Pārlūks pats apliecina "same-origin" (Origin var būt "null" dažos ceļos) — tādu pieprasījumu pieņem.
+    const sameOrigin = site === "same-origin";
+    if (!sameOrigin && ((origin && origin !== url.origin) || (!origin && site && site !== "same-origin"))) {
+      return new Response("Aizliegts", { status: 403, headers: { "cache-control": "no-store" } });
     }
   }
 
