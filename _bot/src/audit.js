@@ -329,7 +329,7 @@ export function scoreFacts(f) {
 
 export const fmtScore = (n) => (n === null || n === undefined ? "—" : String(n).replace(".", ","));
 
-// ---------- Pakalpojumi un cenas (no aiboostpro.lv, bez PVN) ----------
+// ---------- Pakalpojumi un cenas (no aiboostpro.lv) ----------
 export const SERVICES = {
   seo: { lv: ["SEO un AI redzamība", "no 300 €/mēn."], ru: ["SEO и видимость в AI", "от 300 €/мес."], en: ["SEO and AI visibility", "from €300/month"], path: { lv: "/seo-pakalpojumi.html", ru: "/ru/seo-prodvizhenie.html", en: "/en/seo-services.html" } },
   website: { lv: ["Jauna vai atjaunota mājaslapa", "landing no 250 €, vairāku lapu 450–850 €"], ru: ["Новый или обновлённый сайт", "лендинг от 250 €, многостраничный 450–850 €"], en: ["New or rebuilt website", "landing page from €250, multi-page €450–850"], path: { lv: "/majaslapas-izstrade.html", ru: "/ru/sozdanie-sajta.html", en: "/en/website-development.html" } },
@@ -419,7 +419,7 @@ export const TXT = {
   lv: {
     title: "Mājaslapas audits", prepared: "Sagatavoja AiBoost Pro", overall: "Kopējais vērtējums",
     areas: { seo: "Tehniskais SEO", aio: "Redzamība AI meklētājos", mobile: "Mobilā versija un drošība", trust: "Saziņa un uzticamība", speed: "Ātrums telefonā" },
-    notMeasured: "nav izmērīts", fix: "Svarīgākais, ko uzlabot", good: "Kas jau ir labi", offer: "Ko iesakām", offerNote: "Cenas bez PVN. Galīgo cenu apstiprina rakstisks piedāvājums.",
+    notMeasured: "nav izmērīts", fix: "Svarīgākais, ko uzlabot", good: "Kas jau ir labi", offer: "Ko iesakām", offerNote: "Galīgo cenu apstiprina rakstisks piedāvājums.",
     cta: "Pārrunāt bez maksas", ctaWa: "Rakstīt WhatsApp", method: "Kā pārbaudījām",
     methodText: (d) => `Automātiska pārbaude ${d}: sākumlapas kods, robots.txt, sitemap, llms.txt un Google PageSpeed (mobilā versija). Pārbaudīta tikai sākumlapa, tāpēc rezultāts ir orientējošs. Pilnu auditu ar Google Search Console datiem varam sagatavot pēc vienošanās.`,
     more: (n) => `Un vēl ${n} mazāki punkti — tos pārrunāsim sarunā.`,
